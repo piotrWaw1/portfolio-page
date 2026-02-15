@@ -1,0 +1,113 @@
+---
+import { AnimateIn } from "@/components/ui/animate-in";
+import ExternalLink from "@lucide/astro/icons/external-link";
+
+const tagColors = [
+  "bg-primary/10 text-primary border-primary/20",
+  "bg-accent/10 text-accent border-accent/20",
+  "bg-cyan/10 text-cyan border-cyan/20",
+  "bg-amber/10 text-amber border-amber/20",
+  "bg-rose/10 text-rose border-rose/20",
+];
+
+const experiences = [
+  {
+    period: "2024 -- Present",
+    title: "Senior Frontend Engineer",
+    company: "Vertica Labs",
+    url: "#",
+    accentColor: "group-hover:text-primary",
+    borderColor: "hover:border-l-primary",
+    description:
+      "Build and maintain critical components used to construct the company's frontend, across the whole product. Work closely with cross-functional teams, including developers, designers, and product managers, to implement and advocate for best practices in web accessibility.",
+    tags: ["React", "Next.js", "TypeScript", "GraphQL", "Storybook"],
+  },
+  {
+    period: "2022 -- 2024",
+    title: "Frontend Developer",
+    company: "Pixel Studio",
+    url: "#",
+    accentColor: "group-hover:text-accent",
+    borderColor: "hover:border-l-accent",
+    description:
+      "Developed and styled interactive web apps for a diverse array of clients including startups, agencies, and enterprise companies. Worked alongside designers and backend engineers to deliver responsive, performant solutions.",
+    tags: ["React", "TypeScript", "Tailwind CSS", "REST APIs", "Figma"],
+  },
+  {
+    period: "2020 -- 2022",
+    title: "UI Developer",
+    company: "Crisp Digital",
+    url: "#",
+    accentColor: "group-hover:text-cyan",
+    borderColor: "hover:border-l-cyan",
+    description:
+      "Collaborated with other engineers to build web interfaces for a health-tech company's internal tools and customer-facing dashboards. Built component libraries and design system foundations used across multiple products.",
+    tags: ["JavaScript", "Vue.js", "SCSS", "Webpack", "Jest"],
+  },
+  {
+    period: "2018 -- 2020",
+    title: "Junior Web Developer",
+    company: "Launchpad Inc.",
+    url: "#",
+    accentColor: "group-hover:text-amber",
+    borderColor: "hover:border-l-amber",
+    description:
+      "Wrote modern, performant, and robust code for a diverse set of client and internal projects. Contributed to building marketing websites, landing pages, and email campaigns.",
+    tags: ["HTML", "CSS", "JavaScript", "jQuery", "WordPress"],
+  },
+];
+---
+
+<section id="experience" class="mesh-bg-warm px-6 py-24 md:py-32">
+  <div class="mx-auto max-w-6xl">
+    <AnimateIn>
+      <div class="mb-12 flex items-center gap-4">
+        <h2
+          class="text-foreground flex items-center gap-2 text-2xl font-bold md:text-3xl"
+        >
+          <span class="text-accent font-mono text-lg md:text-xl"> 02. </span>
+          Experience
+        </h2>
+        <div class="from-accent/40 h-px flex-1 bg-gradient-to-r to-transparent">
+        </div>
+      </div>
+    </AnimateIn>
+
+    <div class="flex flex-col gap-6">
+      {
+        experiences.map((exp, i) => (
+          <AnimateIn delay={i * 100} client:load>
+            <a
+              href={exp.url}
+              class={`group hover:bg-secondary/50 grid gap-4 rounded-xl border-l-2 border-l-transparent p-5 transition-all md:grid-cols-4 md:p-6 ${exp.borderColor}`}
+            >
+              <div class="text-muted-foreground font-mono text-xs tracking-wider uppercase md:pt-1">
+                {exp.period}
+              </div>
+              <div class="md:col-span-3">
+                <h3
+                  class={`text-foreground flex items-center gap-2 text-base font-medium ${exp.accentColor}`}
+                >
+                  {exp.title} &middot; {exp.company}
+                  <ExternalLink class="h-3.5 w-3.5 opacity-0 transition-all group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:opacity-100" />
+                </h3>
+                <p class="text-muted-foreground mt-2 text-sm leading-relaxed">
+                  {exp.description}
+                </p>
+                <div class="mt-4 flex flex-wrap gap-2">
+                  {exp.tags.map((tag, tagIndex) => (
+                    <span
+                      class={`rounded-full border px-3 py-1 font-mono text-xs ${tagColors[tagIndex % tagColors.length]}`}
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </a>
+          </AnimateIn>
+        ))
+      }
+    </div>
+  </div>
+</section>

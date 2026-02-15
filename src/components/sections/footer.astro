@@ -1,0 +1,43 @@
+---
+import { Github, Linkedin, Twitter, Instagram, Mail } from "@lucide/astro";
+
+const socialLinks = [
+  { icon: Github, href: "#", label: "GitHub", color: "hover:text-primary" },
+  { icon: Linkedin, href: "#", label: "LinkedIn", color: "hover:text-blue" },
+  { icon: Twitter, href: "#", label: "Twitter", color: "hover:text-cyan" },
+  {
+    icon: Instagram,
+    href: "#",
+    label: "Instagram",
+    color: "hover:text-accent",
+  },
+  {
+    icon: Mail,
+    href: "mailto:hello@alexchen.dev",
+    label: "Email",
+    color: "hover:text-amber",
+  },
+];
+---
+
+<footer class="border-border/30 border-t px-6 py-12">
+  <div class="mx-auto flex max-w-6xl flex-col items-center gap-6">
+    <div class="flex items-center gap-6">
+      {
+        socialLinks.map((link) => (
+          <a
+            href={link.href}
+            aria-label={link.label}
+            class={`text-muted-foreground transition-all hover:-translate-y-0.5 ${link.color}`}
+          >
+            <link.icon class="h-5 w-5" />
+          </a>
+        ))
+      }
+    </div>
+    <p class="text-muted-foreground font-mono text-xs">
+      Designed & Built by{" "}
+      <span class="gradient-text">Piotr Wawrzeńczyk</span>
+    </p>
+  </div>
+</footer>

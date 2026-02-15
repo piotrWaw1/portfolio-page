@@ -1,0 +1,35 @@
+---
+import { Github, Linkedin } from "@lucide/astro";
+
+const socialLinks = [
+  { icon: Github, href: "#", label: "GitHub", color: "hover:text-primary" },
+  { icon: Linkedin, href: "#", label: "LinkedIn", color: "hover:text-blue" },
+];
+---
+
+<div
+  class="after:from-primary/30 fixed bottom-0 left-6 z-40 hidden flex-col items-center gap-6 after:h-24 after:w-px after:bg-gradient-to-b after:to-transparent xl:left-10 xl:flex"
+>
+  {
+    socialLinks.map((link) => (
+      <a
+        href={link.href}
+        aria-label={link.label}
+        class={`text-muted-foreground transition-all hover:-translate-y-1 ${link.color}`}
+      >
+        <link.icon class="h-5 w-5" />
+      </a>
+    ))
+  }
+</div>
+
+<div
+  class="after:from-accent/30 fixed right-6 bottom-0 z-40 hidden flex-col items-center gap-6 after:h-24 after:w-px after:bg-gradient-to-b after:to-transparent xl:right-10 xl:flex"
+>
+  <a
+    href="mailto:hello@alexchen.dev"
+    class="text-muted-foreground hover:text-accent font-mono text-xs tracking-widest transition-all [writing-mode:vertical-lr] hover:-translate-y-1"
+  >
+    hello@alexchen.dev
+  </a>
+</div>

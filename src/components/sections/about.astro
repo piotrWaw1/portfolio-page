@@ -1,0 +1,101 @@
+---
+import { AnimateIn } from "@/components/ui/animate-in";
+const skills = [
+  { name: "JavaScript (ES6+)", color: "text-amber" },
+  { name: "TypeScript", color: "text-blue" },
+  { name: "React", color: "text-cyan" },
+  { name: "Next.js", color: "text-foreground" },
+  { name: "Tailwind CSS", color: "text-cyan" },
+  { name: "Node.js", color: "text-primary" },
+  { name: "GraphQL", color: "text-accent" },
+  { name: "Figma", color: "text-rose" },
+];
+---
+
+<section id="about" class="px-6 py-24 md:py-32">
+  <div class="mx-auto max-w-6xl">
+    <AnimateIn client:load>
+      <div class="mb-12 flex items-center gap-4">
+        <h2
+          class="text-foreground flex items-center gap-2 text-2xl font-bold md:text-3xl"
+        >
+          <span class="text-primary font-mono text-lg md:text-xl"> 01. </span>
+          About Me
+        </h2>
+        <div
+          class="from-primary/40 h-px flex-1 bg-gradient-to-r to-transparent"
+        >
+        </div>
+      </div>
+    </AnimateIn>
+
+    <div class="grid gap-12 md:grid-cols-5">
+      <div class="md:col-span-3">
+        <AnimateIn delay={100} client:load>
+          <p class="text-muted-foreground mb-4 leading-relaxed">
+            I{"'"}m a developer passionate about crafting accessible,
+            pixel-perfect user interfaces that blend thoughtful design with
+            robust engineering. My favorite work lies at the intersection of
+            design and development, creating experiences that not only look
+            great but are meticulously built for performance and usability.
+          </p>
+        </AnimateIn>
+
+        <AnimateIn delay={200} client:load>
+          <p class="text-muted-foreground mb-4 leading-relaxed">
+            I started my journey in web development back in 2018, tinkering with
+            HTML and CSS to build simple websites. Since then, I{"'"}ve had the
+            privilege of working at a{" "}
+            <span class="text-primary font-medium">startup</span>, a{" "}
+            <span class="text-accent font-medium">digital agency</span>, and a{
+              " "
+            }
+            <span class="text-cyan font-medium">large corporation</span>,
+            building software for a diverse range of clients and use cases.
+          </p>
+        </AnimateIn>
+
+        <AnimateIn delay={300} client:load>
+          <p class="text-muted-foreground mb-8 leading-relaxed">
+            Here are a few technologies I{"'"}ve been working with recently:
+          </p>
+        </AnimateIn>
+
+        <AnimateIn delay={400} client:load>
+          <ul class="grid grid-cols-2 gap-x-8 gap-y-3">
+            {
+              skills.map((skill) => (
+                <li class="text-muted-foreground flex items-center gap-2 font-mono text-sm">
+                  <span class={skill.color}>{">"}</span>
+                  <span class="hover:text-foreground transition-colors">
+                    {skill.name}
+                  </span>
+                </li>
+              ))
+            }
+          </ul>
+        </AnimateIn>
+      </div>
+
+      <div class="md:col-span-2">
+        <AnimateIn delay={200} direction="right" client:load>
+          <div class="group relative mx-auto w-full max-w-xs">
+            <div
+              class="from-primary/20 via-accent/10 to-cyan/20 relative overflow-hidden rounded-xl bg-gradient-to-br"
+            >
+              <div class="bg-secondary/30 aspect-square"></div>
+              <div
+                class="from-primary/20 to-accent/20 absolute inset-0 bg-gradient-to-br via-transparent transition-opacity group-hover:opacity-0"
+              >
+              </div>
+            </div>
+            <div
+              class="border-accent/50 group-hover:border-primary/50 absolute -right-3 -bottom-3 -z-10 h-full w-full rounded-xl border-2 transition-all group-hover:-right-4 group-hover:-bottom-4"
+            >
+            </div>
+          </div>
+        </AnimateIn>
+      </div>
+    </div>
+  </div>
+</section>

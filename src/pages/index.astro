@@ -1,11 +1,14 @@
 ---
-import "../styles/global.css";
-import Welcome from "../components/Welcome.astro";
-import Layout from "../layouts/Layout.astro";
-import { ModeToggle } from "../components/ModeToggle";
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import "@/styles/global.css";
+import Layout from "@/layouts/Layout.astro";
+import { Navbar } from "@/components/sections/navbar";
+import SideElements from "@/components/sections/side-elements.astro";
+import Hero from "@/components/sections/hero.astro";
+import About from "@/components/sections/about.astro";
+import Experience from "@/components/sections/experience.astro";
+import Project from "@/components/sections/projects.astro";
+import { Contact } from "../components/sections/contact";
+import Footer from "../components/sections/footer.astro";
 ---
 
 <script is:inline>
@@ -33,6 +36,15 @@ import { ModeToggle } from "../components/ModeToggle";
 </script>
 
 <Layout>
-  <ModeToggle client:load />
-  <Welcome />
+  <Navbar client:load />
+  <SideElements />
+  <main>
+    <Hero />
+    <About />
+    <Experience />
+    <Project />
+    <Contact client:load />
+  </main>
+  <Footer />
+  <!--<Welcome />-->
 </Layout>

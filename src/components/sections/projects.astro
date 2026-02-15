@@ -1,0 +1,239 @@
+---
+import { AnimateIn } from "@/components/ui/animate-in";
+import ExternalLink from "@lucide/astro/icons/external-link";
+import { Github, Folder } from "@lucide/astro";
+
+const featuredProjects = [
+  {
+    title: "Halcyon Theme",
+    description:
+      "A minimal, dark blue theme for VS Code, Sublime Text, Atom, iTerm, and more. Available on the Visual Studio Marketplace, with over 50k installs to date.",
+    tags: ["VS Code", "Sublime Text", "Atom", "iTerm2", "Hyper"],
+    github: "#",
+    external: "#",
+    accentFrom: "from-primary/20",
+    accentTo: "to-cyan/10",
+    borderColor: "hover:border-primary/30",
+    glowClass: "glow-green",
+    tagColor: "text-primary",
+  },
+  {
+    title: "Spotify Profile",
+    description:
+      "A web app for visualizing personalized Spotify data. View your top artists, top tracks, recently played tracks, and detailed audio information about each track.",
+    tags: ["React", "Styled Components", "Express", "Spotify API", "Heroku"],
+    github: "#",
+    external: "#",
+    accentFrom: "from-accent/20",
+    accentTo: "to-rose/10",
+    borderColor: "hover:border-accent/30",
+    glowClass: "glow-pink",
+    tagColor: "text-accent",
+  },
+  {
+    title: "Build a Spotify Connected App",
+    description:
+      "A comprehensive video course that walks through building a web app with the Spotify Web API. Topics include Node.js, Express, React, and deployment.",
+    tags: ["React", "Express", "Spotify API", "Heroku"],
+    github: "#",
+    external: "#",
+    accentFrom: "from-cyan/20",
+    accentTo: "to-amber/10",
+    borderColor: "hover:border-cyan/30",
+    glowClass: "",
+    tagColor: "text-cyan",
+  },
+];
+
+const cardColors = [
+  {
+    folder: "text-primary",
+    hover: "hover:text-primary",
+    border: "hover:border-t-primary",
+  },
+  {
+    folder: "text-accent",
+    hover: "hover:text-accent",
+    border: "hover:border-t-accent",
+  },
+  {
+    folder: "text-cyan",
+    hover: "hover:text-cyan",
+    border: "hover:border-t-cyan",
+  },
+  {
+    folder: "text-amber",
+    hover: "hover:text-amber",
+    border: "hover:border-t-amber",
+  },
+  {
+    folder: "text-rose",
+    hover: "hover:text-rose",
+    border: "hover:border-t-rose",
+  },
+  {
+    folder: "text-violet",
+    hover: "hover:text-violet",
+    border: "hover:border-t-violet",
+  },
+];
+
+const otherProjects = [
+  {
+    title: "Integrating Algolia Search",
+    description:
+      "Building a custom search experience with Algolia for a large-scale documentation site.",
+    tags: ["Algolia", "Next.js", "Styled Components"],
+  },
+  {
+    title: "Time to Have More Fun",
+    description:
+      "A single-page web app for tracking fun activities with friends. Built with React, Firebase, and Material UI.",
+    tags: ["React", "Firebase", "Material UI"],
+  },
+  {
+    title: "Building a Headless Mobile App",
+    description:
+      "A headless CMS-powered mobile application built with React Native and Contentful.",
+    tags: ["React Native", "Contentful", "GraphQL"],
+  },
+  {
+    title: "OctoProfile",
+    description:
+      "A nicer look at your GitHub profile and repos. Includes data visualizations of your top languages and stars.",
+    tags: ["Next.js", "Chart.js", "GitHub API"],
+  },
+  {
+    title: "Google Keep Clone",
+    description:
+      "A simple Google Keep clone built with Vue.js and Firebase. Features include create, edit, delete, and archive notes.",
+    tags: ["Vue.js", "Firebase", "SCSS"],
+  },
+  {
+    title: "Apple Music Embed Generator",
+    description:
+      "A web tool for generating embeddable Apple Music widgets from song or album URLs.",
+    tags: ["React", "Apple Music API", "Tailwind CSS"],
+  },
+];
+---
+
+<section id="projects" class="mesh-bg px-6 py-24 md:py-32">
+  <div class="mx-auto max-w-6xl">
+    <AnimateIn client:load>
+      <div class="mb-12 flex items-center gap-4">
+        <h2
+          class="text-foreground flex items-center gap-2 text-2xl font-bold md:text-3xl"
+        >
+          <span class="text-cyan font-mono text-lg md:text-xl"> 03. </span>
+          Projects
+        </h2>
+        <div class="from-cyan/40 h-px flex-1 bg-gradient-to-r to-transparent">
+        </div>
+      </div>
+    </AnimateIn>
+
+    {/* Featured Projects */}
+    <div class="flex flex-col gap-20">
+      {
+        featuredProjects.map((project, i) => (
+          <AnimateIn delay={i * 100} client:load>
+            <div
+              class={`group relative rounded-2xl border border-transparent bg-gradient-to-br ${project.accentFrom} via-secondary/30 ${project.accentTo} p-6 transition-all ${project.borderColor} ${project.glowClass} md:p-8`}
+            >
+              <p class={`mb-2 font-mono text-sm ${project.tagColor}`}>
+                Featured Project
+              </p>
+              <h3 class="text-foreground mb-4 text-xl font-bold md:text-2xl">
+                {project.title}
+              </h3>
+              <p class="text-muted-foreground mb-6 max-w-2xl leading-relaxed">
+                {project.description}
+              </p>
+              <div class="mb-6 flex flex-wrap gap-3">
+                {project.tags.map((tag) => (
+                  <span class={`font-mono text-xs ${project.tagColor}/70`}>
+                    {tag}
+                  </span>
+                ))}
+              </div>
+              <div class="flex items-center gap-4">
+                <a
+                  href={project.github}
+                  class="text-muted-foreground hover:text-foreground transition-colors"
+                  aria-label={`View ${project.title} on GitHub`}
+                >
+                  <Github class="h-5 w-5" />
+                </a>
+                <a
+                  href={project.external}
+                  class="text-muted-foreground hover:text-foreground transition-colors"
+                  aria-label={`View ${project.title} live`}
+                >
+                  <ExternalLink class="h-5 w-5" />
+                </a>
+              </div>
+            </div>
+          </AnimateIn>
+        ))
+      }
+    </div>
+
+    {/* Other Projects */}
+    <AnimateIn delay={100} client:load>
+      <h3 class="gradient-text-warm mt-24 mb-8 text-center text-xl font-bold">
+        Other Noteworthy Projects
+      </h3>
+    </AnimateIn>
+
+    <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      {
+        otherProjects.map((project, i) => {
+          const colors = cardColors[i % cardColors.length];
+          return (
+            <AnimateIn delay={i * 80} client:load>
+              <div
+                class={`group bg-secondary/30 hover:bg-secondary/50 flex h-full flex-col rounded-xl border-t-2 border-t-transparent p-6 transition-all hover:-translate-y-1 ${colors.border}`}
+              >
+                <div class="mb-6 flex items-center justify-between">
+                  <Folder class={`h-10 w-10 ${colors.folder}`} />
+                  <div class="flex gap-3">
+                    <a
+                      href="#"
+                      class="text-muted-foreground hover:text-foreground transition-colors"
+                      aria-label={`View ${project.title} on GitHub`}
+                    >
+                      <Github class="h-4 w-4" />
+                    </a>
+                    <a
+                      href="#"
+                      class="text-muted-foreground hover:text-foreground transition-colors"
+                      aria-label={`View ${project.title} live`}
+                    >
+                      <ExternalLink class="h-4 w-4" />
+                    </a>
+                  </div>
+                </div>
+                <h4
+                  class={`text-foreground mb-2 text-lg font-semibold ${colors.hover}`}
+                >
+                  {project.title}
+                </h4>
+                <p class="text-muted-foreground mb-6 flex-1 text-sm leading-relaxed">
+                  {project.description}
+                </p>
+                <div class="flex flex-wrap gap-2">
+                  {project.tags.map((tag) => (
+                    <span class="text-muted-foreground font-mono text-xs">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </AnimateIn>
+          );
+        })
+      }
+    </div>
+  </div>
+</section>
