@@ -9,6 +9,7 @@ import Experience from "@/components/sections/experience.astro";
 import Project from "@/components/sections/projects.astro";
 import { Contact } from "../components/sections/contact";
 import Footer from "../components/sections/footer.astro";
+import ScrollProgress from "../components/scroll-progress";
 ---
 
 <script is:inline>
@@ -38,13 +39,13 @@ import Footer from "../components/sections/footer.astro";
 <Layout>
   <Navbar client:load />
   <SideElements />
+  <ScrollProgress client:visible />
   <main>
     <Hero />
     <About />
     <Experience />
     <Project />
-    <Contact client:load />
+    <Contact client:visible />
   </main>
   <Footer />
-  <!--<Welcome />-->
 </Layout>

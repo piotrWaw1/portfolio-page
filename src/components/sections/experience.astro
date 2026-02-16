@@ -60,7 +60,7 @@ const experiences = [
 
 <section id="experience" class="mesh-bg-warm px-6 py-24 md:py-32">
   <div class="mx-auto max-w-6xl">
-    <AnimateIn>
+    <AnimateIn client:visible>
       <div class="mb-12 flex items-center gap-4">
         <h2
           class="text-foreground flex items-center gap-2 text-2xl font-bold md:text-3xl"
@@ -76,7 +76,7 @@ const experiences = [
     <div class="flex flex-col gap-6">
       {
         experiences.map((exp, i) => (
-          <AnimateIn delay={i * 100} client:load>
+          <AnimateIn delay={i * 100} client:visible>
             <a
               href={exp.url}
               class={`group hover:bg-secondary/50 grid gap-4 rounded-xl border-l-2 border-l-transparent p-5 transition-all md:grid-cols-4 md:p-6 ${exp.borderColor}`}

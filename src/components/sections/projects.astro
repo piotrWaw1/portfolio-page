@@ -120,7 +120,7 @@ const otherProjects = [
 
 <section id="projects" class="mesh-bg px-6 py-24 md:py-32">
   <div class="mx-auto max-w-6xl">
-    <AnimateIn client:load>
+    <AnimateIn client:visible>
       <div class="mb-12 flex items-center gap-4">
         <h2
           class="text-foreground flex items-center gap-2 text-2xl font-bold md:text-3xl"
@@ -137,7 +137,7 @@ const otherProjects = [
     <div class="flex flex-col gap-20">
       {
         featuredProjects.map((project, i) => (
-          <AnimateIn delay={i * 100} client:load>
+          <AnimateIn delay={i * 100} client:visible>
             <div
               class={`group relative rounded-2xl border border-transparent bg-gradient-to-br ${project.accentFrom} via-secondary/30 ${project.accentTo} p-6 transition-all ${project.borderColor} ${project.glowClass} md:p-8`}
             >
@@ -180,7 +180,7 @@ const otherProjects = [
     </div>
 
     {/* Other Projects */}
-    <AnimateIn delay={100} client:load>
+    <AnimateIn delay={100} client:visible>
       <h3 class="gradient-text-warm mt-24 mb-8 text-center text-xl font-bold">
         Other Noteworthy Projects
       </h3>
@@ -191,7 +191,7 @@ const otherProjects = [
         otherProjects.map((project, i) => {
           const colors = cardColors[i % cardColors.length];
           return (
-            <AnimateIn delay={i * 80} client:load>
+            <AnimateIn delay={i * 80} client:visible>
               <div
                 class={`group bg-secondary/30 hover:bg-secondary/50 flex h-full flex-col rounded-xl border-t-2 border-t-transparent p-6 transition-all hover:-translate-y-1 ${colors.border}`}
               >

@@ -30,7 +30,7 @@ export function Navbar() {
     >
       <nav className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
         <a
-          href="#"
+          href="#hero"
           className="gradient-text font-mono text-base font-bold tracking-wider"
         >
           {"<PW />"}

@@ -138,6 +138,7 @@
   * {
     @apply border-border outline-ring/50;
   }
+
   body {
     @apply bg-background text-foreground;
   }
@@ -209,4 +210,15 @@
   background-image:
     radial-gradient(at 30% 70%, var(--mesh-amber) 0px, transparent 60%),
     radial-gradient(at 70% 30%, var(--mesh-rose) 0px, transparent 60%);
+}
+
+.gradient-line {
+  background: linear-gradient(
+    180deg,
+    var(--color-rose),
+    var(--primary),
+    var(--accent),
+    var(--color-cyan),
+    var(--color-amber)
+  );
 }
