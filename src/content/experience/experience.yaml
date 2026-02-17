@@ -1,0 +1,33 @@
+title: Experience
+jobs:
+  - period: 09/2024 - 04/2025
+    title: Junior Frontend Developer
+    company: Fluo IT Marcin Witecki
+    url: "#"
+    description: >-
+      I worked on a copyright management system for the company Kopipol. I
+      participated in designing and developing user interfaces (UX/UI) and
+      tested the created screens for functionality and usability. The project
+      was developed following the Agile methodology with Scrum, built with
+      React, TailwindCSS, and ShadCN, and integrated with a REST API. Version
+      control and collaboration were managed using Git.
+    tags:
+      - React
+      - TypeScript
+      - Tailwind CSS
+      - REST APIs
+      - TanStac table & query
+  - period: 07/2022 -- 08/2022
+    title: Intern
+    company: OptiBuy SP. z o.o.
+    url: "#"
+    description: >-
+      I developed web APIs using FastAPI and prepared data for training a model
+      used to verify company websites. I worked in a Scrum team following Agile
+      methodology.
+    tags:
+      - Python
+      - FastAPI
+      - Git
+      - REST APIs
+      - Python unittest Framework

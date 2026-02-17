@@ -13,10 +13,10 @@ const skills = [
   { name: "Figma", color: "text-rose" },
 ];
 
-const aboutData = await getEntry("sections", "about");
+const aboutData = await getEntry("about", "about");
 
-const { Content } = await aboutData.render();
-const data = aboutData.data;
+const { Content } = await aboutData?.render();
+const data = aboutData?.data;
 ---
 
 <section id="about" class="px-6 py-24 md:py-32">

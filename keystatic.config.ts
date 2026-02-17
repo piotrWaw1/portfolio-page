@@ -7,7 +7,7 @@ export default config({
   singletons: {
     hero: singleton({
       label: "Hero Section",
-      path: "src/content/sections/hero",
+      path: "src/content/hero/hero",
       format: { contentField: "content" },
       schema: {
         badge: fields.text({ label: "Badge Text" }),
@@ -28,7 +28,7 @@ export default config({
     }),
     about: singleton({
       label: "About",
-      path: "src/content/sections/about",
+      path: "src/content/about/about",
       schema: {
         title: fields.text({ label: "Title" }),
         description: fields.text({ label: "Description1" }),
@@ -40,6 +40,26 @@ export default config({
             image: false,
           },
         }),
+      },
+    }),
+    experience: singleton({
+      label: "Experience",
+      path: "src/content/experience/experience",
+      schema: {
+        title: fields.text({ label: "Title", defaultValue: "Experience" }),
+        jobs: fields.array(
+          fields.object({
+            period: fields.text({ label: "Period" }),
+            title: fields.text({ label: "Title" }),
+            company: fields.text({ label: "Company" }),
+            url: fields.text({ label: "URL" }),
+            description: fields.text({ label: "Description" }),
+            tags: fields.array(fields.text({ label: "Tags" }), {
+              label: "Technologies",
+            }),
+          }),
+          { label: "Work History" },
+        ),
       },
     }),
   },
