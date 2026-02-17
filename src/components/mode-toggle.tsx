@@ -1,52 +1,66 @@
-import * as React from "react";
 import { Moon, Sun } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
+import { useEffect, useRef, useState } from "react";
+
+gsap.registerPlugin(useGSAP);
 
 export function ModeToggle() {
-  const [theme, setThemeState] = React.useState<
-    "theme-light" | "dark" | "system"
-  >("theme-light");
+  const [theme, setThemeState] = useState<"theme-light" | "dark">("dark");
 
-  React.useEffect(() => {
-    const isDarkMode = document.documentElement.classList.contains("dark");
-    setThemeState(isDarkMode ? "dark" : "theme-light");
-  }, []);
+  const moonRef = useRef(null);
+  const sunRef = useRef(null);
 
-  React.useEffect(() => {
-    const isDark =
-      theme === "dark" ||
-      (theme === "system" &&
-        window.matchMedia("(prefers-color-scheme: dark)").matches);
+  const { contextSafe } = useGSAP();
+
+  const handleAnimation = contextSafe(() => {
+    const isThemeDark = theme !== "dark";
+
+    const moonTargetScale = isThemeDark ? 1 : 0;
+    const sunTargetScale = isThemeDark ? 0 : 1;
+
+    gsap.to(moonRef.current, {
+      // scale: moonTargetScale,
+      opacity: moonTargetScale, // Optional: fade out helps smooth it
+      rotate: isThemeDark ? 0 : 90, // Optional: slight counter-rotation
+    });
+
+    // 3. Animate the Sun (Scale & Rotate)
+    gsap.to(sunRef.current, {
+      // scale: sunTargetScale,
+      opacity: sunTargetScale,
+      rotate: isThemeDark ? -90 : 0,
+    });
+  });
+
+  const toggleTheme = () => {
+    if (theme === "theme-light") {
+      setThemeState("dark");
+    } else {
+      setThemeState("theme-light");
+    }
+    handleAnimation();
+  };
+
+  useEffect(() => {
+    const isDark = theme === "dark";
     document.documentElement.classList[isDark ? "add" : "remove"]("dark");
   }, [theme]);
 
   return (
-    <DropdownMenu>
-      <DropdownMenuTrigger asChild>
-        <Button variant="outline" size="icon">
-          <Sun className="h-[1.2rem] w-[1.2rem] scale-100 rotate-0 transition-all dark:scale-0 dark:-rotate-90" />
-          <Moon className="absolute h-[1.2rem] w-[1.2rem] scale-0 rotate-90 transition-all dark:scale-100 dark:rotate-0" />
-          <span className="sr-only">Toggle theme</span>
-        </Button>
-      </DropdownMenuTrigger>
-      <DropdownMenuContent align="end">
-        <DropdownMenuItem onClick={() => setThemeState("theme-light")}>
-          Light
-        </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => setThemeState("dark")}>
-          Dark
-        </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => setThemeState("system")}>
-          System
-        </DropdownMenuItem>
-      </DropdownMenuContent>
-    </DropdownMenu>
+    <Button
+      onClick={toggleTheme}
+      size="icon"
+      variant="secondary"
+      className="hover:broder-red-500 hover:text-primary border"
+      aria-label="Toggle Theme"
+    >
+      <Moon ref={moonRef} className="absolute h-[1.2rem] w-[1.2rem]" />
+      <Sun ref={sunRef} className="absolute h-[1.2rem] w-[1.2rem] opacity-0" />
+    </Button>
   );
 }
+
+// "relative z-50 flex h-8 w-8 items-center justify-center rounded-lg border border-border/50 bg-secondary/50 text-muted-foreground"

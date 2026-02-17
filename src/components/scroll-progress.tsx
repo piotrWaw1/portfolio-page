@@ -5,32 +5,28 @@ const sections = [
   {
     id: "hero",
     label: "Home",
-    color: "bg-rose border-rose",
-    inactive: "bg-rose",
+    activeColor: "bg-rose border-rose shadow-[0_0_20px_var(--color-rose)]",
   },
   {
     id: "about",
     label: "About",
-    color: "bg-primary border-primary",
-    inactive: "bg-primary",
+    activeColor:
+      "bg-primary border-primary shadow-[0_0_20px_var(--glow-primary)]",
   },
   {
     id: "experience",
     label: "Experience",
-    color: "bg-accent border-accent",
-    inactive: "bg-accent",
+    activeColor: "bg-accent border-accent shadow-[0_0_20px_var(--glow-accent)]",
   },
   {
     id: "projects",
     label: "Projects",
-    color: "bg-cyan border-cyan",
-    inactive: "bg-cyan",
+    activeColor: "bg-cyan border-cyan shadow-[0_0_20px_var(--color-cyan)]",
   },
   {
     id: "contact",
     label: "Contact",
-    color: "bg-amber border-amber",
-    inactive: "bg-amber",
+    activeColor: "bg-amber border-amber shadow-[0_0_20px_var(--color-amber)]",
   },
 ];
 
@@ -68,12 +64,8 @@ const ScrollProgress = () => {
   };
 
   return (
-    // Fixed container on the right side
     <nav className="fixed top-1/2 right-10 z-50 hidden -translate-y-1/2 transform flex-col gap-4 xl:flex">
-      {/* The vertical connecting line */}
       <div className="absolute top-0 bottom-0 left-1/2 -z-10 w-0.5 -translate-x-1/2 bg-gray-600 opacity-50 dark:bg-gray-200" />
-
-      {/* Optional: The "Progress" colored line */}
       <div
         className="gradient-line absolute top-0 left-1/2 -z-10 w-0.5 -translate-x-1/2 transition-all duration-500 ease-out"
         style={{
@@ -85,21 +77,18 @@ const ScrollProgress = () => {
         <button
           key={section.id}
           onClick={() => handleScroll(section.id)}
-          className="group relative flex items-center justify-center"
+          className="group relative flex items-center justify-center focus:outline-none"
           aria-label={`Scroll to ${section.label}`}
         >
-          {/* Tooltip (visible on hover) */}
-          <span className="absolute right-8 rounded bg-black px-2 py-1 text-xs font-medium whitespace-nowrap text-white opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+          <span className="bg-popover border-border text-popover-foreground absolute right-8 translate-x-2 rounded-md border px-2 py-1 text-xs font-medium opacity-0 shadow-md transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100">
             {section.label}
           </span>
-
-          {/* The Dot */}
           <div
             className={cn(
               "h-4 w-4 rounded-full border-2 transition-all duration-300",
               activeSection === section.id
-                ? `${section.color} scale-125` // Active styles
-                : `${section.inactive} border-white hover:border-blue-400 dark:border-black`, // Inactive styles
+                ? `${section.activeColor} scale-125`
+                : "bg-background border-muted-foreground/30 group-hover:border-primary/50 group-hover:scale-110",
             )}
           />
         </button>

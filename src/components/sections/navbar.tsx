@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
 import { ModeToggle } from "@/components/mode-toggle.tsx";
 
@@ -8,6 +8,17 @@ const navLinks = [
   { label: "Projects", href: "#projects", color: "text-cyan" },
   { label: "Contact", href: "#contact", color: "text-amber" },
 ];
+
+export const handleSmoothScroll = (e: React.MouseEvent<HTMLAnchorElement>) => {
+  const href = e.currentTarget.getAttribute("href");
+  if (href?.startsWith("#")) {
+    e.preventDefault();
+    const element = document.querySelector(href);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    }
+  }
+};
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -30,7 +41,8 @@ export function Navbar() {
     >
       <nav className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
         <a
-          href="#hero"
+          href={"#hero"}
+          onClick={handleSmoothScroll}
           className="gradient-text font-mono text-base font-bold tracking-wider"
         >
           {"<PW />"}
@@ -42,6 +54,7 @@ export function Navbar() {
               <li key={link.href}>
                 <a
                   href={link.href}
+                  onClick={handleSmoothScroll}
                   className="group text-muted-foreground hover:text-foreground flex items-center gap-1.5 text-sm transition-colors"
                 >
                   <span className={cn("font-mono text-xs", link.color)}>
@@ -56,7 +69,7 @@ export function Navbar() {
         </div>
 
         <div className="flex items-center gap-3 md:hidden">
-          <ModeToggle />
+          {/*<ModeToggle />*/}
 
           <button
             onClick={() => setMobileOpen(!mobileOpen)}
