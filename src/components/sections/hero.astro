@@ -1,10 +1,15 @@
 ---
 import { AnimateIn } from "@/components/ui/animate-in";
 import ArrowDown from "@lucide/astro/icons/arrow-down";
+import { getEntry } from "astro:content";
+
+const heroData = await getEntry("sections", "hero");
+
+const { Content } = await heroData.render();
+const data = heroData.data;
 ---
 
 <section id="hero" class="mesh-bg relative flex min-h-screen items-center px-6">
-  {/* Decorative floating orbs */}
   <div class="pointer-events-none absolute inset-0 overflow-hidden">
     <div
       class="bg-primary/5 absolute top-1/4 right-1/4 h-72 w-72 rounded-full blur-3xl"
@@ -25,7 +30,7 @@ import ArrowDown from "@lucide/astro/icons/arrow-down";
       <p
         class="border-primary/30 bg-primary/5 text-primary mb-4 inline-block rounded-full border px-4 py-1.5 font-mono text-sm md:text-base"
       >
-        Hi, my name is
+        {data.badge}
       </p>
     </AnimateIn>
 
@@ -33,7 +38,7 @@ import ArrowDown from "@lucide/astro/icons/arrow-down";
       <h1
         class="gradient-text text-5xl leading-tight font-bold tracking-tight sm:text-6xl md:text-8xl"
       >
-        Piotr Wawrzeńczyk.
+        {data.heading}
       </h1>
     </AnimateIn>
 
@@ -41,23 +46,16 @@ import ArrowDown from "@lucide/astro/icons/arrow-down";
       <h2
         class="text-foreground/70 mt-2 text-3xl leading-tight font-bold tracking-tight sm:text-4xl md:text-6xl"
       >
-        I build things for the web.
+        {data.subheading}
       </h2>
     </AnimateIn>
 
     <AnimateIn delay={400} client:load>
-      <p
+      <div
         class="text-muted-foreground mt-6 max-w-xl text-base leading-relaxed md:text-lg"
       >
-        I{"'"}m a frontend developer specializing in building exceptional
-        digital experiences. Currently focused on creating{" "}
-        <span class="text-primary">accessible</span>,{" "}
-        <span class="text-accent">performant</span> web applications with modern technologies
-        like{" "}
-        <span class="text-cyan">React</span>,{" "}
-        <span class="text-amber">Next.js</span>, and{" "}
-        <span class="text-rose">TypeScript</span>.
-      </p>
+        <Content />
+      </div>
     </AnimateIn>
 
     <AnimateIn delay={500} client:load>
@@ -65,7 +63,7 @@ import ArrowDown from "@lucide/astro/icons/arrow-down";
         href="#about"
         class="glow-green border-primary/40 bg-primary/10 text-primary hover:border-primary/60 hover:bg-primary/20 mt-10 inline-flex items-center gap-2 rounded-xl border px-7 py-3.5 font-mono text-sm transition-all"
       >
-        Explore my work
+        {data.ctaText}
         <ArrowDown class="h-4 w-4" />
       </a>
     </AnimateIn>
