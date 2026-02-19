@@ -43,8 +43,7 @@ const data = experienceEntry?.data;
       {
         data?.jobs.map((exp, index) => (
           <AnimateIn delay={index * 100} client:visible>
-            <a
-              href={exp.url}
+            <div
               class={`group hover:bg-secondary/50 grid gap-4 rounded-xl border-l-2 border-l-transparent p-5 transition-all md:grid-cols-4 md:p-6 ${JOB_STYLES[index].border}`}
             >
               <div class="text-muted-foreground font-mono text-xs tracking-wider uppercase md:pt-1">
@@ -55,7 +54,6 @@ const data = experienceEntry?.data;
                   class={`text-foreground flex items-center gap-2 text-base font-medium ${JOB_STYLES[index].accent}`}
                 >
                   {exp.title} &middot; {exp.company}
-                  <ExternalLink class="h-3.5 w-3.5 opacity-0 transition-all group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:opacity-100" />
                 </h3>
                 <p class="text-muted-foreground mt-2 text-sm leading-relaxed">
                   {exp.description}
@@ -70,7 +68,7 @@ const data = experienceEntry?.data;
                   ))}
                 </div>
               </div>
-            </a>
+            </div>
           </AnimateIn>
         ))
       }

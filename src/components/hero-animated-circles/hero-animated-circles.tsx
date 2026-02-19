@@ -41,6 +41,7 @@ export default function HeroAnimatedCircles() {
         repeat: -1,
         repeatRefresh: true,
         yoyo: true,
+        ease: "back.out(1.7)"
       });
 
       gsap.to(circle2, {
@@ -52,6 +53,7 @@ export default function HeroAnimatedCircles() {
         repeat: -1,
         repeatRefresh: true,
         yoyo: true,
+        ease: "back.out(1.7)"
       });
 
       gsap.to(circle3, {
@@ -62,6 +64,7 @@ export default function HeroAnimatedCircles() {
         repeat: -1,
         repeatRefresh: true,
         yoyo: true,
+        ease: "back.out(1.7)"
       });
     },
     { scope: containerRef },
