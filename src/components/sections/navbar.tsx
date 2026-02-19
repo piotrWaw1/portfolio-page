@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
 import { ModeToggle } from "@/components/mode-toggle.tsx";
+import { createPortal } from "react-dom";
 
 const navLinks = [
   { label: "About", href: "#about", color: "text-primary" },
@@ -9,7 +10,7 @@ const navLinks = [
   { label: "Contact", href: "#contact", color: "text-amber" },
 ];
 
-export const handleSmoothScroll = (e: React.MouseEvent<HTMLAnchorElement>) => {
+const handleSmoothScroll = (e: React.MouseEvent<HTMLAnchorElement>) => {
   const href = e.currentTarget.getAttribute("href");
   if (href?.startsWith("#")) {
     e.preventDefault();
@@ -29,6 +30,17 @@ export function Navbar() {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  useEffect(() => {
+    if (mobileOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [mobileOpen]);
 
   return (
     <header
@@ -97,26 +109,28 @@ export function Navbar() {
           </button>
         </div>
 
-        {mobileOpen && (
-          <div className="mesh-bg bg-background/95 fixed inset-0 z-40 flex items-center justify-center backdrop-blur-lg md:hidden">
-            <ul className="flex flex-col items-center gap-8">
-              {navLinks.map((link, i) => (
-                <li key={link.href}>
-                  <a
-                    href={link.href}
-                    onClick={() => setMobileOpen(false)}
-                    className="text-foreground flex flex-col items-center gap-1 text-lg"
-                  >
-                    <span className={cn("font-mono text-xs", link.color)}>
-                      {`0${i + 1}.`}
-                    </span>
-                    {link.label}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-        )}
+        {mobileOpen &&
+          createPortal(
+            <div className="mesh-bg bg-background/95 fixed inset-0 z-40 flex items-center justify-center backdrop-blur-lg md:hidden">
+              <ul className="flex flex-col items-center gap-8">
+                {navLinks.map((link, i) => (
+                  <li key={link.href}>
+                    <a
+                      href={link.href}
+                      onClick={() => setMobileOpen(false)}
+                      className="text-foreground flex flex-col items-center gap-1 text-lg"
+                    >
+                      <span className={cn("font-mono text-xs", link.color)}>
+                        {`0${i + 1}.`}
+                      </span>
+                      {link.label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>,
+            document.body,
+          )}
       </nav>
     </header>
   );
