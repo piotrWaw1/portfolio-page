@@ -10,13 +10,12 @@ const sections = [
   {
     id: "about",
     label: "About",
-    activeColor:
-      "bg-primary border-primary shadow-[0_0_20px_var(--glow-primary)]",
+    activeColor: "bg-primary border-primary shadow-[0_0_20px_var(--primary)]",
   },
   {
     id: "experience",
     label: "Experience",
-    activeColor: "bg-accent border-accent shadow-[0_0_20px_var(--glow-accent)]",
+    activeColor: "bg-accent border-accent shadow-[0_0_20px_var(--accent)]",
   },
   {
     id: "projects",

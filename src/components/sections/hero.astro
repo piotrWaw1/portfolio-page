@@ -2,6 +2,7 @@
 import { AnimateIn } from "@/components/ui/animate-in";
 import ArrowDown from "@lucide/astro/icons/arrow-down";
 import { getEntry } from "astro:content";
+import ScrollButton from "@/components/scroll-button";
 
 const heroData = await getEntry("hero", "hero");
 
@@ -59,13 +60,14 @@ const data = heroData!.data;
     </AnimateIn>
 
     <AnimateIn delay={500} client:load>
-      <a
-        href="#about"
-        class="glow-green border-primary/40 bg-primary/10 text-primary hover:border-primary/60 hover:bg-primary/20 mt-10 inline-flex items-center gap-2 rounded-xl border px-7 py-3.5 font-mono text-sm transition-all"
+      <ScrollButton
+        scrollTo="#about"
+        className="glow-green border-primary/40 bg-primary/10 text-primary hover:border-primary/60 hover:bg-primary/20 mt-10 inline-flex items-center gap-2 rounded-xl border px-7 py-3.5 font-mono text-sm transition-all"
+        client:load
       >
         {data.ctaText}
         <ArrowDown class="h-4 w-4" />
-      </a>
+      </ScrollButton>
     </AnimateIn>
   </div>
 </section>
