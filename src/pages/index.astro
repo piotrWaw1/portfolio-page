@@ -10,6 +10,7 @@ import Project from "@/components/sections/projects.astro";
 import { Contact } from "../components/sections/contact";
 import Footer from "../components/sections/footer.astro";
 import ScrollProgress from "../components/scroll-progress";
+// import Cursor from "../components/cursor";
 ---
 
 <script is:inline>
@@ -37,6 +38,7 @@ import ScrollProgress from "../components/scroll-progress";
 </script>
 
 <Layout>
+  <!--<Cursor client:load />-->
   <Navbar client:load />
   <SideElements />
   <ScrollProgress client:visible />
