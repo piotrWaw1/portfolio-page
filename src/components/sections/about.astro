@@ -2,18 +2,8 @@
 import { AnimateIn } from "@/components/ui/animate-in";
 import { getEntry } from "astro:content";
 
-// const skills = [
-//   { name: "JavaScript (ES6+)", color: "text-amber" },
-//   { name: "TypeScript", color: "text-blue" },
-//   { name: "React", color: "text-cyan" },
-//   { name: "Next.js", color: "text-foreground" },
-//   { name: "Tailwind CSS", color: "text-cyan" },
-//   { name: "Node.js", color: "text-primary" },
-//   { name: "GraphQL", color: "text-accent" },
-//   { name: "Figma", color: "text-rose" },
-// ];
-
 const aboutData = await getEntry("about", "about");
+
 const { Content } = await aboutData!.render();
 const data = aboutData!.data;
 ---
