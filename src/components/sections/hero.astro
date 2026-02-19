@@ -5,8 +5,8 @@ import { getEntry } from "astro:content";
 
 const heroData = await getEntry("hero", "hero");
 
-const { Content } = await heroData.render();
-const data = heroData?.data;
+const { Content } = await heroData!.render();
+const data = heroData!.data;
 ---
 
 <section id="hero" class="mesh-bg relative flex min-h-screen items-center px-6">

@@ -15,8 +15,13 @@ const about = defineCollection({
   type: "content",
   schema: z.object({
     title: z.string(),
-    description: z.string(),
     skillsTitle: z.string(),
+    skills: z.array(
+      z.object({
+        title: z.string(),
+        color: z.string(),
+      }),
+    ),
   }),
 });
 
@@ -37,8 +42,43 @@ const experience = defineCollection({
   }),
 });
 
+const projects = defineCollection({
+  type: "data",
+  schema: z.object({
+    title: z.string(),
+    mainProjects: z.array(
+      z.object({
+        title: z.string(),
+        subtitle: z.string(),
+        description: z.string(),
+        githubUrl: z.string().optional(),
+        projectUrl: z.string().optional(),
+        accentFrom: z.string(),
+        accentTo: z.string(),
+        borderColor: z.string(),
+        glowClass: z.string(),
+        subTitleColor: z.string(),
+        technologies: z.array(z.string()),
+      }),
+    ),
+    otherProjects: z.array(
+      z.object({
+        title: z.string(),
+        description: z.string(),
+        githubUrl: z.string().optional(),
+        projectUrl: z.string().optional(),
+        folderColor: z.string(),
+        hover: z.string(),
+        borderHoverColor: z.string(),
+        technologies: z.array(z.string()),
+      }),
+    ),
+  }),
+});
+
 export const collections = {
   hero,
   about,
   experience,
+  projects,
 };

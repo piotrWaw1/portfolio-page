@@ -1,7 +1,9 @@
 ---
 import { AnimateIn } from "@/components/ui/animate-in";
+import { getEntry } from "astro:content";
 import ExternalLink from "@lucide/astro/icons/external-link";
 import { Github, Folder } from "@lucide/astro";
+import { cn } from "../../lib/utils";
 
 const featuredProjects = [
   {
@@ -116,6 +118,11 @@ const otherProjects = [
     tags: ["React", "Apple Music API", "Tailwind CSS"],
   },
 ];
+
+const projectsData = await getEntry("projects", "projects");
+const title = projectsData!.data.title;
+const mainProjects = projectsData!.data.mainProjects;
+const secondaryProjects = projectsData!.data.otherProjects;
 ---
 
 <section id="projects" class="mesh-bg px-6 py-24 md:py-32">
@@ -126,7 +133,7 @@ const otherProjects = [
           class="text-foreground flex items-center gap-2 text-2xl font-bold md:text-3xl"
         >
           <span class="text-cyan font-mono text-lg md:text-xl"> 03. </span>
-          Projects
+          {title}
         </h2>
         <div class="from-cyan/40 h-px flex-1 bg-gradient-to-r to-transparent">
         </div>
@@ -136,13 +143,13 @@ const otherProjects = [
     {/* Featured Projects */}
     <div class="flex flex-col gap-20">
       {
-        featuredProjects.map((project, i) => (
+        mainProjects.map((project, i) => (
           <AnimateIn delay={i * 100} client:visible>
             <div
               class={`group relative rounded-2xl border border-transparent bg-gradient-to-br ${project.accentFrom} via-secondary/30 ${project.accentTo} p-6 transition-all ${project.borderColor} ${project.glowClass} md:p-8`}
             >
-              <p class={`mb-2 font-mono text-sm ${project.tagColor}`}>
-                Featured Project
+              <p class={`mb-2 font-mono text-sm ${project.subTitleColor}`}>
+                {project.subtitle}
               </p>
               <h3 class="text-foreground mb-4 text-xl font-bold md:text-2xl">
                 {project.title}
@@ -151,23 +158,29 @@ const otherProjects = [
                 {project.description}
               </p>
               <div class="mb-6 flex flex-wrap gap-3">
-                {project.tags.map((tag) => (
-                  <span class={`font-mono text-xs ${project.tagColor}/70`}>
+                {project.technologies.map((tag) => (
+                  <span class={`font-mono text-xs ${project.subTitleColor}/70`}>
                     {tag}
                   </span>
                 ))}
               </div>
               <div class="flex items-center gap-4">
                 <a
-                  href={project.github}
-                  class="text-muted-foreground hover:text-foreground transition-colors"
+                  href={project.githubUrl}
+                  class={cn(
+                    "text-muted-foreground hover:text-foreground transition-colors",
+                    !project.githubUrl ? "hidden" : "",
+                  )}
                   aria-label={`View ${project.title} on GitHub`}
                 >
                   <Github class="h-5 w-5" />
                 </a>
                 <a
-                  href={project.external}
-                  class="text-muted-foreground hover:text-foreground transition-colors"
+                  href={project.projectUrl}
+                  class={cn(
+                    "text-muted-foreground hover:text-foreground transition-colors",
+                    !project.projectUrl ? "hidden" : "",
+                  )}
                   aria-label={`View ${project.title} live`}
                 >
                   <ExternalLink class="h-5 w-5" />
@@ -188,26 +201,31 @@ const otherProjects = [
 
     <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
       {
-        otherProjects.map((project, i) => {
-          const colors = cardColors[i % cardColors.length];
+        secondaryProjects.map((project, index) => {
           return (
-            <AnimateIn delay={i * 80} client:visible>
+            <AnimateIn delay={index * 80} client:visible>
               <div
-                class={`group bg-secondary/30 hover:bg-secondary/50 flex h-full flex-col rounded-xl border-t-2 border-t-transparent p-6 transition-all hover:-translate-y-1 ${colors.border}`}
+                class={`group bg-secondary/30 hover:bg-secondary/50 flex h-full flex-col rounded-xl border-t-2 border-t-transparent p-6 transition-all hover:-translate-y-1 ${project.borderHoverColor}`}
               >
                 <div class="mb-6 flex items-center justify-between">
-                  <Folder class={`h-10 w-10 ${colors.folder}`} />
+                  <Folder class={`h-10 w-10 ${project.folderColor}`} />
                   <div class="flex gap-3">
                     <a
-                      href="#"
-                      class="text-muted-foreground hover:text-foreground transition-colors"
+                      href={project.githubUrl}
+                      class={cn(
+                        "text-muted-foreground hover:text-foreground transition-colors",
+                        !project.githubUrl ? "hidden" : "",
+                      )}
                       aria-label={`View ${project.title} on GitHub`}
                     >
                       <Github class="h-4 w-4" />
                     </a>
                     <a
-                      href="#"
-                      class="text-muted-foreground hover:text-foreground transition-colors"
+                      href={project.projectUrl}
+                      class={cn(
+                        "text-muted-foreground hover:text-foreground transition-colors",
+                        !project.projectUrl ? "hidden" : "",
+                      )}
                       aria-label={`View ${project.title} live`}
                     >
                       <ExternalLink class="h-4 w-4" />
@@ -215,7 +233,7 @@ const otherProjects = [
                   </div>
                 </div>
                 <h4
-                  class={`text-foreground mb-2 text-lg font-semibold ${colors.hover}`}
+                  class={`text-foreground mb-2 text-lg font-semibold ${project.hover}`}
                 >
                   {project.title}
                 </h4>
@@ -223,8 +241,8 @@ const otherProjects = [
                   {project.description}
                 </p>
                 <div class="flex flex-wrap gap-2">
-                  {project.tags.map((tag) => (
-                    <span class="text-muted-foreground font-mono text-xs">
+                  {project.technologies.map((tag) => (
+                    <span class="text-muted-foreground rounded-xl border p-2 font-mono text-xs">
                       {tag}
                     </span>
                   ))}

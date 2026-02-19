@@ -2,21 +2,20 @@
 import { AnimateIn } from "@/components/ui/animate-in";
 import { getEntry } from "astro:content";
 
-const skills = [
-  { name: "JavaScript (ES6+)", color: "text-amber" },
-  { name: "TypeScript", color: "text-blue" },
-  { name: "React", color: "text-cyan" },
-  { name: "Next.js", color: "text-foreground" },
-  { name: "Tailwind CSS", color: "text-cyan" },
-  { name: "Node.js", color: "text-primary" },
-  { name: "GraphQL", color: "text-accent" },
-  { name: "Figma", color: "text-rose" },
-];
+// const skills = [
+//   { name: "JavaScript (ES6+)", color: "text-amber" },
+//   { name: "TypeScript", color: "text-blue" },
+//   { name: "React", color: "text-cyan" },
+//   { name: "Next.js", color: "text-foreground" },
+//   { name: "Tailwind CSS", color: "text-cyan" },
+//   { name: "Node.js", color: "text-primary" },
+//   { name: "GraphQL", color: "text-accent" },
+//   { name: "Figma", color: "text-rose" },
+// ];
 
 const aboutData = await getEntry("about", "about");
-
-const { Content } = await aboutData?.render();
-const data = aboutData?.data;
+const { Content } = await aboutData!.render();
+const data = aboutData!.data;
 ---
 
 <section id="about" class="px-6 py-24 md:py-32">
@@ -38,12 +37,6 @@ const data = aboutData?.data;
 
     <div class="grid gap-12 md:grid-cols-5">
       <div class="md:col-span-3">
-        <AnimateIn delay={100} client:visible>
-          <div class="text-muted-foreground mb-4 leading-relaxed">
-            {data.description}
-          </div>
-        </AnimateIn>
-
         <AnimateIn delay={200} client:visible>
           <div class="text-muted-foreground mb-4 leading-relaxed">
             <Content />
@@ -59,11 +52,11 @@ const data = aboutData?.data;
         <AnimateIn delay={400} client:visible>
           <ul class="grid grid-cols-2 gap-x-8 gap-y-3">
             {
-              skills.map((skill) => (
+              data.skills.map((skill) => (
                 <li class="text-muted-foreground flex items-center gap-2 font-mono text-sm">
                   <span class={skill.color}>{">"}</span>
                   <span class="hover:text-foreground transition-colors">
-                    {skill.name}
+                    {skill.title}
                   </span>
                 </li>
               ))
