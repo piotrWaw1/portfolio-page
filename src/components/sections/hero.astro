@@ -12,10 +12,10 @@ const data = heroData!.data;
 ---
 
 <section id="hero" class="mesh-bg relative flex min-h-screen items-center px-6">
-  <HeroAnimatedCircles client:load />
+  <HeroAnimatedCircles client:idle />
 
   <div class="relative mx-auto w-full max-w-6xl">
-    <AnimateIn delay={100} client:load>
+    <AnimateIn delay={100} client:idle>
       <p
         class="border-primary/30 bg-primary/5 text-primary mb-4 inline-block rounded-full border px-4 py-1.5 font-mono text-sm md:text-base"
       >
@@ -23,7 +23,7 @@ const data = heroData!.data;
       </p>
     </AnimateIn>
 
-    <AnimateIn delay={200} client:load>
+    <AnimateIn delay={200} client:idle>
       <h1
         class="gradient-text text-5xl leading-tight font-bold tracking-tight sm:text-6xl md:text-8xl"
       >
@@ -31,7 +31,7 @@ const data = heroData!.data;
       </h1>
     </AnimateIn>
 
-    <AnimateIn delay={300} client:load>
+    <AnimateIn delay={300} client:idle>
       <h2
         class="text-foreground/70 mt-2 text-3xl leading-tight font-bold tracking-tight sm:text-4xl md:text-6xl"
       >
@@ -39,7 +39,7 @@ const data = heroData!.data;
       </h2>
     </AnimateIn>
 
-    <AnimateIn delay={400} client:load>
+    <AnimateIn delay={400} client:idle>
       <div
         class="text-muted-foreground mt-6 max-w-xl text-base leading-relaxed md:text-lg"
       >
@@ -47,7 +47,7 @@ const data = heroData!.data;
       </div>
     </AnimateIn>
 
-    <AnimateIn delay={500} client:load>
+    <AnimateIn delay={500} client:idle>
       <ScrollButton
         scrollTo="#about"
         className="glow-green border-primary/40 bg-primary/10 text-primary hover:border-primary/60 hover:bg-primary/20 mt-10 inline-flex items-center gap-2 rounded-xl border px-7 py-3.5 font-mono text-sm transition-all"
