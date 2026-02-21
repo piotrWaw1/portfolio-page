@@ -10,11 +10,15 @@ import markdoc from "@astrojs/markdoc";
 
 import mdx from "@astrojs/mdx";
 
+import netlify from "@astrojs/netlify";
+
 // https://astro.build/config
 export default defineConfig({
   vite: {
     plugins: [tailwindcss(), yaml()],
   },
+
   integrations: [react(), markdoc(), keystatic(), mdx()],
-  output: "static",
+  output: "server",
+  adapter: netlify(),
 });
