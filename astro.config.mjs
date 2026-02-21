@@ -16,6 +16,9 @@ import netlify from "@astrojs/netlify";
 export default defineConfig({
   vite: {
     plugins: [tailwindcss(), yaml()],
+    ssr: {
+      noExternal: ["gsap", "@gsap/react"],
+    },
   },
 
   integrations: [react(), markdoc(), keystatic(), mdx()],
