@@ -1,19 +1,69 @@
 import { CheckCircle, Send } from "lucide-react";
 import { AnimateIn } from "../ui/animate-in";
 import { useState } from "react";
+import { z } from "astro/zod";
+import { Controller, useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import {
+  Field,
+  FieldError,
+  FieldGroup,
+  FieldLabel,
+} from "@/components/ui/field.tsx";
+import { Input } from "@/components/ui/input.tsx";
+import { Textarea } from "@/components/ui/textarea.tsx";
+import { toast } from "sonner";
+
+const contactFormSchema = z.object({
+  name: z.string(),
+  email: z.string().email(),
+  message: z.string().max(300),
+});
+
+type ContactForm = z.infer<typeof contactFormSchema>;
 
 export function Contact() {
-  const [formState, setFormState] = useState({
-    name: "",
-    email: "",
-    message: "",
-  });
   const [submitted, setSubmitted] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
-  function handleSubmit(e: React.FormEvent) {
-    e.preventDefault();
-    setSubmitted(true);
-    setFormState({ name: "", email: "", message: "" });
+  const form = useForm<ContactForm>({
+    resolver: zodResolver(contactFormSchema),
+    defaultValues: {
+      name: "",
+      email: "",
+      message: "",
+    },
+    mode: "onSubmit",
+  });
+
+  async function onSubmit(data: ContactForm) {
+    console.log(data);
+    setIsLoading(true);
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
+
+      if (response.status === 400 || response.status === 500) {
+        toast.error("Missing field or incorrect email address", {
+          style: {
+            "--normal-bg":
+              "color-mix(in oklab, var(--destructive) 10%, var(--background))",
+            "--normal-text": "var(--destructive)",
+            "--normal-border": "var(--destructive)",
+          } as React.CSSProperties,
+        });
+      } else {
+        setSubmitted(true);
+        form.reset();
+      }
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setIsLoading(false);
+    }
   }
 
   return (
@@ -57,76 +107,97 @@ export function Contact() {
               </button>
             </div>
           ) : (
-            <form
-              onSubmit={handleSubmit}
-              className="flex flex-col gap-5 text-left"
-            >
-              <div className="grid gap-5 sm:grid-cols-2">
-                <div className="flex flex-col gap-2">
-                  <label
-                    htmlFor="name"
-                    className="text-amber font-mono text-xs uppercase"
-                  >
-                    Name
-                  </label>
-                  <input
-                    id="name"
-                    type="text"
-                    required
-                    value={formState.name}
-                    onChange={(e) =>
-                      setFormState({ ...formState, name: e.target.value })
-                    }
-                    className="border-border bg-secondary/50 text-foreground placeholder:text-muted-foreground/50 focus:border-amber focus:ring-amber rounded-xl border px-4 py-3 text-sm transition-all focus:ring-1 focus:outline-none"
-                    placeholder="John Doe"
+            <form id="contact-form" onSubmit={form.handleSubmit(onSubmit)}>
+              <FieldGroup>
+                <div className="grid gap-5 sm:grid-cols-2">
+                  <Controller
+                    disabled={isLoading}
+                    name={"name"}
+                    control={form.control}
+                    render={({ field, fieldState }) => (
+                      <Field data-invalid={fieldState.invalid}>
+                        <FieldLabel
+                          htmlFor="form-name"
+                          className="text-amber font-mono uppercase"
+                        >
+                          Name
+                        </FieldLabel>
+                        <Input
+                          {...field}
+                          id="form-name"
+                          aria-invalid={fieldState.invalid}
+                          placeholder="John Doe"
+                          autoComplete="off"
+                          className="border-border bg-secondary/50 text-foreground placeholder:text-muted-foreground/50 focus-visible:border-amber focus-visible:ring-amber/65 rounded-xl border px-4 py-6 transition-all"
+                        />
+                        {fieldState.invalid && (
+                          <FieldError errors={[fieldState.error]} />
+                        )}
+                      </Field>
+                    )}
+                  />
+                  <Controller
+                    disabled={isLoading}
+                    name={"email"}
+                    control={form.control}
+                    render={({ field, fieldState }) => (
+                      <Field data-invalid={fieldState.invalid}>
+                        <FieldLabel
+                          htmlFor="form-email"
+                          className="text-rose font-mono uppercase"
+                        >
+                          Email
+                        </FieldLabel>
+                        <Input
+                          {...field}
+                          id="form-email"
+                          aria-invalid={fieldState.invalid}
+                          placeholder="john@example.com"
+                          autoComplete="off"
+                          className="border-border bg-secondary/50 text-foreground placeholder:text-muted-foreground/50 focus-visible:border-rose focus-visible:ring-rose/65 rounded-xl border px-4 py-6 transition-all"
+                        />
+                        {fieldState.invalid && (
+                          <FieldError errors={[fieldState.error]} />
+                        )}
+                      </Field>
+                    )}
                   />
                 </div>
-                <div className="flex flex-col gap-2">
-                  <label
-                    htmlFor="email"
-                    className="text-rose font-mono text-xs uppercase"
-                  >
-                    Email
-                  </label>
-                  <input
-                    id="email"
-                    type="email"
-                    required
-                    value={formState.email}
-                    onChange={(e) =>
-                      setFormState({ ...formState, email: e.target.value })
-                    }
-                    className="border-border bg-secondary/50 text-foreground placeholder:text-muted-foreground/50 focus:border-rose focus:ring-rose rounded-xl border px-4 py-3 text-sm transition-all focus:ring-1 focus:outline-none"
-                    placeholder="john@example.com"
-                  />
-                </div>
-              </div>
-              <div className="flex flex-col gap-2">
-                <label
-                  htmlFor="message"
-                  className="text-accent font-mono text-xs uppercase"
-                >
-                  Message
-                </label>
-                <textarea
-                  id="message"
-                  required
-                  rows={5}
-                  value={formState.message}
-                  onChange={(e) =>
-                    setFormState({ ...formState, message: e.target.value })
-                  }
-                  className="border-border bg-secondary/50 text-foreground placeholder:text-muted-foreground/50 focus:border-accent focus:ring-accent resize-none rounded-xl border px-4 py-3 text-sm transition-all focus:ring-1 focus:outline-none"
-                  placeholder="Hey Alex, I'd love to chat about..."
+                <Controller
+                  disabled={isLoading}
+                  name={"message"}
+                  control={form.control}
+                  render={({ field, fieldState }) => (
+                    <Field data-invalid={fieldState.invalid}>
+                      <FieldLabel
+                        htmlFor="form-message"
+                        className="text-accent font-mono uppercase"
+                      >
+                        Message
+                      </FieldLabel>
+                      <Textarea
+                        {...field}
+                        id="form-message"
+                        aria-invalid={fieldState.invalid}
+                        placeholder="Hey Alex, I'd love to chat about..."
+                        autoComplete="off"
+                        className="border-border bg-secondary/50 text-foreground placeholder:text-muted-foreground/50 focus-visible:border-accent focus-visible:ring-accent/65 h-30 resize-none rounded-xl border px-4 py-3 transition-all"
+                      />
+                      {fieldState.invalid && (
+                        <FieldError errors={[fieldState.error]} />
+                      )}
+                    </Field>
+                  )}
                 />
-              </div>
-              <button
-                type="submit"
-                className="glow-green border-primary/40 bg-primary/10 text-primary hover:border-primary/60 hover:bg-primary/20 mt-2 inline-flex items-center justify-center gap-2 self-center rounded-xl border px-8 py-3.5 font-mono text-sm transition-all"
-              >
-                Send Message
-                <Send className="h-4 w-4" />
-              </button>
+                <button
+                  disabled={isLoading}
+                  type="submit"
+                  className="glow-green border-primary/40 bg-primary/10 text-primary hover:border-primary/60 hover:bg-primary/20 mt-2 inline-flex items-center justify-center gap-2 self-center rounded-xl border px-8 py-3.5 font-mono text-sm transition-all"
+                >
+                  Send Message
+                  <Send className="h-4 w-4" />
+                </button>
+              </FieldGroup>
             </form>
           )}
         </AnimateIn>

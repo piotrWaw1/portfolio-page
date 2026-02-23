@@ -10,6 +10,7 @@ import Project from "@/components/sections/projects.astro";
 import { Contact } from "../components/sections/contact";
 import Footer from "../components/sections/footer.astro";
 import ScrollProgress from "../components/scroll-progress";
+import { Toaster } from "sonner";
 // import Cursor from "../components/cursor";
 ---
 
@@ -50,4 +51,5 @@ import ScrollProgress from "../components/scroll-progress";
     <Contact client:visible />
   </main>
   <Footer />
+  <Toaster client:idle />
 </Layout>
