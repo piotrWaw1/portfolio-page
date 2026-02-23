@@ -1,11 +1,11 @@
 import type { APIRoute } from "astro";
 import { Resend } from "resend";
 
-const resend = new Resend(import.meta.env.RESEND_API_KEY);
-
 export const POST: APIRoute = async ({ request }) => {
   const body = await request.json();
   const { name, email, message } = body;
+
+  const resend = new Resend(import.meta.env.RESEND_API_KEY);
 
   if (!name || !email || !message) {
     return new Response(JSON.stringify({ error: "Missing fields" }), {
@@ -14,7 +14,7 @@ export const POST: APIRoute = async ({ request }) => {
   }
 
   try {
-    const { data, error } = await resend.emails.send({
+    await resend.emails.send({
       from: "Contact <portfolio-contact@contact.p-wawrzenczyk.dev>",
       to: ["p.wawrzenczyk1@gmail.com"],
       subject: `New message from ${name}`,
@@ -26,12 +26,9 @@ export const POST: APIRoute = async ({ request }) => {
       `,
     });
 
-    console.log(data);
-    console.log(error);
-
     return new Response(JSON.stringify({ success: true }), { status: 200 });
   } catch (err) {
-    return new Response(JSON.stringify({ error: "Failed to send" }), {
+    return new Response(JSON.stringify({ error: err }), {
       status: 500,
     });
   }

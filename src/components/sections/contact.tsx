@@ -37,7 +37,6 @@ export function Contact() {
   });
 
   async function onSubmit(data: ContactForm) {
-    console.log(data);
     setIsLoading(true);
     try {
       const response = await fetch("/api/contact", {
