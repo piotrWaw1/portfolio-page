@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
 import { ModeToggle } from "@/components/mode-toggle.tsx";
 import { createPortal } from "react-dom";
+import LangToggle from "@/components/lang-toggle.tsx";
 
 const navLinks = [
   { label: "About", href: "#about", color: "text-primary" },
@@ -77,7 +78,10 @@ export function Navbar() {
               </li>
             ))}
           </ul>
-          <ModeToggle />
+          <div className="flex flex-row gap-2">
+            <LangToggle />
+            <ModeToggle />
+          </div>
         </div>
 
         <div className="flex items-center gap-3 md:hidden">
@@ -107,6 +111,8 @@ export function Navbar() {
               )}
             />
           </button>
+          <LangToggle />
+          <ModeToggle />
         </div>
 
         {mobileOpen &&

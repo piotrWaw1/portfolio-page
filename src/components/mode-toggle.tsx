@@ -54,7 +54,7 @@ export function ModeToggle() {
       onClick={toggleTheme}
       size="icon"
       variant="secondary"
-      className="hover:broder-red-500 hover:text-primary border"
+      className="hover:text-primary hover:border-primary/40 border"
       aria-label="Toggle Theme"
     >
       <Moon ref={moonRef} className="absolute h-[1.2rem] w-[1.2rem]" />
