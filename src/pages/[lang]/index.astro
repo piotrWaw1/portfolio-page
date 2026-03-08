@@ -11,6 +11,25 @@ import Experience from "../../components/sections/experience.astro";
 import ScrollProgress from "../../components/scroll-progress";
 import SideElements from "../../components/sections/side-elements.astro";
 import About from "../../components/sections/about.astro";
+import { getEntry } from "astro:content";
+
+type Locale = "en" | "pl";
+
+const lang = Astro.currentLocale ?? ("en" as Locale);
+
+const hero = await getEntry(`${lang}/hero` as "en/hero" | "pl/hero", "hero");
+const about = await getEntry(
+  `${lang}/about` as "en/about" | "pl/about",
+  "about",
+);
+const experience = await getEntry(
+  `${lang}/experience` as "en/experience" | "pl/experience",
+  "experience",
+);
+const projects = await getEntry(
+  `${lang}/projects` as "en/projects" | "pl/projects",
+  "projects",
+);
 ---
 
 <Layout>
@@ -19,10 +38,10 @@ import About from "../../components/sections/about.astro";
   <SideElements />
   <ScrollProgress client:idle />
   <main>
-    <Hero />
-    <About />
-    <Experience />
-    <Project />
+    <Hero heroData={hero} />
+    <About aboutData={about} />
+    <Experience experienceData={experience} />
+    <Project projectsData={projects} />
     <Contact client:visible />
   </main>
   <Footer />

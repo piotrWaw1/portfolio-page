@@ -1,7 +1,10 @@
 ---
 import { AnimateIn } from "@/components/ui/animate-in";
-import ExternalLink from "@lucide/astro/icons/external-link";
-import { getEntry } from "astro:content";
+import type { ExperienceEntry } from "@/types/sections.types";
+
+interface ExperienceProps {
+  experienceData?: ExperienceEntry;
+}
 
 const tagColors = [
   "bg-primary/10 text-primary border-primary/20",
@@ -19,9 +22,9 @@ const JOB_STYLES = [
   { accent: "group-hover:text-rose", border: "hover:border-l-rose" },
 ];
 
-const experienceEntry = await getEntry("experience", "experience");
+const { experienceData } = Astro.props as ExperienceProps;
 
-const data = experienceEntry?.data;
+const data = experienceData?.data;
 ---
 
 <section id="experience" class="mesh-bg-warm px-6 py-24 md:py-32">

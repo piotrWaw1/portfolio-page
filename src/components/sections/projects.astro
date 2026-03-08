@@ -1,11 +1,15 @@
 ---
 import { AnimateIn } from "@/components/ui/animate-in";
-import { getEntry } from "astro:content";
 import ExternalLink from "@lucide/astro/icons/external-link";
 import { Github, Folder } from "@lucide/astro";
 import { cn } from "../../lib/utils";
+import type { ProjectsEntry } from "@/types/sections.types";
 
-const projectsData = await getEntry("projects", "projects");
+interface ProjectProps {
+  projectsData?: ProjectsEntry;
+}
+
+const { projectsData } = Astro.props as ProjectProps;
 
 const title = projectsData!.data.title;
 const mainProjects = projectsData!.data.mainProjects;

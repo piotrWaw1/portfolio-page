@@ -21,6 +21,11 @@ export default defineConfig({
     },
   },
 
+  i18n: {
+    defaultLocale: "en",
+    locales: ["pl", "en"],
+  },
+
   integrations: [react(), markdoc(), keystatic(), mdx()],
   output: "server",
   adapter: vercel(),

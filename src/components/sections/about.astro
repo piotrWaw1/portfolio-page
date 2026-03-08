@@ -1,8 +1,12 @@
 ---
 import { AnimateIn } from "@/components/ui/animate-in";
-import { getEntry } from "astro:content";
+import type { AboutEntry } from "@/types/sections.types";
 
-const aboutData = await getEntry("about", "about");
+interface AboutProps {
+  aboutData?: AboutEntry;
+}
+
+const { aboutData } = Astro.props as AboutProps;
 
 const { Content } = await aboutData!.render();
 const data = aboutData!.data;

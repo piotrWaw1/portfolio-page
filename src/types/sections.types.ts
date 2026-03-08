@@ -1,0 +1,15 @@
+import type { CollectionEntry } from "astro:content";
+
+export type HeroEntry = CollectionEntry<"en/hero"> | CollectionEntry<"pl/hero">;
+
+export type AboutEntry =
+  | CollectionEntry<"en/about">
+  | CollectionEntry<"pl/about">;
+
+export type ExperienceEntry =
+  | CollectionEntry<"en/experience">
+  | CollectionEntry<"pl/experience">;
+
+export type ProjectsEntry =
+  | CollectionEntry<"en/projects">
+  | CollectionEntry<"pl/projects">;
