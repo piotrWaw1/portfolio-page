@@ -10,8 +10,6 @@ import markdoc from "@astrojs/markdoc";
 
 import mdx from "@astrojs/mdx";
 
-import netlify from "@astrojs/netlify";
-
 import vercel from "@astrojs/vercel";
 
 // https://astro.build/config
