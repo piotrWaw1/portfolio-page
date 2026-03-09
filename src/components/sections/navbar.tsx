@@ -35,7 +35,7 @@ export function Navbar() {
   }, []);
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 50);
+    const handleScroll = () => setScrolled(window.scrollY > 25);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
@@ -93,8 +93,8 @@ export function Navbar() {
         </div>
 
         <div className="flex items-center gap-3 md:hidden">
-          {/*<ModeToggle />*/}
-
+          <LangToggle />
+          <ModeToggle />
           <button
             onClick={() => setMobileOpen(!mobileOpen)}
             className="relative z-50 flex h-8 w-8 flex-col items-center justify-center gap-1.5"
@@ -119,8 +119,6 @@ export function Navbar() {
               )}
             />
           </button>
-          <LangToggle />
-          <ModeToggle />
         </div>
 
         {mobileOpen &&

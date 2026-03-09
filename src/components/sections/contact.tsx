@@ -32,7 +32,7 @@ export function Contact() {
   useEffect(() => {
     const lang = getLangFromUrl(new URL(window.location.href));
     setT(() => useTranslations(lang));
-  }, []);  
+  }, []);
 
   const form = useForm<ContactForm>({
     resolver: zodResolver(contactFormSchema),

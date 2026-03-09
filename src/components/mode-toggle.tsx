@@ -22,14 +22,11 @@ export function ModeToggle() {
     const sunTargetScale = isThemeDark ? 0 : 1;
 
     gsap.to(moonRef.current, {
-      // scale: moonTargetScale,
-      opacity: moonTargetScale, // Optional: fade out helps smooth it
-      rotate: isThemeDark ? 0 : 90, // Optional: slight counter-rotation
+      opacity: moonTargetScale,
+      rotate: isThemeDark ? 0 : 90,
     });
 
-    // 3. Animate the Sun (Scale & Rotate)
     gsap.to(sunRef.current, {
-      // scale: sunTargetScale,
       opacity: sunTargetScale,
       rotate: isThemeDark ? -90 : 0,
     });
@@ -62,5 +59,3 @@ export function ModeToggle() {
     </Button>
   );
 }
-
-// "relative z-50 flex h-8 w-8 items-center justify-center rounded-lg border border-border/50 bg-secondary/50 text-muted-foreground"

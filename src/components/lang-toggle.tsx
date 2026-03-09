@@ -5,8 +5,6 @@ import { Button } from "@/components/ui/button.tsx";
 export default function LangToggle() {
   const [currentLang, setCurrentLang] = useState("");
 
-  // console.log(currentLang);
-
   useEffect(() => {
     const lang = window.location.pathname.split("/")[1];
     if (lang === "pl" || lang === "en") {
@@ -25,7 +23,7 @@ export default function LangToggle() {
     <Button
       onClick={handleSwitch}
       variant="secondary"
-      className="border-border/50 bg-secondary/50 text-muted-foreground hover:border-primary/40 hover:text-primary flex h-9 items-center gap-1 rounded-lg border px-3 font-mono text-xs font-medium transition-all"
+      className="border-border/50 text-muted-foreground hover:border-primary/40 hover:text-primary flex h-9 items-center gap-1 rounded-lg border px-3 font-mono text-xs font-medium transition-all"
       aria-label="Toggle language"
     >
       <span

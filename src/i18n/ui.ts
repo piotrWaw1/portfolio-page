@@ -23,7 +23,7 @@ export const transaltions = {
     "contact.email": "Email",
     "contact.message": "Message",
     "contact.sendMessage": "Send Message",
-    "contact.heyAlex":"Hey Piotr, I'd love to chat about...",
+    "contact.heyAlex": "Hey Piotr, I'd love to chat about...",
   },
   pl: {
     "nav.about": "O mnie",
@@ -43,6 +43,6 @@ export const transaltions = {
     "contact.email": "Email",
     "contact.message": "Wiadomość",
     "contact.sendMessage": "Wyślij wiadomość",
-    "contact.heyAlex":"Hej Piotr, chętnie porozmawiam o..."
+    "contact.heyAlex": "Hej Piotr, chętnie porozmawiam o...",
   },
 } as const;
