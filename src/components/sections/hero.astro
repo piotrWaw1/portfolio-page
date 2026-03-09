@@ -1,11 +1,15 @@
 ---
 import { AnimateIn } from "@/components/ui/animate-in";
 import ArrowDown from "@lucide/astro/icons/arrow-down";
-import { getEntry } from "astro:content";
 import ScrollButton from "@/components/scroll-button";
 import HeroAnimatedCircles from "../hero-animated-circles/hero-animated-circles";
+import type { HeroEntry } from "@/types/sections.types";
 
-const heroData = await getEntry("hero", "hero");
+interface HeroProps {
+  heroData?: HeroEntry;
+}
+
+const { heroData } = Astro.props as HeroProps;
 
 const { Content } = await heroData!.render();
 const data = heroData!.data;

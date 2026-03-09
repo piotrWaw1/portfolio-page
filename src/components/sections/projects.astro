@@ -1,11 +1,19 @@
 ---
 import { AnimateIn } from "@/components/ui/animate-in";
-import { getEntry } from "astro:content";
 import ExternalLink from "@lucide/astro/icons/external-link";
 import { Github, Folder } from "@lucide/astro";
 import { cn } from "../../lib/utils";
+import type { ProjectsEntry } from "@/types/sections.types";
+import { getLangFromUrl, useTranslations } from "@/i18n/utils";
 
-const projectsData = await getEntry("projects", "projects");
+interface ProjectProps {
+  projectsData?: ProjectsEntry;
+}
+
+const { projectsData } = Astro.props as ProjectProps;
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 
 const title = projectsData!.data.title;
 const mainProjects = projectsData!.data.mainProjects;
@@ -82,7 +90,7 @@ const secondaryProjects = projectsData!.data.otherProjects;
     {/* Other Projects */}
     <AnimateIn delay={100} client:visible>
       <h3 class="gradient-text-warm mt-24 mb-8 text-center text-xl font-bold">
-        Other Noteworthy Projects
+        {t("projects.otherNetworthyProjects")}
       </h3>
     </AnimateIn>
 

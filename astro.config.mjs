@@ -10,8 +10,6 @@ import markdoc from "@astrojs/markdoc";
 
 import mdx from "@astrojs/mdx";
 
-import netlify from "@astrojs/netlify";
-
 import vercel from "@astrojs/vercel";
 
 // https://astro.build/config
@@ -21,6 +19,11 @@ export default defineConfig({
     ssr: {
       noExternal: ["gsap", "@gsap/react"],
     },
+  },
+
+  i18n: {
+    defaultLocale: "en",
+    locales: ["pl", "en"],
   },
 
   integrations: [react(), markdoc(), keystatic(), mdx()],

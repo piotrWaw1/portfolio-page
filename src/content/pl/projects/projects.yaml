@@ -1,0 +1,112 @@
+title: Projekty
+mainProjects:
+  - title: lumarik
+    subtitle: Aplikacja Dashboard
+    description: >-
+      Zaawansowana aplikacja typu dashboard z płynną integracją Mirakl API, która 
+      pozwala użytkownikom przeglądać i zarządzać danymi marketplace w jednym miejscu. 
+      Aplikacja wyświetla kluczowe wskaźniki wydajności reklam oraz statystyki sprzedaży, 
+      dostarczając przejrzystych analiz pomagających śledzić wyniki, optymalizować 
+      kampanie i podejmować decyzje w oparciu o dane.
+    projectUrl: https://app.lumarik.com/
+    accentFrom: from-cyan/20
+    accentTo: to-amber/10
+    borderColor: hover:border-cyan/30
+    glowClass: glow-cyan
+    subTitleColor: text-cyan
+    technologies:
+      - Next.js
+      - TailwindCSS
+      - Shadcn
+      - TanStack Table
+      - Supabase
+      - Postgresql
+  - title: Strona Portfolio z integracją Keystatic
+    subtitle: Strona Portfolio
+    description: >-
+      Prosta strona portfolio z integracją Keystatic, która ułatwia 
+      zarządzanie treścią i jej aktualizację.
+    githubUrl: https://github.com/piotrWaw1/portfolio-page
+    projectUrl: "#"
+    accentFrom: from-primary/20
+    accentTo: to-cyan/10
+    borderColor: hover:border-primary/30
+    glowClass: glow-green
+    subTitleColor: text-primary
+    technologies:
+      - Astro
+      - React
+      - Keystatic
+      - Typescript
+      - TailwindCSS
+      - Gsap
+      - Shadcn
+  - title: PayMe
+    subtitle: Aplikacja Dashboard
+    description: >-
+      Aplikacja do zarządzania wydatkami, która pomaga użytkownikom śledzić ich finanse. 
+      Zawiera tabelę płatności oraz widok kalendarza nadchodzących zobowiązań, co 
+      ułatwia organizację i kontrolę nad wydatkami.
+    githubUrl: https://github.com/piotrWaw1/payme
+    accentFrom: from-accent/20
+    accentTo: to-rose/10
+    borderColor: hover:border-accent/30
+    glowClass: glow-pink
+    subTitleColor: text-accent
+    technologies:
+      - React
+      - TypeScript
+      - TailwindCSS
+      - Schadcn
+      - Supabase
+otherProjects:
+  - title: Angular ToDo
+    description: >-
+      Aplikacja webowa zbudowana w Angularze, wykorzystująca Firebase do obsługi 
+      backendu oraz PrimeNG dla nowoczesnych, responsywnych komponentów UI.
+    githubUrl: https://github.com/piotrWaw1/todo-fire
+    projectUrl: https://todo-fire.onrender.com/
+    folderColor: text-primary
+    hover: hover:text-primary
+    borderHoverColor: hover:border-t-primary
+    technologies:
+      - Angular
+      - TypeScript
+      - RxJS
+      - PrimeNG
+      - Firebase
+  - title: E Commerce Angular
+    description: >-
+      Platforma e-commerce zbudowana z użyciem Angulara na frontendzie oraz 
+      Django z Django REST Framework na backendzie, zapewniająca szybkie, 
+      skalowalne i bezpieczne zakupy online.
+    githubUrl: https://github.com/piotrWaw1/angular-shop-django
+    folderColor: text-accent
+    hover: hover:text-accent
+    borderHoverColor: hover:border-t-accent
+    technologies:
+      - Angular
+      - TypeScript
+      - RxJS
+      - PrimeNG
+      - Python
+      - Django
+      - Django REST framework
+  - title: Next shop
+    description: >-
+      Sklep internetowy zbudowany w Next.js i TypeScript, wykorzystujący 
+      renderowanie po stronie serwera (SSR) dla zapewnienia wysokiej wydajności 
+      i optymalizacji SEO. Autoryzacja jest obsługiwana przez NextAuth, a 
+      aplikacja korzysta z bazy danych PostgreSQL uruchomionej w Dockerze 
+      z Drizzle ORM dla wydajnego zarządzania danymi.
+    githubUrl: https://github.com/piotrWaw1/next-shop
+    folderColor: text-cyan
+    hover: hover:text-cyan
+    borderHoverColor: hover:border-t-cyan
+    technologies:
+      - Next.js
+      - TypeScript
+      - TailwindCSS
+      - Drizzle ORM
+      - PostgreSQL
+      - Docker

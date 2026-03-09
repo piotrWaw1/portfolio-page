@@ -1,55 +1,19 @@
 ---
 import "@/styles/global.css";
-import Layout from "@/layouts/Layout.astro";
-import { Navbar } from "@/components/sections/navbar";
-import SideElements from "@/components/sections/side-elements.astro";
-import Hero from "@/components/sections/hero.astro";
-import About from "@/components/sections/about.astro";
-import Experience from "@/components/sections/experience.astro";
-import Project from "@/components/sections/projects.astro";
-import { Contact } from "../components/sections/contact";
-import Footer from "../components/sections/footer.astro";
-import ScrollProgress from "../components/scroll-progress";
-import { Toaster } from "sonner";
-// import Cursor from "../components/cursor";
+const supportedLocales = ["pl", "en"];
+const defaultLocale = "en";
+
+const cookieLang = Astro.cookies.get("preferred-lang")?.value;
+if (cookieLang && supportedLocales.includes(cookieLang)) {
+  return Astro.redirect(`/${cookieLang}/`, 302);
+}
+
+const acceptLanguage = Astro.request.headers.get("accept-language") ?? "";
+const browserLocales = acceptLanguage
+  .split(",")
+  .map((lang) => lang.split(";")[0].trim().substring(0, 2).toLowerCase());
+
+const matched = browserLocales.find((lang) => supportedLocales.includes(lang));
+
+return Astro.redirect(`/${matched ?? defaultLocale}/`, 302);
 ---
-
-<script is:inline>
-  const getThemePreference = () => {
-    if (typeof localStorage !== "undefined" && localStorage.getItem("theme")) {
-      return localStorage.getItem("theme");
-    }
-    return window.matchMedia("(prefers-color-scheme: dark)").matches
-      ? "dark"
-      : "light";
-  };
-  const isDark = getThemePreference() === "dark";
-  document.documentElement.classList[isDark ? "add" : "remove"]("dark");
-
-  if (typeof localStorage !== "undefined") {
-    const observer = new MutationObserver(() => {
-      const isDark = document.documentElement.classList.contains("dark");
-      localStorage.setItem("theme", isDark ? "dark" : "light");
-    });
-    observer.observe(document.documentElement, {
-      attributes: true,
-      attributeFilter: ["class"],
-    });
-  }
-</script>
-
-<Layout>
-  <!--<Cursor client:load />-->
-  <Navbar client:idle />
-  <SideElements />
-  <ScrollProgress client:idle />
-  <main>
-    <Hero />
-    <About />
-    <Experience />
-    <Project />
-    <Contact client:visible />
-  </main>
-  <Footer />
-  <Toaster client:idle />
-</Layout>
