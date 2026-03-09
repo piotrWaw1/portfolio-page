@@ -3,13 +3,8 @@ import { cn } from "@/lib/utils";
 import { ModeToggle } from "@/components/mode-toggle.tsx";
 import { createPortal } from "react-dom";
 import LangToggle from "@/components/lang-toggle.tsx";
-
-const navLinks = [
-  { label: "About", href: "#about", color: "text-primary" },
-  { label: "Experience", href: "#experience", color: "text-accent" },
-  { label: "Projects", href: "#projects", color: "text-cyan" },
-  { label: "Contact", href: "#contact", color: "text-amber" },
-];
+import { getLangFromUrl, useTranslations } from "@/i18n/utils";
+import { defaultLang } from "@/i18n/ui";
 
 const handleSmoothScroll = (e: React.MouseEvent<HTMLAnchorElement>) => {
   const href = e.currentTarget.getAttribute("href");
@@ -25,6 +20,19 @@ const handleSmoothScroll = (e: React.MouseEvent<HTMLAnchorElement>) => {
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [t, setT] = useState(() => useTranslations(defaultLang));
+
+  const navLinks = [
+    { label: t("nav.about"), href: "#about", color: "text-primary" },
+    { label: t("nav.experience"), href: "#experience", color: "text-accent" },
+    { label: t("nav.projects"), href: "#projects", color: "text-cyan" },
+    { label: t("nav.contact"), href: "#contact", color: "text-amber" },
+  ];
+
+  useEffect(() => {
+    const lang = getLangFromUrl(new URL(window.location.href));
+    setT(() => useTranslations(lang));
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50);
