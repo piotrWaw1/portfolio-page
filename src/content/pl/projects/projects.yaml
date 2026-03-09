@@ -1,13 +1,13 @@
-title: Project
+title: Projekty
 mainProjects:
   - title: lumarik
-    subtitle: Dashboard app
+    subtitle: Aplikacja Dashboard
     description: >-
-      A powerful dashboard application with seamless Mirakl API integration that
-      allows users to view and manage their marketplace data in one place. The
-      app displays key metrics for ad performance and sales statistics,
-      providing clear insights to help users track results, optimize campaigns,
-      and make data-driven decisions.
+      Zaawansowana aplikacja typu dashboard z płynną integracją Mirakl API, która 
+      pozwala użytkownikom przeglądać i zarządzać danymi marketplace w jednym miejscu. 
+      Aplikacja wyświetla kluczowe wskaźniki wydajności reklam oraz statystyki sprzedaży, 
+      dostarczając przejrzystych analiz pomagających śledzić wyniki, optymalizować 
+      kampanie i podejmować decyzje w oparciu o dane.
     projectUrl: https://app.lumarik.com/
     accentFrom: from-cyan/20
     accentTo: to-amber/10
@@ -21,11 +21,11 @@ mainProjects:
       - TanStack Table
       - Supabase
       - Postgresql
-  - title: Portfolio page with Keystatic integration
-    subtitle: Portfolio Page
+  - title: Strona Portfolio z integracją Keystatic
+    subtitle: Strona Portfolio
     description: >-
-      A simple portfolio website with Keystatic integration that makes it easy
-      to manage and update content.
+      Prosta strona portfolio z integracją Keystatic, która ułatwia 
+      zarządzanie treścią i jej aktualizację.
     githubUrl: https://github.com/piotrWaw1/portfolio-page
     projectUrl: "#"
     accentFrom: from-primary/20
@@ -42,11 +42,11 @@ mainProjects:
       - Gsap
       - Shadcn
   - title: PayMe
-    subtitle: Dashboard app
+    subtitle: Aplikacja Dashboard
     description: >-
-      An expense management app that helps users track their finances. It
-      includes a table of payments and a calendar view of upcoming payments,
-      making it easy to stay organized and on top of expenses.
+      Aplikacja do zarządzania wydatkami, która pomaga użytkownikom śledzić ich finanse. 
+      Zawiera tabelę płatności oraz widok kalendarza nadchodzących zobowiązań, co 
+      ułatwia organizację i kontrolę nad wydatkami.
     githubUrl: https://github.com/piotrWaw1/payme
     accentFrom: from-accent/20
     accentTo: to-rose/10
@@ -62,8 +62,8 @@ mainProjects:
 otherProjects:
   - title: Angular ToDo
     description: >-
-      A web application built with Angular, using Firebase for backend services
-      and PrimeNG for modern, responsive UI components.
+      Aplikacja webowa zbudowana w Angularze, wykorzystująca Firebase do obsługi 
+      backendu oraz PrimeNG dla nowoczesnych, responsywnych komponentów UI.
     githubUrl: https://github.com/piotrWaw1/todo-fire
     projectUrl: https://todo-fire.onrender.com/
     folderColor: text-primary
@@ -75,11 +75,11 @@ otherProjects:
       - RxJS
       - PrimeNG
       - Firebase
-  - title: E Commerce Angualr
+  - title: E Commerce Angular
     description: >-
-      An e-commerce platform built with Angular for the frontend and Django with
-      Django REST Framework for the backend, providing a fast, scalable, and
-      secure online shopping experience.
+      Platforma e-commerce zbudowana z użyciem Angulara na frontendzie oraz 
+      Django z Django REST Framework na backendzie, zapewniająca szybkie, 
+      skalowalne i bezpieczne zakupy online.
     githubUrl: https://github.com/piotrWaw1/angular-shop-django
     folderColor: text-accent
     hover: hover:text-accent
@@ -94,10 +94,11 @@ otherProjects:
       - Django REST framework
   - title: Next shop
     description: >-
-      An online shop built with Next.js and TypeScript, using server-side
-      rendering for fast performance and SEO. Authentication is handled with
-      NextAuth, and the app uses a PostgreSQL database running in Docker with
-      Drizzle ORM for efficient data management.
+      Sklep internetowy zbudowany w Next.js i TypeScript, wykorzystujący 
+      renderowanie po stronie serwera (SSR) dla zapewnienia wysokiej wydajności 
+      i optymalizacji SEO. Autoryzacja jest obsługiwana przez NextAuth, a 
+      aplikacja korzysta z bazy danych PostgreSQL uruchomionej w Dockerze 
+      z Drizzle ORM dla wydajnego zarządzania danymi.
     githubUrl: https://github.com/piotrWaw1/next-shop
     folderColor: text-cyan
     hover: hover:text-cyan
