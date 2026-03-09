@@ -12,6 +12,10 @@ import mdx from "@astrojs/mdx";
 
 import vercel from "@astrojs/vercel";
 
+import sitemap from "@astrojs/sitemap";
+
+const isProduction = import.meta.env.PROD;
+
 // https://astro.build/config
 export default defineConfig({
   vite: {
@@ -26,7 +30,14 @@ export default defineConfig({
     locales: ["pl", "en"],
   },
 
-  integrations: [react(), markdoc(), keystatic(), mdx()],
+  site: "https://www.p-wawrzenczyk.dev/",
+  integrations: [
+    react(),
+    markdoc(),
+    !isProduction && keystatic(),
+    mdx(),
+    sitemap(),
+  ],
   output: "server",
   adapter: vercel(),
 });
