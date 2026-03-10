@@ -14,6 +14,8 @@ import vercel from "@astrojs/vercel";
 
 import sitemap from "@astrojs/sitemap";
 
+import {DefaultLocale, Locales} from"./src/types/locales.types"
+
 const isProduction = import.meta.env.PROD;
 
 // https://astro.build/config
@@ -26,8 +28,8 @@ export default defineConfig({
   },
 
   i18n: {
-    defaultLocale: "en",
-    locales: ["pl", "en"],
+    defaultLocale: DefaultLocale,
+    locales: [Locales.EN, Locales.PL],
   },
 
   site: "https://www.p-wawrzenczyk.dev/",
@@ -36,15 +38,7 @@ export default defineConfig({
     markdoc(),
     !isProduction && keystatic(),
     mdx(),
-    sitemap({
-      i18n:{
-        defaultLocale: "en",
-        locales:{
-          en: 'en-US',
-          pl: 'pl-PL'
-        }
-      }
-    }),
+    sitemap(),
   ],
   output: "static",
   adapter: vercel(),

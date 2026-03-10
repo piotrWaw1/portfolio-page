@@ -1,9 +1,9 @@
 ---
 import "@/styles/global.css";
+import { DefaultLocale, Locales } from "@/types/locales.types";
 export const prerender = false;
 
-const supportedLocales = ["pl", "en"];
-const defaultLocale = "en";
+const supportedLocales = [Locales.EN, Locales.PL] as string[];
 
 const cookieLang = Astro.cookies.get("preferred-lang")?.value;
 if (cookieLang && supportedLocales.includes(cookieLang)) {
@@ -17,5 +17,5 @@ const browserLocales = acceptLanguage
 
 const matched = browserLocales.find((lang) => supportedLocales.includes(lang));
 
-return Astro.redirect(`/${matched ?? defaultLocale}/`, 302);
+return Astro.redirect(`/${matched ?? DefaultLocale}/`, 302);
 ---
