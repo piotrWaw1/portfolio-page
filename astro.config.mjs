@@ -36,8 +36,16 @@ export default defineConfig({
     markdoc(),
     !isProduction && keystatic(),
     mdx(),
-    sitemap(),
+    sitemap({
+      i18n:{
+        defaultLocale: "en",
+        locales:{
+          en: 'en-US',
+          pl: 'pl-PL'
+        }
+      }
+    }),
   ],
-  output: "server",
+  output: "static",
   adapter: vercel(),
 });
