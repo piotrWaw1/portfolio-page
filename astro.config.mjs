@@ -14,7 +14,7 @@ import vercel from "@astrojs/vercel";
 
 import sitemap from "@astrojs/sitemap";
 
-import {DefaultLocale, Locales} from"./src/types/locales.types"
+import { DefaultLocale, Locales } from "./src/types/locales.types";
 
 const isProduction = import.meta.env.PROD;
 
