@@ -15,8 +15,12 @@ export default function LangToggle() {
   const handleSwitch = () => {
     const switchTo = currentLang === "en" ? "pl" : "en";
     setCurrentLang(switchTo);
-    document.cookie = `preferred-lang=${switchTo}; path=/; max-age=31536000`; // 1 year
-    window.location.href = `/${switchTo}/`;
+    document.cookie = `preferred-lang=${switchTo}; path=/; max-age=31536000`;
+
+    const currentPath =
+      window.location.pathname.replace(/^\/(en|pl)/, "") || "/";
+
+    window.location.href = `/${switchTo}${currentPath}`;
   };
 
   return (

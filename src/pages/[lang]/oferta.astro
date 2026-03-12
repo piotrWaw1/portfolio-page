@@ -1,0 +1,61 @@
+---
+import "@/styles/global.css";
+import { Navbar } from "@/components/navbar";
+import ScrollProgress from "@/components/scroll-progress";
+import { getLangFromUrl, useTranslations } from "@/i18n/utils";
+import Layout from "@/layouts/Layout.astro";
+import { Locales } from "@/types/locales.types";
+
+export function getStaticPaths() {
+  return [{ params: { lang: Locales.EN } }, { params: { lang: Locales.PL } }];
+}
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const sections = [
+  {
+    id: "hero",
+    label: t("nav.home"),
+    activeColor: "bg-rose border-rose shadow-[0_0_20px_var(--color-rose)]",
+  },
+  {
+    id: "about",
+    label: t("nav.services"),
+    activeColor: "bg-primary border-primary shadow-[0_0_20px_var(--primary)]",
+  },
+  {
+    id: "experience",
+    label: t("nav.techStack"),
+    activeColor: "bg-accent border-accent shadow-[0_0_20px_var(--accent)]",
+  },
+  {
+    id: "projects",
+    label: t("nav.process"),
+    activeColor: "bg-cyan border-cyan shadow-[0_0_20px_var(--color-cyan)]",
+  },
+  {
+    id: "contact",
+    label: t("nav.contact"),
+    activeColor: "bg-amber border-amber shadow-[0_0_20px_var(--color-amber)]",
+  },
+];
+
+const navLinks = [
+  { label: t("nav.services"), href: "#about", color: "text-primary" },
+  { label: t("nav.techStack"), href: "#experience", color: "text-accent" },
+  { label: t("nav.process"), href: "#projects", color: "text-cyan" },
+  { label: t("nav.contact"), href: "#contact", color: "text-amber" },
+];
+
+const redirectToPage = {
+  title: t("nav.portfolio"),
+  url: `/${lang}/`,
+};
+---
+
+<Layout>
+  <Navbar navLinks={navLinks} redirectToPage={redirectToPage} client:load />
+  <ScrollProgress sections={sections} client:idle />
+  <main></main>
+</Layout>

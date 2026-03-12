@@ -7,11 +7,18 @@ export const defaultLang = "en";
 
 export const transaltions = {
   en: {
+    "nav.home": "Home",
     "nav.about": "About",
     "nav.experience": "Experience",
     "nav.projects": "Projects",
     "nav.contact": "Contact",
     "nav.offer": "Offer",
+
+    "nav.services": "Services",
+    "nav.techStack": "Tech stack",
+    "nav.process": "Process",
+    "nav.portfolio": "Portfolio",
+
     "projects.otherNetworthyProjects": "Other Noteworthy Projects",
     "contact.whatsNext": "What's Next?",
     "contact.getInTouch": "Get In Touch",
@@ -27,11 +34,18 @@ export const transaltions = {
     "contact.heyAlex": "Hey Piotr, I'd love to chat about...",
   },
   pl: {
+    "nav.home": "Strona główna",
     "nav.about": "O mnie",
     "nav.experience": "Doświadczenie",
     "nav.projects": "Projekty",
     "nav.contact": "Kontakt",
     "nav.offer": "Oferta",
+
+    "nav.services": "Usługi",
+    "nav.techStack": "Technologie",
+    "nav.process": "Proces",
+    "nav.portfolio": "Portfolio",
+
     "projects.otherNetworthyProjects": "Inne godne uwagi projekty",
     "contact.whatsNext": "Co dalej?",
     "contact.getInTouch": "Bądźmy w kontakcie",

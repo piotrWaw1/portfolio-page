@@ -22,6 +22,34 @@ export function getStaticPaths() {
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
+const sections = [
+  {
+    id: "hero",
+    label: t("nav.home"),
+    activeColor: "bg-rose border-rose shadow-[0_0_20px_var(--color-rose)]",
+  },
+  {
+    id: "about",
+    label: t("nav.about"),
+    activeColor: "bg-primary border-primary shadow-[0_0_20px_var(--primary)]",
+  },
+  {
+    id: "experience",
+    label: t("nav.experience"),
+    activeColor: "bg-accent border-accent shadow-[0_0_20px_var(--accent)]",
+  },
+  {
+    id: "projects",
+    label: t("nav.projects"),
+    activeColor: "bg-cyan border-cyan shadow-[0_0_20px_var(--color-cyan)]",
+  },
+  {
+    id: "contact",
+    label: t("nav.contact"),
+    activeColor: "bg-amber border-amber shadow-[0_0_20px_var(--color-amber)]",
+  },
+];
+
 const navLinks = [
   { label: t("nav.about"), href: "#about", color: "text-primary" },
   { label: t("nav.experience"), href: "#experience", color: "text-accent" },
@@ -53,7 +81,7 @@ const projects = await getEntry(
   <!--<Cursor client:load />-->
   <Navbar navLinks={navLinks} redirectToPage={redirectToPage} client:load />
   <SideElements />
-  <ScrollProgress client:idle />
+  <ScrollProgress sections={sections} client:idle />
   <main>
     <Hero heroData={hero} />
     <About aboutData={about} />
