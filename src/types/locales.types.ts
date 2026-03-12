@@ -3,4 +3,4 @@ export enum Locales {
   PL = "pl",
 }
 
-export const DefaultLocale = Locales.EN;
+export const DefaultLocale = Locales.PL;

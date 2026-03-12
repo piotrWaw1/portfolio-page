@@ -4,7 +4,7 @@ import Hero from "../../components/sections/hero.astro";
 import Footer from "../../components/sections/footer.astro";
 import Project from "../../components/sections/projects.astro";
 import { Toaster } from "sonner";
-import { Navbar } from "../../components/sections/navbar";
+import { Navbar } from "../../components/navbar";
 import { Contact } from "../../components/sections/contact";
 import Layout from "../../layouts/Layout.astro";
 import Experience from "../../components/sections/experience.astro";
@@ -12,13 +12,27 @@ import ScrollProgress from "../../components/scroll-progress";
 import SideElements from "../../components/sections/side-elements.astro";
 import About from "../../components/sections/about.astro";
 import { getEntry } from "astro:content";
-import { DefaultLocale, Locales } from "@/types/locales.types";
+import { Locales } from "@/types/locales.types";
+import { getLangFromUrl, useTranslations } from "@/i18n/utils";
 
 export function getStaticPaths() {
   return [{ params: { lang: Locales.EN } }, { params: { lang: Locales.PL } }];
 }
 
-const lang = Astro.currentLocale ?? DefaultLocale;
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const navLinks = [
+  { label: t("nav.about"), href: "#about", color: "text-primary" },
+  { label: t("nav.experience"), href: "#experience", color: "text-accent" },
+  { label: t("nav.projects"), href: "#projects", color: "text-cyan" },
+  { label: t("nav.contact"), href: "#contact", color: "text-amber" },
+];
+
+const redirectToPage = {
+  title: t("nav.offer"),
+  url: `/${lang}/oferta`,
+};
 
 const hero = await getEntry(`${lang}/hero` as "en/hero" | "pl/hero", "hero");
 const about = await getEntry(
@@ -37,7 +51,7 @@ const projects = await getEntry(
 
 <Layout>
   <!--<Cursor client:load />-->
-  <Navbar client:load />
+  <Navbar navLinks={navLinks} redirectToPage={redirectToPage} client:load />
   <SideElements />
   <ScrollProgress client:idle />
   <main>

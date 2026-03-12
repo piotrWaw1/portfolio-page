@@ -5,6 +5,18 @@ import { createPortal } from "react-dom";
 import LangToggle from "@/components/lang-toggle.tsx";
 import { getLangFromUrl, useTranslations } from "@/i18n/utils";
 import { defaultLang } from "@/i18n/ui";
+import { ArrowRight } from "lucide-react";
+
+interface NavLinks {
+  label: string;
+  href: string;
+  color: string;
+}
+
+interface NavbarProps {
+  navLinks: NavLinks[];
+  redirectToPage: { title: string; url: string };
+}
 
 const handleSmoothScroll = (e: React.MouseEvent<HTMLAnchorElement>) => {
   const href = e.currentTarget.getAttribute("href");
@@ -17,22 +29,9 @@ const handleSmoothScroll = (e: React.MouseEvent<HTMLAnchorElement>) => {
   }
 };
 
-export function Navbar() {
+export function Navbar({ navLinks, redirectToPage }: NavbarProps) {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [t, setT] = useState(() => useTranslations(defaultLang));
-
-  const navLinks = [
-    { label: t("nav.about"), href: "#about", color: "text-primary" },
-    { label: t("nav.experience"), href: "#experience", color: "text-accent" },
-    { label: t("nav.projects"), href: "#projects", color: "text-cyan" },
-    { label: t("nav.contact"), href: "#contact", color: "text-amber" },
-  ];
-
-  useEffect(() => {
-    const lang = getLangFromUrl(new URL(window.location.href));
-    setT(() => useTranslations(lang));
-  }, []);
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 25);
@@ -86,7 +85,14 @@ export function Navbar() {
               </li>
             ))}
           </ul>
-          <div className="flex flex-row gap-2">
+          <div className="flex flex-row gap-4">
+            <a
+              href={redirectToPage.url}
+              className="border-accent/30 bg-accent/5 text-accent inline-flex items-center gap-2 rounded-lg border px-4 font-mono text-sm"
+            >
+              {redirectToPage.title}
+              <ArrowRight className="h-4 w-4" />
+            </a>
             <LangToggle />
             <ModeToggle />
           </div>
@@ -139,6 +145,16 @@ export function Navbar() {
                     </a>
                   </li>
                 ))}
+                <li>
+                  <a
+                    href={redirectToPage.url}
+                    onClick={() => setMobileOpen(false)}
+                    className="border-accent/30 bg-accent/5 text-accent inline-flex items-center gap-2 rounded-lg border px-5 py-2.5 font-mono text-sm"
+                  >
+                    {redirectToPage.title}
+                    <ArrowRight className="h-4 w-4" />
+                  </a>
+                </li>
               </ul>
             </div>,
             document.body,
