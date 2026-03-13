@@ -3,9 +3,7 @@ import { cn } from "@/lib/utils";
 import { ModeToggle } from "@/components/mode-toggle.tsx";
 import { createPortal } from "react-dom";
 import LangToggle from "@/components/lang-toggle.tsx";
-import { getLangFromUrl, useTranslations } from "@/i18n/utils";
-import { defaultLang } from "@/i18n/ui";
-import { ArrowRight } from "lucide-react";
+import { ArrowLeft, ArrowRight } from "lucide-react";
 
 interface NavLinks {
   label: string;
@@ -15,7 +13,7 @@ interface NavLinks {
 
 interface NavbarProps {
   navLinks: NavLinks[];
-  redirectToPage: { title: string; url: string };
+  redirectToPage: { title: string; url: string; portfolio: boolean };
 }
 
 const handleSmoothScroll = (e: React.MouseEvent<HTMLAnchorElement>) => {
@@ -35,6 +33,7 @@ export function Navbar({ navLinks, redirectToPage }: NavbarProps) {
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 25);
+    handleScroll();
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
@@ -88,10 +87,16 @@ export function Navbar({ navLinks, redirectToPage }: NavbarProps) {
           <div className="flex flex-row gap-4">
             <a
               href={redirectToPage.url}
-              className="border-accent/30 bg-accent/5 text-accent inline-flex items-center gap-2 rounded-lg border px-4 font-mono text-sm"
+              className={cn(
+                "inline-flex items-center gap-2 rounded-lg border px-4 font-mono text-sm",
+                redirectToPage.portfolio
+                  ? "border-cyan/30 bg-cyan/5 text-cyan hover:border-cyan/50 hover:bg-cyan/10"
+                  : "border-accent/30 bg-accent/5 text-accent hover:border-accent/50 hover:bg-accent/10",
+              )}
             >
+              {redirectToPage.portfolio && <ArrowLeft className="h-4 w-4" />}
               {redirectToPage.title}
-              <ArrowRight className="h-4 w-4" />
+              {!redirectToPage.portfolio && <ArrowRight className="h-4 w-4" />}
             </a>
             <LangToggle />
             <ModeToggle />

@@ -5,6 +5,8 @@ import ScrollProgress from "@/components/scroll-progress";
 import { getLangFromUrl, useTranslations } from "@/i18n/utils";
 import Layout from "@/layouts/Layout.astro";
 import { Locales } from "@/types/locales.types";
+import OfferHero from "@/components/offer/offer-hero.astro";
+import OfferServices from "@/components/offer/offer-services.astro";
 
 export function getStaticPaths() {
   return [{ params: { lang: Locales.EN } }, { params: { lang: Locales.PL } }];
@@ -51,11 +53,15 @@ const navLinks = [
 const redirectToPage = {
   title: t("nav.portfolio"),
   url: `/${lang}/`,
+  portfolio: true,
 };
 ---
 
 <Layout>
   <Navbar navLinks={navLinks} redirectToPage={redirectToPage} client:load />
   <ScrollProgress sections={sections} client:idle />
-  <main></main>
+  <main>
+    <OfferHero />
+    <OfferServices />
+  </main>
 </Layout>

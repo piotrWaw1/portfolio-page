@@ -1,0 +1,76 @@
+---
+import Sparkles from "@lucide/astro/icons/sparkles";
+import { AnimateIn } from "../ui/animate-in";
+import ArrowDown from "@lucide/astro/icons/arrow-down";
+---
+
+<section class="mesh-bg relative flex min-h-screen items-center px-6">
+  <div class="pointer-events-none absolute inset-0 overflow-hidden">
+    <div
+      class="bg-primary/5 absolute top-1/4 right-1/4 h-72 w-72 rounded-full blur-3xl"
+    >
+    </div>
+    <div
+      class="bg-accent/5 absolute bottom-1/3 left-1/4 h-64 w-64 rounded-full blur-3xl"
+    >
+    </div>
+    <div
+      class="bg-cyan/5 absolute top-1/2 right-1/3 h-48 w-48 rounded-full blur-3xl"
+    >
+    </div>
+  </div>
+
+  <div class="relative mx-auto w-full max-w-6xl">
+    <AnimateIn delay={100} client:idle>
+      <div
+        class="border-primary/30 bg-primary/5 mb-6 inline-flex items-center gap-2 rounded-full border px-4 py-1.5"
+      >
+        <Sparkles class="text-primary h-4 w-4" />
+        <span class="text-primary font-mono text-sm">
+          Web Development Studio
+        </span>
+      </div>
+    </AnimateIn>
+
+    <AnimateIn delay={200} client:idle>
+      <h1
+        class="max-w-4xl text-4xl leading-tight font-bold tracking-tight sm:text-5xl md:text-7xl"
+      >
+        <span class="text-foreground">We design & build </span>
+        <span class="gradient-text">websites that grow</span>
+        <span class="text-foreground">your business.</span>
+      </h1>
+    </AnimateIn>
+
+    <AnimateIn delay={300} client:idle>
+      <p
+        class="text-muted-foreground mt-6 max-w-2xl text-base leading-relaxed md:text-lg"
+      >
+        From sleek "
+        <span class="text-primary">landing pages</span>
+        to full-scale "
+        <span class="text-accent">web applications</span>
+        - we craft digital experiences that are fast, accessible, and built to convert.
+        Powered by modern technologies and a passion for clean code.
+      </p>
+    </AnimateIn>
+
+    <AnimateIn delay={400} client:idle>
+      <div class="mt-10 flex flex-wrap items-center gap-4">
+        <a
+          href="#contact"
+          class="glow-green border-primary/40 bg-primary/10 text-primary hover:border-primary/60 hover:bg-primary/20 inline-flex items-center gap-2 rounded-xl border px-7 py-3.5 font-mono text-sm transition-all"
+        >
+          Start a project
+        </a>
+        <a
+          href="#services"
+          class="border-border/50 bg-secondary/50 text-foreground hover:border-accent/40 hover:bg-secondary inline-flex items-center gap-2 rounded-xl border px-7 py-3.5 font-mono text-sm transition-all"
+        >
+          See what we offer
+          <ArrowDown class="h-4 w-4" />
+        </a>
+      </div>
+    </AnimateIn>
+  </div>
+</section>
