@@ -7,6 +7,10 @@ import Layout from "@/layouts/Layout.astro";
 import { Locales } from "@/types/locales.types";
 import OfferHero from "@/components/offer/offer-hero.astro";
 import OfferServices from "@/components/offer/offer-services.astro";
+import OfferStack from "@/components/offer/offer-stack.astro";
+import Footer from "@/components/sections/footer.astro";
+import OfferProcess from "@/components/offer/offer-process.astro";
+import OfferContact from "@/components/offer/offer-contact";
 
 export function getStaticPaths() {
   return [{ params: { lang: Locales.EN } }, { params: { lang: Locales.PL } }];
@@ -22,17 +26,17 @@ const sections = [
     activeColor: "bg-rose border-rose shadow-[0_0_20px_var(--color-rose)]",
   },
   {
-    id: "about",
+    id: "services",
     label: t("nav.services"),
     activeColor: "bg-primary border-primary shadow-[0_0_20px_var(--primary)]",
   },
   {
-    id: "experience",
+    id: "stack",
     label: t("nav.techStack"),
     activeColor: "bg-accent border-accent shadow-[0_0_20px_var(--accent)]",
   },
   {
-    id: "projects",
+    id: "process",
     label: t("nav.process"),
     activeColor: "bg-cyan border-cyan shadow-[0_0_20px_var(--color-cyan)]",
   },
@@ -44,9 +48,9 @@ const sections = [
 ];
 
 const navLinks = [
-  { label: t("nav.services"), href: "#about", color: "text-primary" },
-  { label: t("nav.techStack"), href: "#experience", color: "text-accent" },
-  { label: t("nav.process"), href: "#projects", color: "text-cyan" },
+  { label: t("nav.services"), href: "#services", color: "text-primary" },
+  { label: t("nav.techStack"), href: "#stack", color: "text-accent" },
+  { label: t("nav.process"), href: "#process", color: "text-cyan" },
   { label: t("nav.contact"), href: "#contact", color: "text-amber" },
 ];
 
@@ -63,5 +67,9 @@ const redirectToPage = {
   <main>
     <OfferHero />
     <OfferServices />
+    <OfferStack />
+    <OfferProcess />
+    <OfferContact client:visible />
+    <Footer />
   </main>
 </Layout>

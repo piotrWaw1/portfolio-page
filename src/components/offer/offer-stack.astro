@@ -1,0 +1,120 @@
+---
+import { AnimateIn } from "../ui/animate-in";
+import nextLightIcon from "@/icons/nextjs-light.svg";
+import reactIcon from "@/icons/react.svg";
+import astroIcon from "@/icons/astro.svg";
+import wordpressIcon from "@/icons/wordpress.svg";
+import postgresqlIcon from "@/icons/postgresql.svg";
+import supabaseIcon from "@/icons/supabase.svg";
+import { Image } from "astro:assets";
+
+const techStack = [
+  {
+    name: "Next.js",
+    description:
+      "Full-stack React framework for production-grade web apps with SSR, routing, and API endpoints.",
+
+    color: "text-foreground",
+    borderColor: "border-foreground/20",
+    bgColor: "bg-foreground/5",
+    icon: nextLightIcon,
+  },
+  {
+    name: "React",
+    description:
+      "Component-based UI library for building interactive, reusable interfaces with a massive ecosystem.",
+
+    color: "text-cyan",
+    borderColor: "border-cyan/20",
+    bgColor: "bg-cyan/5",
+    icon: reactIcon,
+  },
+  {
+    name: "Astro",
+    description:
+      "Lightning-fast static site generator, perfect for content-rich sites and blogs with zero JS by default.",
+
+    color: "text-amber",
+    borderColor: "border-amber/20",
+    bgColor: "bg-amber/5",
+    icon: astroIcon,
+  },
+  {
+    name: "WordPress",
+    description:
+      "The world's most popular CMS. Great for blogs, business sites, and clients who need easy content editing.",
+
+    color: "text-blue",
+    borderColor: "border-blue/20",
+    bgColor: "bg-blue/5",
+    icon: wordpressIcon,
+  },
+  {
+    name: "PostgreSQL",
+    description:
+      "Robust, open-source relational database for complex queries, data integrity, and scalable backends.",
+
+    color: "text-violet",
+    borderColor: "border-violet/20",
+    bgColor: "bg-violet/5",
+    icon: postgresqlIcon,
+  },
+  {
+    name: "Supabase",
+    description:
+      "Open-source Firebase alternative with auth, real-time subscriptions, storage, and auto-generated APIs.",
+
+    color: "text-primary",
+    borderColor: "border-primary/20",
+    bgColor: "bg-primary/5",
+    icon: supabaseIcon,
+  },
+];
+---
+
+<section id="stack" class="mesh-bg px-6 py-24 md:py-32">
+  <div class="mx-auto max-w-6xl">
+    <AnimateIn client:idle>
+      <div class="mb-4 flex items-center gap-4">
+        <h2
+          class="text-foreground flex items-center gap-2 text-2xl font-bold md:text-3xl"
+        >
+          <span class="text-cyan font-mono text-lg md:text-xl"> 02. </span>
+          Our Tech Stack
+        </h2>
+        <div class="from-cyan/40 h-px flex-1 bg-gradient-to-r to-transparent">
+        </div>
+      </div>
+    </AnimateIn>
+
+    <AnimateIn delay={100} client:idle>
+      <p class="text-muted-foreground mb-14 max-w-2xl leading-relaxed">
+        We choose the right tool for every project. Whether it's a static
+        marketing site or a data-driven web app, our stack ensures performance,
+        scalability, and a great developer experience.
+      </p>
+    </AnimateIn>
+
+    <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+      {
+        techStack.map((tech, i) => (
+          <AnimateIn delay={i * 80} client:idle>
+            <div
+              class={`group flex h-full flex-col items-start rounded-2xl border ${tech.borderColor} ${tech.bgColor} hover:border-opacity-60 p-6 transition-all hover:-translate-y-1 md:p-7`}
+            >
+              <div class="mb-5">
+                <Image src={tech.icon} alt={tech.name} width={50} />
+              </div>
+              <h3 class={`mb-2 text-lg font-semibold ${tech.color}`}>
+                {tech.name}
+              </h3>
+              <p class="text-muted-foreground text-sm leading-relaxed">
+                {tech.description}
+              </p>
+            </div>
+          </AnimateIn>
+        ))
+      }
+    </div>
+  </div>
+</section>

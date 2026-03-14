@@ -1,0 +1,109 @@
+---
+import MessageSquare from "@lucide/astro/icons/message-square";
+import PenTool from "@lucide/astro/icons/pen-tool";
+import Rocket from "@lucide/astro/icons/rocket";
+import { Code2 } from "node_modules/@lucide/astro/src/aliases";
+import { AnimateIn } from "../ui/animate-in";
+
+const steps = [
+  {
+    number: "01",
+    icon: MessageSquare,
+    title: "Discovery & Planning",
+    description:
+      "We start with a conversation. Understanding your goals, audience, and requirements lets us map out the perfect solution, timeline, and tech stack for your project.",
+
+    color: "text-primary",
+    borderColor: "border-primary/30",
+    bgColor: "bg-primary/5",
+  },
+  {
+    number: "02",
+    icon: PenTool,
+    title: "Design & Prototyping",
+    description:
+      "We create wireframes and high-fidelity mockups for your approval. You see exactly how the site will look and interact before a single line of code is written.",
+
+    color: "text-accent",
+    borderColor: "border-accent/30",
+    bgColor: "bg-accent/5",
+  },
+  {
+    number: "03",
+    icon: Code2,
+    title: "Development & Testing",
+    description:
+      "We build your site with clean, modern code. Every feature is tested across devices and browsers to ensure a flawless experience for all your users.",
+
+    color: "text-cyan",
+    borderColor: "border-cyan/30",
+    bgColor: "bg-cyan/5",
+  },
+  {
+    number: "04",
+    icon: Rocket,
+    title: "Launch & Support",
+    description:
+      "We handle deployment, performance optimization, and post-launch support. Your site goes live fast and stays running smoothly with ongoing maintenance.",
+
+    color: "text-amber",
+    borderColor: "border-amber/30",
+    bgColor: "bg-amber/5",
+  },
+];
+---
+
+<section id="process" class="mesh-bg-warm px-6 py-24 md:py-32">
+  <div class="mx-auto max-w-6xl">
+    <AnimateIn client:visible>
+      <div class="mb-4 flex items-center gap-4">
+        <h2
+          class="text-foreground flex items-center gap-2 text-2xl font-bold md:text-3xl"
+        >
+          <span class="text-accent font-mono text-lg md:text-xl"> 03. </span>
+          How We Work
+        </h2>
+        <div class="from-accent/40 h-px flex-1 bg-gradient-to-r to-transparent">
+        </div>
+      </div>
+    </AnimateIn>
+
+    <AnimateIn delay={100} client:visible>
+      <p class="text-muted-foreground mb-14 max-w-2xl leading-relaxed">
+        A transparent, collaborative process from first conversation to final
+        launch. You're involved every step of the way, and there are no
+        surprises.
+      </p>
+    </AnimateIn>
+
+    <div class="relative grid gap-8 md:grid-cols-2 lg:grid-cols-4">
+      <div
+        class="from-primary/20 via-accent/20 to-amber/20 absolute top-16 left-[calc(12.5%+1rem)] hidden h-px w-[calc(75%-2rem)] bg-gradient-to-r lg:block"
+      >
+      </div>
+
+      {
+        steps.map((step, i) => (
+          <AnimateIn delay={i * 120} client:visible>
+            <div class="relative flex flex-col items-center text-center">
+              <div
+                class={`relative z-10 mb-6 flex h-16 w-16 items-center justify-center rounded-2xl border ${step.borderColor} ${step.bgColor}`}
+              >
+                <step.icon class={`h-7 w-7 ${step.color}`} />
+              </div>
+              <span class={`mb-2 font-mono text-xs ${step.color}`}>
+                Step {step.number}
+              </span>
+              <h3 class="text-foreground mb-3 text-lg font-semibold">
+                {step.title}
+              </h3>
+              <p class="text-muted-foreground text-sm leading-relaxed">
+                {step.description}
+              </p>
+            </div>
+          </AnimateIn>
+        ))
+      }
+    </div>
+  </div>
+</section>
