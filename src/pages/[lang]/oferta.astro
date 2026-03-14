@@ -11,6 +11,7 @@ import OfferStack from "@/components/offer/offer-stack.astro";
 import Footer from "@/components/sections/footer.astro";
 import OfferProcess from "@/components/offer/offer-process.astro";
 import OfferContact from "@/components/offer/offer-contact";
+import { getEntry } from "astro:content";
 
 export function getStaticPaths() {
   return [{ params: { lang: Locales.EN } }, { params: { lang: Locales.PL } }];
@@ -59,13 +60,18 @@ const redirectToPage = {
   url: `/${lang}/`,
   portfolio: true,
 };
+
+const hero = await getEntry(
+  `${lang}/offer/hero` as "en/offer/hero" | "pl/offer/hero",
+  "hero",
+);
 ---
 
 <Layout>
   <Navbar navLinks={navLinks} redirectToPage={redirectToPage} client:load />
   <ScrollProgress sections={sections} client:idle />
   <main>
-    <OfferHero />
+    <OfferHero heroData={hero} />
     <OfferServices />
     <OfferStack />
     <OfferProcess />

@@ -80,7 +80,7 @@ const services = [
 
 <section id="services" class="px-6 py-24 md:py-32">
   <div class="mx-auto max-w-6xl">
-    <AnimateIn client:load>
+    <AnimateIn client:visible>
       <div class="mb-4 flex items-center gap-4">
         <h2
           class="text-foreground flex items-center gap-2 text-2xl font-bold md:text-3xl"
@@ -95,7 +95,7 @@ const services = [
       </div>
     </AnimateIn>
 
-    <AnimateIn delay={100} client:load>
+    <AnimateIn delay={100} client:visible>
       <p class="text-muted-foreground mb-14 max-w-2xl leading-relaxed">
         Whether you need a simple landing page or a complex web application with
         authentication and databases, we have you covered. Every project is
@@ -106,7 +106,7 @@ const services = [
     <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
       {
         services.map((service, i) => (
-          <AnimateIn delay={i * 80} client:load>
+          <AnimateIn delay={i * 80} client:visible>
             <div
               class={`group border-border/50 flex h-full flex-col rounded-2xl border ${service.bgColor} p-6 transition-all hover:-translate-y-1 ${service.borderColor} ${service.glowClass} md:p-7`}
             >

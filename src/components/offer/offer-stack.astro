@@ -1,11 +1,11 @@
 ---
 import { AnimateIn } from "../ui/animate-in";
-import nextLightIcon from "@/icons/nextjs-light.svg";
-import reactIcon from "@/icons/react.svg";
-import astroIcon from "@/icons/astro.svg";
-import wordpressIcon from "@/icons/wordpress.svg";
-import postgresqlIcon from "@/icons/postgresql.svg";
-import supabaseIcon from "@/icons/supabase.svg";
+import nextLightIcon from "@/assets/icons/nextjs-light.svg";
+import reactIcon from "@/assets/icons/react.svg";
+import astroIcon from "@/assets/icons/astro.svg";
+import wordpressIcon from "@/assets/icons/wordpress.svg";
+import postgresqlIcon from "@/assets/icons/postgresql.svg";
+import supabaseIcon from "@/assets/icons/supabase.svg";
 import { Image } from "astro:assets";
 
 const techStack = [
@@ -74,7 +74,7 @@ const techStack = [
 
 <section id="stack" class="mesh-bg px-6 py-24 md:py-32">
   <div class="mx-auto max-w-6xl">
-    <AnimateIn client:idle>
+    <AnimateIn client:visible>
       <div class="mb-4 flex items-center gap-4">
         <h2
           class="text-foreground flex items-center gap-2 text-2xl font-bold md:text-3xl"
@@ -87,7 +87,7 @@ const techStack = [
       </div>
     </AnimateIn>
 
-    <AnimateIn delay={100} client:idle>
+    <AnimateIn delay={100} client:visible>
       <p class="text-muted-foreground mb-14 max-w-2xl leading-relaxed">
         We choose the right tool for every project. Whether it's a static
         marketing site or a data-driven web app, our stack ensures performance,
@@ -98,7 +98,7 @@ const techStack = [
     <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
       {
         techStack.map((tech, i) => (
-          <AnimateIn delay={i * 80} client:idle>
+          <AnimateIn delay={i * 80} client:visible>
             <div
               class={`group flex h-full flex-col items-start rounded-2xl border ${tech.borderColor} ${tech.bgColor} hover:border-opacity-60 p-6 transition-all hover:-translate-y-1 md:p-7`}
             >

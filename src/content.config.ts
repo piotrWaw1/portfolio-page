@@ -65,9 +65,20 @@ export const collections = {
   "en/about": defineCollection({ type: "content", schema: aboutSchema }),
   "en/experience": defineCollection({ type: "data", schema: experienceSchema }),
   "en/projects": defineCollection({ type: "data", schema: projectsSchema }),
+
+  "en/offer/hero": defineCollection({
+    type: "content",
+    schema: heroSchema,
+  }),
+
   // Polish
   "pl/hero": defineCollection({ type: "content", schema: heroSchema }),
   "pl/about": defineCollection({ type: "content", schema: aboutSchema }),
   "pl/experience": defineCollection({ type: "data", schema: experienceSchema }),
   "pl/projects": defineCollection({ type: "data", schema: projectsSchema }),
+
+  "pl/offer/hero": defineCollection({
+    type: "content",
+    schema: heroSchema,
+  }),
 };

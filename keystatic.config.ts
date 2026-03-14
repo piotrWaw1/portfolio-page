@@ -2,7 +2,7 @@ import { config, fields, singleton } from "@keystatic/core";
 
 const heroSchema = {
   badge: fields.text({ label: "Badge Text" }),
-  heading: fields.text({ label: "Main Heading" }),
+  heading: fields.mdx.inline({ label: "Main Heading" }),
   subheading: fields.text({ label: "Subheading" }),
   ctaText: fields.text({ label: "Button Text" }),
   content: fields.mdx({ label: "Description", options: { image: false } }),
@@ -99,6 +99,13 @@ export default config({
       label: "🇬🇧 Projects",
       path: "src/content/en/projects/projects",
       schema: projectsSchema,
+    }),
+
+    offer_hero_en: singleton({
+      label: "🇬🇧 Offer Hero Section",
+      path: "src/content/en/offer/hero/hero",
+      format: { contentField: "content" },
+      schema: heroSchema,
     }),
 
     // --- POLISH ---

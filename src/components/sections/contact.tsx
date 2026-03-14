@@ -14,7 +14,7 @@ import { Input } from "@/components/ui/input.tsx";
 import { Textarea } from "@/components/ui/textarea.tsx";
 import { toast } from "sonner";
 import { getLangFromUrl, useTranslations } from "@/i18n/utils";
-import { defaultLang } from "@/i18n/ui";
+import { DefaultLocale } from "@/types/locales.types";
 
 const contactFormSchema = z.object({
   name: z.string(),
@@ -27,7 +27,7 @@ type ContactForm = z.infer<typeof contactFormSchema>;
 export function Contact() {
   const [submitted, setSubmitted] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const [t, setT] = useState(() => useTranslations(defaultLang));
+  const [t, setT] = useState(() => useTranslations(DefaultLocale));
 
   useEffect(() => {
     const lang = getLangFromUrl(new URL(window.location.href));

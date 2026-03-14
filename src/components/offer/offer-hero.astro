@@ -2,6 +2,20 @@
 import Sparkles from "@lucide/astro/icons/sparkles";
 import { AnimateIn } from "../ui/animate-in";
 import ArrowDown from "@lucide/astro/icons/arrow-down";
+import type { HeroEntry } from "@/types/sections.types";
+import { getLangFromUrl, useTranslations } from "@/i18n/utils";
+
+interface HeroProps {
+  heroData?: HeroEntry;
+}
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const { heroData } = Astro.props as HeroProps;
+
+const { Content } = await heroData!.render();
+const data = heroData!.data;
 ---
 
 <section class="mesh-bg relative flex min-h-screen items-center px-6">
@@ -21,53 +35,50 @@ import ArrowDown from "@lucide/astro/icons/arrow-down";
   </div>
 
   <div class="relative mx-auto w-full max-w-6xl">
-    <AnimateIn delay={100} client:idle>
+    <AnimateIn delay={100} client:visible>
       <div
         class="border-primary/30 bg-primary/5 mb-6 inline-flex items-center gap-2 rounded-full border px-4 py-1.5"
       >
         <Sparkles class="text-primary h-4 w-4" />
         <span class="text-primary font-mono text-sm">
-          Web Development Studio
+          {data.badge}
         </span>
       </div>
     </AnimateIn>
 
-    <AnimateIn delay={200} client:idle>
+    <AnimateIn delay={200} client:visible>
       <h1
         class="max-w-4xl text-4xl leading-tight font-bold tracking-tight sm:text-5xl md:text-7xl"
       >
-        <span class="text-foreground">We design & build </span>
-        <span class="gradient-text">websites that grow</span>
-        <span class="text-foreground">your business.</span>
+        <span class="text-foreground/90"
+          >{t("offer.hero.weDesignAndBuild")}</span
+        >
+        <span class="gradient-text">{t("offer.hero.websideThatGrow")}</span>
+        <span class="text-foreground/90">{t("offer.hero.yourBusiness")}</span>
       </h1>
     </AnimateIn>
 
-    <AnimateIn delay={300} client:idle>
-      <p
-        class="text-muted-foreground mt-6 max-w-2xl text-base leading-relaxed md:text-lg"
+    <AnimateIn delay={300} client:visible>
+      <div
+        class="text-muted-foreground mt-6 max-w-xl text-base leading-relaxed md:max-w-2xl md:text-lg"
       >
-        From sleek "
-        <span class="text-primary">landing pages</span>
-        to full-scale "
-        <span class="text-accent">web applications</span>
-        - we craft digital experiences that are fast, accessible, and built to convert.
-        Powered by modern technologies and a passion for clean code.
-      </p>
+        <Content />
+      </div>
     </AnimateIn>
 
-    <AnimateIn delay={400} client:idle>
+    <AnimateIn delay={400} client:visible>
       <div class="mt-10 flex flex-wrap items-center gap-4">
         <a
           href="#contact"
           class="glow-green border-primary/40 bg-primary/10 text-primary hover:border-primary/60 hover:bg-primary/20 inline-flex items-center gap-2 rounded-xl border px-7 py-3.5 font-mono text-sm transition-all"
         >
-          Start a project
+          {t("offer.hero.startProject")}
         </a>
         <a
           href="#services"
           class="border-border/50 bg-secondary/50 text-foreground hover:border-accent/40 hover:bg-secondary inline-flex items-center gap-2 rounded-xl border px-7 py-3.5 font-mono text-sm transition-all"
         >
-          See what we offer
+          {t("offer.hero.seeWhatWeOffer")}
           <ArrowDown class="h-4 w-4" />
         </a>
       </div>

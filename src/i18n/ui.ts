@@ -32,6 +32,12 @@ export const transaltions = {
     "contact.message": "Message",
     "contact.sendMessage": "Send Message",
     "contact.heyAlex": "Hey Piotr, I'd love to chat about...",
+
+    "offer.hero.weDesignAndBuild": "We design & build",
+    "offer.hero.websideThatGrow": "websites that grow",
+    "offer.hero.yourBusiness": "your business.",
+    "offer.hero.startProject": "Start a project",
+    "offer.hero.seeWhatWeOffer": "See what we offer",
   },
   pl: {
     "nav.home": "Strona główna",
@@ -60,5 +66,11 @@ export const transaltions = {
     "contact.message": "Wiadomość",
     "contact.sendMessage": "Wyślij wiadomość",
     "contact.heyAlex": "Hej Piotr, chętnie porozmawiam o...",
+
+    "offer.hero.weDesignAndBuild": "Projektujemy i budujemy",
+    "offer.hero.websideThatGrow": "strony internetowe, które rozwijają",
+    "offer.hero.yourBusiness": "twój biznes.",
+    "offer.hero.startProject": "Rozpocznij projekt",
+    "offer.hero.seeWhatWeOffer": "Zobacz, co oferujemy",
   },
 } as const;
