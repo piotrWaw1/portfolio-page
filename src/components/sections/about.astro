@@ -12,69 +12,68 @@ const { Content } = await aboutData!.render();
 const data = aboutData!.data;
 ---
 
-<section id="about" class="px-6 py-24 md:py-32">
+<section id="about" class="px-6 py-24 md:py-32 relative">
   <div class="mx-auto max-w-6xl">
     <AnimateIn client:visible>
       <div class="mb-12 flex items-center gap-4">
-        <h2
-          class="text-foreground flex items-center gap-2 text-2xl font-bold md:text-3xl"
-        >
-          <span class="text-primary font-mono text-lg md:text-xl"> 01. </span>
+        <h2 class="text-foreground flex items-center gap-2 text-3xl font-bold md:text-4xl tracking-tight">
+          <span class="text-primary font-mono text-xl md:text-2xl"> 01. </span>
           {data.title}
         </h2>
-        <div
-          class="from-primary/40 h-px flex-1 bg-gradient-to-r to-transparent"
-        >
-        </div>
+        <div class="from-primary/40 h-px flex-1 bg-gradient-to-r to-transparent"></div>
       </div>
     </AnimateIn>
 
-    <div class="grid gap-12 md:grid-cols-5">
-      <div class="md:col-span-3">
+    <div class="grid gap-8 md:grid-cols-5 items-start">
+      <div class="md:col-span-3 grid gap-6">
         <AnimateIn delay={200} client:visible>
-          <div class="text-muted-foreground mb-4 leading-relaxed">
-            <Content />
+          <div class="group relative overflow-hidden rounded-3xl border border-white/5 bg-secondary/20 p-8 backdrop-blur-md transition-all duration-500 hover:-translate-y-1 hover:bg-secondary/30">
+            <div class="absolute -right-20 -top-20 h-64 w-64 rounded-full bg-primary/5 blur-3xl transition-all duration-500 group-hover:bg-primary/10 pointer-events-none"></div>
+            
+            <div class="text-muted-foreground/90 prose prose-invert max-w-none text-base leading-relaxed md:text-lg relative z-10">
+              <Content />
+            </div>
           </div>
         </AnimateIn>
 
         <AnimateIn delay={300} client:visible>
-          <div class="text-muted-foreground mb-8 leading-relaxed">
-            {data.skillsTitle}
-          </div>
-        </AnimateIn>
-
-        <AnimateIn delay={400} client:visible>
-          <ul class="grid grid-cols-2 gap-x-8 gap-y-3">
-            {
-              data.skills.map((skill) => (
-                <li class="text-muted-foreground flex items-center gap-2 font-mono text-sm">
-                  <span class={skill.color}>{">"}</span>
-                  <span class="hover:text-foreground transition-colors">
+          <div class="group relative overflow-hidden rounded-3xl border border-white/5 bg-secondary/20 p-8 backdrop-blur-md transition-all duration-500 hover:-translate-y-1 hover:bg-secondary/30">
+            <div class="text-foreground mb-6 text-xl font-bold tracking-tight">
+              {data.skillsTitle}
+            </div>
+            
+            <ul class="grid grid-cols-2 sm:grid-cols-3 gap-x-4 gap-y-4">
+              {data.skills.map((skill) => (
+                <li class="flex items-center gap-2 font-mono text-sm transition-transform duration-300 hover:translate-x-1">
+                  <span class={`text-xs ${skill.color}`}>{">"}</span>
+                  <span class="text-muted-foreground hover:text-foreground transition-colors">
                     {skill.title}
                   </span>
                 </li>
-              ))
-            }
-          </ul>
+              ))}
+            </ul>
+          </div>
         </AnimateIn>
       </div>
 
       <div class="md:col-span-2">
-        <AnimateIn delay={200} direction="right" client:visible>
-          <div class="group relative mx-auto w-full max-w-xs">
-            <div
-              class="from-primary/20 via-accent/10 to-cyan/20 relative overflow-hidden rounded-xl bg-gradient-to-br"
-            >
-              <div class="bg-secondary/30 aspect-square"></div>
-              <div
-                class="from-primary/20 to-accent/20 absolute inset-0 bg-gradient-to-br via-transparent transition-opacity group-hover:opacity-0"
-              >
+        <AnimateIn delay={400} direction="right" client:visible>
+          <div class="group relative mx-auto w-full max-w-sm transition-all duration-500 hover:-translate-y-2">
+            <div class="from-primary/20 via-accent/10 to-cyan/20 relative overflow-hidden rounded-3xl bg-gradient-to-br p-1">
+              <div class="relative overflow-hidden rounded-[1.35rem] bg-secondary/80 aspect-square backdrop-blur-md flex items-center justify-center">
+                 {/* Decorative elements representing code/abstract art instead of a solid box */}
+                <div class="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]"></div>
+                <div class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 h-32 w-32 rounded-full bg-primary/20 blur-2xl transition-all duration-500 group-hover:scale-150 group-hover:bg-primary/30"></div>
+                
+                <div class="relative z-10 font-mono text-primary/50 text-6xl font-bold tracking-tighter mix-blend-overlay transition-transform duration-500 group-hover:scale-110">
+                  {"< />"}
+                </div>
               </div>
+              <div class="from-primary/20 to-accent/20 absolute inset-0 bg-gradient-to-br via-transparent transition-opacity duration-500 group-hover:opacity-0 pointer-events-none"></div>
             </div>
-            <div
-              class="border-accent/50 group-hover:border-primary/50 absolute -right-3 -bottom-3 -z-10 h-full w-full rounded-xl border-2 transition-all group-hover:-right-4 group-hover:-bottom-4"
-            >
-            </div>
+            
+            {/* Animated glowing border behind */}
+            <div class="absolute -right-4 -bottom-4 -z-10 h-full w-full rounded-3xl border-2 border-primary/20 transition-all duration-500 group-hover:-right-5 group-hover:-bottom-5 group-hover:border-primary/40 group-hover:shadow-[0_0_40px_rgba(114,30,150,0.15)]"></div>
           </div>
         </AnimateIn>
       </div>
