@@ -54,13 +54,18 @@ export function Navbar() {
   return (
     <header
       className={cn(
-        "fixed top-0 right-0 left-0 z-50 transition-all duration-300",
+        "fixed left-1/2 z-50 -translate-x-1/2 transition-all duration-500",
         scrolled
-          ? "border-border/50 bg-background/80 border-b backdrop-blur-xl"
-          : "bg-transparent",
+          ? "top-4 w-[95%] max-w-5xl rounded-full border border-white/10 bg-background/60 shadow-lg backdrop-blur-md dark:border-white/10 border-black/10"
+          : "top-0 w-full max-w-6xl border-transparent bg-transparent",
       )}
     >
-      <nav className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
+      <nav
+        className={cn(
+          "mx-auto flex items-center justify-between transition-all duration-500",
+          scrolled ? "px-6 py-3" : "px-6 py-6"
+        )}
+      >
         <a
           href={"#hero"}
           onClick={handleSmoothScroll}

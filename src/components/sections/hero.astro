@@ -1,5 +1,4 @@
 ---
-import { AnimateIn } from "@/components/ui/animate-in";
 import ArrowDown from "@lucide/astro/icons/arrow-down";
 import ScrollButton from "@/components/scroll-button";
 import HeroAnimatedCircles from "../hero-animated-circles/hero-animated-circles";
@@ -15,51 +14,89 @@ const { Content } = await heroData!.render();
 const data = heroData!.data;
 ---
 
-<section id="hero" class="mesh-bg relative flex min-h-screen items-center px-6">
+<section id="hero" class="mesh-bg relative flex min-h-screen items-center justify-center overflow-hidden px-6 pt-20">
   <HeroAnimatedCircles client:idle />
 
-  <div class="relative mx-auto w-full max-w-6xl">
-    <AnimateIn delay={100} client:idle>
-      <p
-        class="border-primary/30 bg-primary/5 text-primary mb-4 inline-block rounded-full border px-4 py-1.5 font-mono text-sm md:text-base"
-      >
-        {data.badge}
-      </p>
-    </AnimateIn>
+  <div class="relative z-10 flex w-full max-w-5xl flex-col items-center text-center">
+    <div class="hero-elem hero-badge border-primary/30 bg-primary/5 text-primary mb-6 inline-flex rounded-full border px-5 py-2 font-mono text-sm backdrop-blur-md opacity-0">
+      {data.badge}
+    </div>
 
-    <AnimateIn delay={200} client:idle>
-      <h1
-        class="gradient-text text-5xl leading-tight font-bold tracking-tight sm:text-6xl md:text-8xl"
-      >
-        {data.heading}
-      </h1>
-    </AnimateIn>
+    <h1 class="hero-elem hero-heading gradient-text text-balance font-bold leading-[1.05] tracking-tighter opacity-0">
+      {data.heading}
+    </h1>
 
-    <AnimateIn delay={300} client:idle>
-      <h2
-        class="text-foreground/70 mt-2 text-3xl leading-tight font-bold tracking-tight sm:text-4xl md:text-6xl"
-      >
-        {data.subheading}
-      </h2>
-    </AnimateIn>
+    <h2 class="hero-elem hero-subheading text-foreground/80 mt-4 text-balance font-bold leading-tight tracking-tight opacity-0">
+      {data.subheading}
+    </h2>
 
-    <AnimateIn delay={400} client:idle>
-      <div
-        class="text-muted-foreground mt-6 max-w-xl text-base leading-relaxed md:max-w-2xl md:text-lg"
-      >
-        <Content />
-      </div>
-    </AnimateIn>
+    <div class="hero-elem hero-content text-muted-foreground mt-8 max-w-2xl text-balance text-lg leading-relaxed md:text-xl opacity-0">
+      <Content />
+    </div>
 
-    <AnimateIn delay={500} client:idle>
+    <div class="hero-elem hero-cta mt-12 opacity-0">
       <ScrollButton
         scrollTo="#about"
-        className="glow-green border-primary/40 bg-primary/10 text-primary hover:border-primary/60 hover:bg-primary/20 mt-10 inline-flex items-center gap-2 rounded-xl border px-7 py-3.5 font-mono text-sm transition-all"
+        className="glow-green border-primary/40 bg-primary/10 text-primary hover:border-primary/60 hover:bg-primary/20 inline-flex items-center gap-2 rounded-full border px-8 py-4 font-mono text-sm transition-all duration-300"
         client:load
       >
         {data.ctaText}
         <ArrowDown class="h-4 w-4" />
       </ScrollButton>
-    </AnimateIn>
+    </div>
   </div>
 </section>
+
+<script>
+  import gsap from "gsap";
+
+  const initHeroAnimations = () => {
+    // Select all elements to animate
+    const elements = document.querySelectorAll('.hero-elem');
+    if (elements.length === 0) return;
+
+    // Reset properties for view transitions
+    gsap.set(elements, { clearProps: "all" });
+
+    const tl = gsap.timeline({ defaults: { ease: "power4.out" } });
+
+    // Initial state setup to avoid FOUC
+    gsap.set(elements, { y: 40, opacity: 0, scale: 0.95 });
+
+    tl.to(".hero-badge", {
+      y: 0,
+      opacity: 1,
+      scale: 1,
+      duration: 1,
+      delay: 0.1,
+    })
+    .to(".hero-heading", {
+      y: 0,
+      opacity: 1,
+      scale: 1,
+      duration: 1.2,
+    }, "-=0.8")
+    .to(".hero-subheading", {
+      y: 0,
+      opacity: 1,
+      scale: 1,
+      duration: 1.2,
+    }, "-=0.9")
+    .to(".hero-content", {
+      y: 0,
+      opacity: 1,
+      scale: 1,
+      duration: 1,
+    }, "-=0.9")
+    .to(".hero-cta", {
+      y: 0,
+      opacity: 1,
+      scale: 1,
+      duration: 1,
+    }, "-=0.8");
+  };
+
+  // Run immediately and on view transitions
+  initHeroAnimations();
+  document.addEventListener("astro:page-load", initHeroAnimations);
+</script>

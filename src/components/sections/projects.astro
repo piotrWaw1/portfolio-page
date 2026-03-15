@@ -18,135 +18,133 @@ const t = useTranslations(lang);
 const title = projectsData!.data.title;
 const mainProjects = projectsData!.data.mainProjects;
 const secondaryProjects = projectsData!.data.otherProjects;
+
+const getBentoClasses = (index: number) => {
+  // Create an interesting asymmetrical bento layout pattern
+  const patterns = [
+    "md:col-span-2 lg:col-span-2 row-span-2", // Large feature
+    "md:col-span-1 lg:col-span-1 row-span-1", // Small square
+    "md:col-span-1 lg:col-span-1 row-span-1", // Small square
+    "md:col-span-2 lg:col-span-3 row-span-1", // Wide horizontal
+    "md:col-span-1 lg:col-span-1 row-span-2", // Tall vertical
+    "md:col-span-1 lg:col-span-2 row-span-1", // Medium wide
+  ];
+  return patterns[index % patterns.length] || "col-span-1";
+};
 ---
 
-<section id="projects" class="mesh-bg px-6 py-24 md:py-32">
+<section id="projects" class="mesh-bg relative px-6 py-24 md:py-32">
   <div class="mx-auto max-w-6xl">
     <AnimateIn client:visible>
       <div class="mb-12 flex items-center gap-4">
-        <h2
-          class="text-foreground flex items-center gap-2 text-2xl font-bold md:text-3xl"
-        >
-          <span class="text-cyan font-mono text-lg md:text-xl"> 03. </span>
+        <h2 class="text-foreground flex items-center gap-2 text-3xl font-bold md:text-4xl tracking-tight">
+          <span class="text-cyan font-mono text-xl md:text-2xl"> 03. </span>
           {title}
         </h2>
-        <div class="from-cyan/40 h-px flex-1 bg-gradient-to-r to-transparent">
-        </div>
+        <div class="from-cyan/40 h-px flex-1 bg-gradient-to-r to-transparent"></div>
       </div>
     </AnimateIn>
 
-    {/* Featured Projects */}
-    <div class="flex flex-col gap-20">
-      {
-        mainProjects.map((project, i) => (
-          <AnimateIn delay={i * 100} client:visible>
-            <div
-              class={`group relative rounded-2xl border border-transparent bg-gradient-to-br ${project.accentFrom} via-secondary/30 ${project.accentTo} p-6 transition-all ${project.borderColor} ${project.glowClass} md:p-8`}
-            >
-              <p class={`mb-2 font-mono text-sm ${project.subTitleColor}`}>
-                {project.subtitle}
-              </p>
-              <h3 class="text-foreground mb-4 text-xl font-bold md:text-2xl">
+    {/* Featured Projects Bento Grid */}
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-[minmax(250px,auto)]">
+      {mainProjects.map((project, index) => (
+        <AnimateIn delay={index * 100} client:visible className={getBentoClasses(index)}>
+          <div
+            class={`group relative flex h-full flex-col justify-between overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br ${project.accentFrom} via-secondary/20 ${project.accentTo} p-8 backdrop-blur-md transition-all duration-500 hover:-translate-y-1 hover:shadow-2xl ${project.borderColor} ${project.glowClass}`}
+          >
+            {/* Dynamic Spotlight Effect Background */}
+            <div class="pointer-events-none absolute inset-0 bg-gradient-to-br from-white/10 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100"></div>
+            
+            <div class="relative z-10 flex flex-col h-full">
+              <div class="flex items-center justify-between mb-6">
+                <p class={`font-mono text-sm uppercase tracking-wider font-semibold ${project.subTitleColor}`}>
+                  {project.subtitle}
+                </p>
+                <div class="flex items-center gap-3">
+                  <a
+                    href={project.githubUrl}
+                    class={cn("text-muted-foreground hover:text-foreground transition-all hover:scale-110", !project.githubUrl ? "hidden" : "")}
+                    aria-label={`View ${project.title} on GitHub`}
+                  >
+                    <Github class="h-6 w-6" />
+                  </a>
+                  <a
+                    href={project.projectUrl}
+                    class={cn("text-muted-foreground hover:text-foreground transition-all hover:scale-110", !project.projectUrl ? "hidden" : "")}
+                    aria-label={`View ${project.title} live`}
+                  >
+                    <ExternalLink class="h-6 w-6" />
+                  </a>
+                </div>
+              </div>
+              
+              <h3 class="text-foreground mb-4 text-3xl font-bold tracking-tight md:text-4xl text-balance transition-colors">
                 {project.title}
               </h3>
-              <p class="text-muted-foreground mb-6 max-w-2xl leading-relaxed">
+              
+              <p class="text-muted-foreground/90 mb-8 max-w-2xl text-base leading-relaxed md:text-lg flex-grow">
                 {project.description}
               </p>
-              <div class="mb-6 flex flex-wrap gap-3">
+              
+              <div class="mt-auto flex flex-wrap gap-2 pt-4">
                 {project.technologies.map((tag) => (
-                  <span class={`font-mono text-xs ${project.subTitleColor}/70`}>
+                  <span class={`rounded-full bg-background/30 border border-white/5 px-3 py-1 font-mono text-xs backdrop-blur-sm transition-colors group-hover:bg-background/50 ${project.subTitleColor}`}>
                     {tag}
                   </span>
                 ))}
               </div>
-              <div class="flex items-center gap-4">
+            </div>
+          </div>
+        </AnimateIn>
+      ))}
+    </div>
+
+    {/* Other Projects Grid */}
+    <AnimateIn delay={100} client:visible>
+      <h3 class="gradient-text-warm mt-32 mb-12 text-center text-3xl font-bold tracking-tight">
+        {t("projects.otherNetworthyProjects")}
+      </h3>
+    </AnimateIn>
+
+    <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4 auto-rows-[1fr]">
+      {secondaryProjects.map((project, index) => (
+        <AnimateIn delay={index * 80} client:visible>
+          <div class={`group flex h-full flex-col overflow-hidden rounded-2xl border border-white/5 bg-secondary/20 p-6 backdrop-blur-sm transition-all duration-500 hover:-translate-y-2 hover:bg-secondary/40 hover:shadow-xl ${project.borderHoverColor}`}>
+            <div class="mb-6 flex items-start justify-between">
+              <Folder class={`h-10 w-10 transition-transform duration-500 group-hover:scale-110 ${project.folderColor}`} />
+              <div class="flex gap-3">
                 <a
                   href={project.githubUrl}
-                  class={cn(
-                    "text-muted-foreground hover:text-foreground transition-colors",
-                    !project.githubUrl ? "hidden" : "",
-                  )}
+                  class={cn("text-muted-foreground hover:text-foreground transition-all hover:scale-110", !project.githubUrl ? "hidden" : "")}
                   aria-label={`View ${project.title} on GitHub`}
                 >
                   <Github class="h-5 w-5" />
                 </a>
                 <a
                   href={project.projectUrl}
-                  class={cn(
-                    "text-muted-foreground hover:text-foreground transition-colors",
-                    !project.projectUrl ? "hidden" : "",
-                  )}
+                  class={cn("text-muted-foreground hover:text-foreground transition-all hover:scale-110", !project.projectUrl ? "hidden" : "")}
                   aria-label={`View ${project.title} live`}
                 >
                   <ExternalLink class="h-5 w-5" />
                 </a>
               </div>
             </div>
-          </AnimateIn>
-        ))
-      }
-    </div>
-
-    {/* Other Projects */}
-    <AnimateIn delay={100} client:visible>
-      <h3 class="gradient-text-warm mt-24 mb-8 text-center text-xl font-bold">
-        {t("projects.otherNetworthyProjects")}
-      </h3>
-    </AnimateIn>
-
-    <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-      {
-        secondaryProjects.map((project, index) => {
-          return (
-            <AnimateIn delay={index * 80} client:visible>
-              <div
-                class={`group bg-secondary/30 hover:bg-secondary/50 flex h-full flex-col rounded-xl border-t-2 border-t-transparent p-6 transition-all hover:-translate-y-1 ${project.borderHoverColor}`}
-              >
-                <div class="mb-6 flex items-center justify-between">
-                  <Folder class={`h-10 w-10 ${project.folderColor}`} />
-                  <div class="flex gap-3">
-                    <a
-                      href={project.githubUrl}
-                      class={cn(
-                        "text-muted-foreground hover:text-foreground transition-colors",
-                        !project.githubUrl ? "hidden" : "",
-                      )}
-                      aria-label={`View ${project.title} on GitHub`}
-                    >
-                      <Github class="h-4 w-4" />
-                    </a>
-                    <a
-                      href={project.projectUrl}
-                      class={cn(
-                        "text-muted-foreground hover:text-foreground transition-colors",
-                        !project.projectUrl ? "hidden" : "",
-                      )}
-                      aria-label={`View ${project.title} live`}
-                    >
-                      <ExternalLink class="h-4 w-4" />
-                    </a>
-                  </div>
-                </div>
-                <h4
-                  class={`text-foreground mb-2 text-lg font-semibold ${project.hover}`}
-                >
-                  {project.title}
-                </h4>
-                <p class="text-muted-foreground mb-6 flex-1 text-sm leading-relaxed">
-                  {project.description}
-                </p>
-                <div class="flex flex-wrap gap-2">
-                  {project.technologies.map((tag) => (
-                    <span class="text-muted-foreground rounded-xl border p-2 font-mono text-xs">
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            </AnimateIn>
-          );
-        })
-      }
+            <h4 class={`text-foreground mb-3 text-xl font-bold tracking-tight transition-colors duration-300 ${project.hover}`}>
+              {project.title}
+            </h4>
+            <p class="text-muted-foreground mb-6 flex-1 text-sm leading-relaxed">
+              {project.description}
+            </p>
+            <div class="mt-auto flex flex-wrap gap-2 pt-4">
+              {project.technologies.map((tag) => (
+                <span class="text-muted-foreground/80 rounded-full border border-white/10 bg-background/30 px-2 py-1 font-mono text-xs transition-colors group-hover:bg-background/50 group-hover:text-foreground">
+                  {tag}
+                </span>
+              ))}
+            </div>
+          </div>
+        </AnimateIn>
+      ))}
     </div>
   </div>
 </section>

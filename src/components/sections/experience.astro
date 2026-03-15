@@ -15,11 +15,11 @@ const tagColors = [
 ];
 
 const JOB_STYLES = [
-  { accent: "group-hover:text-primary", border: "hover:border-l-primary" },
-  { accent: "group-hover:text-accent", border: "hover:border-l-accent" },
-  { accent: "group-hover:text-cyan", border: "hover:border-l-cyan" },
-  { accent: "group-hover:text-amber", border: "hover:border-l-amber" },
-  { accent: "group-hover:text-rose", border: "hover:border-l-rose" },
+  { accent: "group-hover:text-primary", border: "hover:border-primary/50", glow: "hover:shadow-[0_0_30px_rgba(114,30,150,0.15)]" },
+  { accent: "group-hover:text-accent", border: "hover:border-accent/50", glow: "hover:shadow-[0_0_30px_rgba(178,45,310,0.15)]" },
+  { accent: "group-hover:text-cyan", border: "hover:border-cyan/50", glow: "hover:shadow-[0_0_30px_rgba(122,43,195,0.15)]" },
+  { accent: "group-hover:text-amber", border: "hover:border-amber/50", glow: "hover:shadow-[0_0_30px_rgba(140,38,75,0.15)]" },
+  { accent: "group-hover:text-rose", border: "hover:border-rose/50", glow: "hover:shadow-[0_0_30px_rgba(132,45,5,0.15)]" },
 ];
 
 const { experienceData } = Astro.props as ExperienceProps;
@@ -27,54 +27,61 @@ const { experienceData } = Astro.props as ExperienceProps;
 const data = experienceData?.data;
 ---
 
-<section id="experience" class="mesh-bg-warm px-6 py-24 md:py-32">
+<section id="experience" class="mesh-bg-warm relative px-6 py-24 md:py-32">
   <div class="mx-auto max-w-6xl">
     <AnimateIn client:visible>
       <div class="mb-12 flex items-center gap-4">
-        <h2
-          class="text-foreground flex items-center gap-2 text-2xl font-bold md:text-3xl"
-        >
-          <span class="text-accent font-mono text-lg md:text-xl"> 02. </span>
+        <h2 class="text-foreground flex items-center gap-2 text-3xl font-bold md:text-4xl tracking-tight">
+          <span class="text-accent font-mono text-xl md:text-2xl"> 02. </span>
           {data?.title}
         </h2>
-        <div class="from-accent/40 h-px flex-1 bg-gradient-to-r to-transparent">
-        </div>
+        <div class="from-accent/40 h-px flex-1 bg-gradient-to-r to-transparent"></div>
       </div>
     </AnimateIn>
 
-    <div class="flex flex-col gap-6">
-      {
-        data?.jobs.map((exp, index) => (
-          <AnimateIn delay={index * 100} client:visible>
+    <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3 auto-rows-[minmax(200px,auto)]">
+      {data?.jobs.map((exp, index) => {
+        // Create an asymmetrical bento grid by making the first item larger
+        const isFeatured = index === 0;
+        const colSpanClass = isFeatured ? "md:col-span-2 lg:col-span-2" : "col-span-1";
+        const rowSpanClass = isFeatured ? "md:row-span-2" : "row-span-1";
+        
+        return (
+          <AnimateIn delay={index * 100} client:visible className={`${colSpanClass} ${rowSpanClass}`}>
             <div
-              class={`group hover:bg-secondary/50 grid gap-4 rounded-xl border-l-2 border-l-transparent p-5 transition-all md:grid-cols-4 md:p-6 ${JOB_STYLES[index].border}`}
+              class={`group relative flex h-full flex-col justify-between overflow-hidden rounded-3xl border border-white/5 bg-secondary/20 p-6 backdrop-blur-md transition-all duration-500 hover:-translate-y-1 hover:bg-secondary/40 ${JOB_STYLES[index % JOB_STYLES.length].border} ${JOB_STYLES[index % JOB_STYLES.length].glow}`}
             >
-              <div class="text-muted-foreground font-mono text-xs tracking-wider uppercase md:pt-1">
-                {exp.period}
-              </div>
-              <div class="md:col-span-3">
-                <h3
-                  class={`text-foreground flex items-center gap-2 text-base font-medium ${JOB_STYLES[index].accent}`}
-                >
-                  {exp.title} &middot; {exp.company}
+              {/* Subtle ambient glow in the corner */}
+              <div class="absolute -right-10 -top-10 h-40 w-40 rounded-full bg-accent/5 blur-3xl transition-all duration-500 group-hover:bg-accent/20 pointer-events-none"></div>
+              
+              <div class="relative z-10">
+                <div class="text-muted-foreground/60 mb-4 font-mono text-sm tracking-wider uppercase">
+                  {exp.period}
+                </div>
+                <h3 class={`text-foreground mb-1 text-xl font-bold transition-colors md:text-2xl ${JOB_STYLES[index % JOB_STYLES.length].accent}`}>
+                  {exp.title}
                 </h3>
-                <p class="text-muted-foreground mt-2 text-sm leading-relaxed">
+                <h4 class="text-foreground/80 mb-4 text-lg font-medium font-mono">
+                  {exp.company}
+                </h4>
+                <p class="text-muted-foreground mb-8 text-base leading-relaxed text-balance">
                   {exp.description}
                 </p>
-                <div class="mt-4 flex flex-wrap gap-2">
-                  {exp.tags.map((tag, tagIndex) => (
-                    <span
-                      class={`rounded-full border px-3 py-1 font-mono text-xs ${tagColors[tagIndex % tagColors.length]}`}
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
+              </div>
+              
+              <div class="relative z-10 mt-auto flex flex-wrap gap-2 pt-4">
+                {exp.tags.map((tag, tagIndex) => (
+                  <span
+                    class={`rounded-full border px-3 py-1 font-mono text-xs transition-colors group-hover:bg-background/50 ${tagColors[tagIndex % tagColors.length]}`}
+                  >
+                    {tag}
+                  </span>
+                ))}
               </div>
             </div>
           </AnimateIn>
-        ))
-      }
+        );
+      })}
     </div>
   </div>
 </section>
