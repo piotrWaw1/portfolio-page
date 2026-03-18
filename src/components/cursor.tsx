@@ -18,7 +18,7 @@ export default function Cursor() {
       gsap.to(cursor.current, {
         x: e.clientX,
         y: e.clientY,
-        duration: 0.6,
+        duration: 1,
         ease: "power3.out",
       });
       gsap.to(cursorDot.current, {
