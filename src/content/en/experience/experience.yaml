@@ -17,7 +17,7 @@ jobs:
       - Tailwind CSS
       - REST APIs
       - TanStac table & query
-  - period: 07/2022 -- 08/2022
+  - period: 07/2022 - 08/2022
     title: Intern
     company: OptiBuy SP. z o.o.
     url: "#"
