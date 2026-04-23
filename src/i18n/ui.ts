@@ -7,6 +7,7 @@ export const defaultLang = "en";
 
 export const transaltions = {
   en: {
+    "nav.home": "Home",
     "nav.about": "About",
     "nav.experience": "Experience",
     "nav.projects": "Projects",
@@ -26,6 +27,7 @@ export const transaltions = {
     "contact.heyAlex": "Hey Piotr, I'd love to chat about...",
   },
   pl: {
+    "nav.home": "Strona główna",
     "nav.about": "O mnie",
     "nav.experience": "Doświadczenie",
     "nav.projects": "Projekty",
