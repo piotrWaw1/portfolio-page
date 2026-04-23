@@ -36,12 +36,12 @@ const secondaryProjects = projectsData!.data.otherProjects;
     </AnimateIn>
 
     {/* Featured Projects */}
-    <div class="flex flex-col gap-20">
+    <div class="flex flex-col gap-12">
       {
         mainProjects.map((project, i) => (
           <AnimateIn delay={i * 100} client:visible>
             <div
-              class={`group relative rounded-2xl border border-transparent bg-gradient-to-br ${project.accentFrom} via-secondary/30 ${project.accentTo} p-6 transition-all ${project.borderColor} ${project.glowClass} md:p-8`}
+              class={`group relative rounded-3xl border border-white/5 bg-gradient-to-br ${project.accentFrom} via-secondary/30 ${project.accentTo} p-6 transition-all ${project.borderColor} ${project.glowClass} md:p-8`}
             >
               <p class={`mb-2 font-mono text-sm ${project.subTitleColor}`}>
                 {project.subtitle}
@@ -54,7 +54,7 @@ const secondaryProjects = projectsData!.data.otherProjects;
               </p>
               <div class="mb-6 flex flex-wrap gap-3">
                 {project.technologies.map((tag) => (
-                  <span class={`font-mono text-xs ${project.subTitleColor}/70`}>
+                  <span class={`font-mono text-sm ${project.subTitleColor}/70`}>
                     {tag}
                   </span>
                 ))}
@@ -100,7 +100,7 @@ const secondaryProjects = projectsData!.data.otherProjects;
           return (
             <AnimateIn delay={index * 80} client:visible>
               <div
-                class={`group bg-secondary/30 hover:bg-secondary/50 flex h-full flex-col rounded-xl border-t-2 border-t-transparent p-6 transition-all hover:-translate-y-1 ${project.borderHoverColor}`}
+                class={`group bg-secondary/30 hover:bg-secondary/50 flex h-full flex-col rounded-3xl border-t-2 border-t-transparent p-6 transition-all hover:-translate-y-1 ${project.borderHoverColor}`}
               >
                 <div class="mb-6 flex items-center justify-between">
                   <Folder class={`h-10 w-10 ${project.folderColor}`} />
@@ -132,7 +132,7 @@ const secondaryProjects = projectsData!.data.otherProjects;
                 >
                   {project.title}
                 </h4>
-                <p class="text-muted-foreground mb-6 flex-1 text-sm leading-relaxed">
+                <p class="text-muted-foreground mb-6 flex-1 text-base leading-relaxed">
                   {project.description}
                 </p>
                 <div class="flex flex-wrap gap-2">
