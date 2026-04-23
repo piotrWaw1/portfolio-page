@@ -13,7 +13,6 @@ import SideElements from "../../components/sections/side-elements.astro";
 import About from "../../components/sections/about.astro";
 import { getEntry } from "astro:content";
 import { DefaultLocale, Locales } from "@/types/locales.types";
-import Cursor from "@/components/cursor";
 
 export function getStaticPaths() {
   return [{ params: { lang: Locales.EN } }, { params: { lang: Locales.PL } }];
@@ -37,7 +36,7 @@ const projects = await getEntry(
 ---
 
 <Layout>
-  <Cursor client:idle />
+  <!-- <Cursor client:idle /> -->
   <Navbar client:load />
   <SideElements />
   <ScrollProgress client:idle />
