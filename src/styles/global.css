@@ -189,19 +189,22 @@
   --mesh-rose: oklch(0.7 0.18 5 / 0.06);
 }
 
-.glow-green {
+.glow-green:hover {
+  transition: box-shadow 0.3s ease;
   box-shadow:
     0 0 30px var(--glow-primary),
     0 0 60px var(--glow-primary-soft);
 }
 
-.glow-pink {
+.glow-pink:hover {
+  transition: box-shadow 0.3s ease;
   box-shadow:
     0 0 30px var(--glow-accent),
     0 0 60px var(--glow-accent-soft);
 }
 
-.glow-cyan {
+.glow-cyan:hover {
+  transition: box-shadow 0.3s ease;
   box-shadow:
     0 0 30px var(--glow-cyan),
     0 0 60px var(--glow-cyan-soft);
