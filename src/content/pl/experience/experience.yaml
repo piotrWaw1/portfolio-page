@@ -1,16 +1,40 @@
 title: Doświadczenie
 jobs:
+  - period: 09/2025 - Obecnie
+    title: Full Stack Developer
+    company: samozatrudniony
+    url: https://lumarik.com
+    description: >-
+      Pracowałem przy aplikacji do zarządzania i analizy danych poprzez
+      integrację z API Mirakl. Projektowałem i wdrażałem bazę danych z
+      wykorzystaniem Supabase. Stworzyłem serverless functions do przetwarzania
+      danych z użyciem Supabase Edge Functions (Deno). Wykorzystałem je do
+      pozyskiwania i parsowania dużych zbiorów CSV w ustrukturyzowane rekordy
+      bazy danych. Zintegrowałem API Mirakl w celu automatyzacji pozyskiwania
+      danych sprzedażowych, implementując mechanizmy synchronizacji oraz
+      spójności danych. Frontend aplikacji był testowany przy pomocy Playwright
+      i Vitest natomiast Backend przy użyciu Deno tests z pgTAP.
+    tags:
+      - Next.js
+      - React
+      - TypeScript
+      - Supabase
+      - Playwright
+      - Vitest
+      - TailwindCSS
+      - SQL
   - period: 09/2024 - 04/2025
     title: Junior Frontend Developer
     company: Fluo IT Marcin Witecki
-    url: "#"
+    url: '#'
     description: >-
       Pracowałem nad systemem zarządzania prawami autorskimi dla firmy Kopipol.
-      Uczestniczyłem w projektowaniu i tworzeniu interfejsów użytkownika (UX/UI) 
-      oraz testowałem przygotowane ekrany pod kątem funkcjonalności i użyteczności. 
-      Projekt był realizowany zgodnie z metodyką Agile w ramie Scrum, z użyciem 
-      technologii React, TailwindCSS oraz ShadCN, i zintegrowany z REST API. 
-      Kontrola wersji oraz współpraca odbywały się przy użyciu systemu Git.
+      Uczestniczyłem w projektowaniu i tworzeniu interfejsów użytkownika
+      (UX/UI)  oraz testowałem przygotowane ekrany pod kątem funkcjonalności i
+      użyteczności.  Projekt był realizowany zgodnie z metodyką Agile w ramie
+      Scrum, z użyciem  technologii React, TailwindCSS oraz ShadCN, i
+      zintegrowany z REST API.  Kontrola wersji oraz współpraca odbywały się
+      przy użyciu systemu Git.
     tags:
       - React
       - TypeScript
@@ -20,12 +44,12 @@ jobs:
   - period: 07/2022 - 08/2022
     title: Praktykant
     company: OptiBuy SP. z o.o.
-    url: "#"
+    url: '#'
     description: >-
       Tworzyłem interfejsy web API przy użyciu frameworka FastAPI oraz 
-      przygotowywałem dane do trenowania modelu służącego do weryfikacji 
-      stron internetowych firm. Pracowałem w zespole Scrumowym zgodnie 
-      z metodyką Agile.
+      przygotowywałem dane do trenowania modelu służącego do weryfikacji  stron
+      internetowych firm. Pracowałem w zespole Scrumowym zgodnie  z metodyką
+      Agile.
     tags:
       - Python
       - FastAPI

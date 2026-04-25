@@ -1,9 +1,33 @@
 title: Experience
 jobs:
+  - period: 09/2025 - Now
+    title: Full Stack Developer
+    company: self-employed
+    url: https://lumarik.com
+    description: >-
+      Developed a dashboard application for centralized management and analysis
+      of marketplace data through Mirakl API integration. Designed and
+      implemented a scalable backend using Supabase, including database schema
+      and data pipelines for marketplace analytics. Built serverless data
+      processing workflows with Supabase Edge Functions (Deno) to ingest and
+      transform large CSV datasets into structured database records. Integrated
+      the Mirakl API to automate sales data ingestion, implementing incremental
+      synchronization and data consistency mechanisms. The frontend of the
+      application was tested using Playwright and Vitest, while the backend was
+      tested using Deno tests along with pgTAP.
+    tags:
+      - Next.js
+      - React
+      - TypeScript
+      - Supabase
+      - Playwright
+      - Vitest
+      - TailwindCSS
+      - SQL
   - period: 09/2024 - 04/2025
     title: Junior Frontend Developer
     company: Fluo IT Marcin Witecki
-    url: "#"
+    url: '#'
     description: >-
       I worked on a copyright management system for the company Kopipol. I
       participated in designing and developing user interfaces (UX/UI) and
@@ -20,7 +44,7 @@ jobs:
   - period: 07/2022 - 08/2022
     title: Intern
     company: OptiBuy SP. z o.o.
-    url: "#"
+    url: '#'
     description: >-
       I developed web APIs using FastAPI and prepared data for training a model
       used to verify company websites. I worked in a Scrum team following Agile
