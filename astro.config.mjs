@@ -16,6 +16,8 @@ import sitemap from "@astrojs/sitemap";
 
 import { DefaultLocale, Locales } from "./src/types/locales.types";
 
+import partytown from "@astrojs/partytown";
+
 const isProduction = import.meta.env.PROD;
 
 // https://astro.build/config
@@ -39,6 +41,11 @@ export default defineConfig({
     !isProduction && keystatic(),
     mdx(),
     sitemap(),
+    partytown({
+      config: {
+        forward: ["dataLayer.push"],
+      },
+    }),
   ],
   output: "static",
   adapter: vercel(),

@@ -6,15 +6,60 @@
     <link rel="sitemap" href="/sitemap-index.xml" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="icon" href="/favicon.ico" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/orestbida/cookieconsent@3.0.1/dist/cookieconsent.css"
+    />
     <meta name="generator" content={Astro.generator} />
     <meta
       name="description"
       content="Piotr Wawrzeńczyk - Frontend Developer specializing in React and UI design. Explore my projects, skills, and get in touch for freelance work."
     />
+    
+    {
+      import.meta.env.PROD && (
+        <>
+          <script is:inline>
+            window.dataLayer = window.dataLayer || [];
+            function gtag() { dataLayer.push(arguments); }
+
+            gtag("consent", "default", {
+              ad_storage: "denied",
+              ad_user_data: "denied",
+              ad_personalization: "denied",
+              analytics_storage: "denied",
+            });
+          </script>
+
+          <!-- Google tag (gtag.js) -->
+          <script
+            async
+            type="text/partytown"
+            src="https://www.googletagmanager.com/gtag/js?id=G-VXETCCSW6D"></script>
+
+          <script type="text/partytown" is:inline>
+            window.dataLayer = window.dataLayer || [];
+            function gtag() {
+              dataLayer.push(arguments);
+            }
+            gtag("js", new Date());
+
+            gtag("config", "G-VXETCCSW6D");
+          </script>
+        </>
+      )
+    }
+    
+
     <title>Piotr Wawrzeńczyk</title>
   </head>
   <body>
     <slot />
+    {
+      import.meta.env.PROD && (
+        <script type="module" src="/src/scripts/cookieconsent-config.js"></script>
+      )
+    }
   </body>
 </html>
 
