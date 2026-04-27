@@ -1,6 +1,8 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { AnimateIn } from "../ui/animate-in";
 import { CheckCircle, Send } from "lucide-react";
+import { getLangFromUrl, useTranslations } from "@/i18n/utils";
+import { DefaultLocale } from "@/types/locales.types";
 
 export default function OfferContact() {
   const projectTypes = [
@@ -21,6 +23,7 @@ export default function OfferContact() {
     message: "",
   });
   const [submitted, setSubmitted] = useState(false);
+  const [t, setT] = useState(() => useTranslations(DefaultLocale));
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -35,6 +38,11 @@ export default function OfferContact() {
     });
   };
 
+  useEffect(() => {
+    const lang = getLangFromUrl(new URL(window.location.href));
+    setT(() => useTranslations(lang));
+  }, []);
+
   return (
     <section id="contact" className="px-6 py-24 md:py-32">
       <div className="mx-auto max-w-3xl">
@@ -45,7 +53,7 @@ export default function OfferContact() {
               <span className="text-amber font-mono text-lg md:text-xl">
                 04.
               </span>
-              Start a Project
+              {t("offer.contatctForm.startProject")}
             </h2>
             <div className="from-amber/40 h-px flex-1 bg-gradient-to-r to-transparent" />
           </div>
@@ -53,9 +61,7 @@ export default function OfferContact() {
 
         <AnimateIn delay={100}>
           <p className="text-muted-foreground mb-12 text-center leading-relaxed">
-            Ready to bring your idea to life? Tell us about your project and
-            we'll get back to you within 24 hours with a free consultation and
-            estimate.
+            {t("offer.contatctForm.readyToBringYourIdeaToLife")}
           </p>
         </AnimateIn>
 
@@ -64,17 +70,16 @@ export default function OfferContact() {
             <div className="border-primary/30 from-primary/5 to-accent/5 rounded-2xl border bg-gradient-to-br p-10 text-center">
               <CheckCircle className="text-primary mx-auto mb-4 h-14 w-14" />
               <p className="gradient-text text-xl font-semibold">
-                Thank you for your inquiry!
+                {t("offer.contatctForm.thankYouForInquiry")}
               </p>
               <p className="text-muted-foreground mt-3">
-                "We'll review your project details and get back to you within 24
-                hours."
+                {t("offer.contatctForm.weWillReviewYourProjectDetails")}
               </p>
               <button
                 onClick={() => setSubmitted(false)}
                 className="text-accent hover:text-foreground mt-8 font-mono text-sm underline underline-offset-4 transition-colors"
               >
-                Submit another inquiry
+                {t("offer.contatctForm.submitAnotherInquiry")}
               </button>
             </div>
           ) : (
@@ -224,7 +229,7 @@ export default function OfferContact() {
                 type="submit"
                 className="glow-green border-primary/40 bg-primary/10 text-primary hover:border-primary/60 hover:bg-primary/20 mt-2 inline-flex items-center justify-center gap-2 self-center rounded-xl border px-8 py-3.5 font-mono text-sm transition-all"
               >
-                Send Inquiry
+                {t("offer.contatctForm.sendInquiry")}
                 <Send className="h-4 w-4" />
               </button>
             </form>

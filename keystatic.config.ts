@@ -144,6 +144,11 @@ export default config({
       path: "src/content/en/offer/stack/stack",
       schema: offerStack,
     }),
+    offer_process_en: singleton({
+      label: "🇬🇧 Offer Process Section",
+      path: "src/content/en/offer/process/process",
+      schema: offerStack,
+    }),
     // --- POLISH ---
     hero_pl: singleton({
       label: "🇵🇱 Hero Section",
@@ -182,6 +187,11 @@ export default config({
     offer_stack_pl: singleton({
       label: "🇵🇱 Offer Stack Section",
       path: "src/content/pl/offer/stack/stack",
+      schema: offerStack,
+    }),
+    offer_process_pl: singleton({
+      label: "🇵🇱 Offer Process Section",
+      path: "src/content/pl/offer/process/process",
       schema: offerStack,
     }),
   },

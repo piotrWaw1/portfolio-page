@@ -101,6 +101,10 @@ export const collections = {
     type: "data",
     schema: offerStack,
   }),
+  "en/offer/process": defineCollection({
+    type: "data",
+    schema: offerStack,
+  }),
 
   // Polish
   "pl/hero": defineCollection({ type: "content", schema: heroSchema }),
@@ -117,6 +121,10 @@ export const collections = {
     schema: offerServices,
   }),
   "pl/offer/stack": defineCollection({
+    type: "data",
+    schema: offerStack,
+  }),
+  "pl/offer/process": defineCollection({
     type: "data",
     schema: offerStack,
   }),

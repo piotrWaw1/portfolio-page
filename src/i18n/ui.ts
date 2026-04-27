@@ -38,6 +38,17 @@ export const transaltions = {
     "offer.hero.yourBusiness": "your business.",
     "offer.hero.startProject": "Start a project",
     "offer.hero.seeWhatWeOffer": "See what we offer",
+
+    "offer.process.setp": "Step",
+
+    "offer.contatctForm.startProject": "Start a Project",
+    "offer.contatctForm.readyToBringYourIdeaToLife":
+      "Ready to bring your idea to life? Tell us about your project and we'll get back to you with a free consultation and estimate.",
+    "offer.contatctForm.thankYouForInquiry": "Thank you for your inquiry!",
+    "offer.contatctForm.weWillReviewYourProjectDetails":
+      "We'll review your project details and get back to you.",
+    "offer.contatctForm.submitAnotherInquiry": "Submit another inquiry",
+    "offer.contatctForm.sendInquiry": "Send Inquiry",
   },
   pl: {
     "nav.home": "Strona główna",
@@ -72,5 +83,16 @@ export const transaltions = {
     "offer.hero.yourBusiness": "twój biznes.",
     "offer.hero.startProject": "Rozpocznij projekt",
     "offer.hero.seeWhatWeOffer": "Zobacz, co oferujemy",
+
+    "offer.process.setp": "Krok",
+
+    "offer.contatctForm.startProject": "Zacznij projekt",
+    "offer.contatctForm.readyToBringYourIdeaToLife":
+      "Gotowy, aby wcielić swój pomysł w życie? Opowiedz nam o swoim projekcie, a skontaktujemy się z Tobą z bezpłatną konsultacją i wyceną.",
+    "offer.contatctForm.thankYouForInquiry": "Dziekujemy za zapytanie!",
+    "offer.contatctForm.weWillReviewYourProjectDetails":
+      "Przeanalizujemy szczegóły Twojego projektu i skontaktujemy się z Tobą.",
+    "offer.contatctForm.submitAnotherInquiry": "Prześlij kolejne zapytanie",
+    "offer.contatctForm.sendInquiry": "Wyślij zapytanie",
   },
 } as const;

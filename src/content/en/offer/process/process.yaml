@@ -1,0 +1,24 @@
+title: How We Work
+description: >-
+  A transparent, collaborative process from first conversation to final launch.
+  You're involved every step of the way, and there are no surprises.
+services:
+  - title: Discovery & Planning
+    description: >-
+      We start with a conversation. Understanding your goals, audience, and
+      requirements lets us map out the perfect solution, timeline, and tech
+      stack for your project.
+  - title: Design & Prototyping
+    description: >-
+      We create wireframes and high-fidelity mockups for your approval. You see
+      exactly how the site will look and interact before a single line of code
+      is written.
+  - title: Development & Testing
+    description: >-
+      We build your site with clean, modern code. Every feature is tested across
+      devices and browsers to ensure a flawless experience for all your users.
+  - title: Launch & Support
+    description: >-
+      We handle deployment, performance optimization, and post-launch support.
+      Your site goes live fast and stays running smoothly with ongoing
+      maintenance.

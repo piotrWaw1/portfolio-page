@@ -1,15 +1,23 @@
 ---
 import { Code2, MessageSquare, PenTool, Rocket } from "@lucide/astro";
 import { AnimateIn } from "../ui/animate-in";
+import type { OfferProcessEntry } from "@/types/sections.types";
+import { getLangFromUrl, useTranslations } from "@/i18n/utils";
+
+interface Processrops {
+  processData?: OfferProcessEntry;
+}
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const { processData } = Astro.props as Processrops;
+const data = processData!.data;
 
 const steps = [
   {
     number: "01",
     icon: MessageSquare,
-    title: "Discovery & Planning",
-    description:
-      "We start with a conversation. Understanding your goals, audience, and requirements lets us map out the perfect solution, timeline, and tech stack for your project.",
-
     color: "text-primary",
     borderColor: "border-primary/30",
     bgColor: "bg-primary/5",
@@ -17,10 +25,6 @@ const steps = [
   {
     number: "02",
     icon: PenTool,
-    title: "Design & Prototyping",
-    description:
-      "We create wireframes and high-fidelity mockups for your approval. You see exactly how the site will look and interact before a single line of code is written.",
-
     color: "text-accent",
     borderColor: "border-accent/30",
     bgColor: "bg-accent/5",
@@ -28,10 +32,6 @@ const steps = [
   {
     number: "03",
     icon: Code2,
-    title: "Development & Testing",
-    description:
-      "We build your site with clean, modern code. Every feature is tested across devices and browsers to ensure a flawless experience for all your users.",
-
     color: "text-cyan",
     borderColor: "border-cyan/30",
     bgColor: "bg-cyan/5",
@@ -39,10 +39,6 @@ const steps = [
   {
     number: "04",
     icon: Rocket,
-    title: "Launch & Support",
-    description:
-      "We handle deployment, performance optimization, and post-launch support. Your site goes live fast and stays running smoothly with ongoing maintenance.",
-
     color: "text-amber",
     borderColor: "border-amber/30",
     bgColor: "bg-amber/5",
@@ -58,7 +54,7 @@ const steps = [
           class="text-foreground flex items-center gap-2 text-2xl font-bold md:text-3xl"
         >
           <span class="text-accent font-mono text-lg md:text-xl"> 03. </span>
-          How We Work
+          {data.title}
         </h2>
         <div class="from-accent/40 h-px flex-1 bg-gradient-to-r to-transparent">
         </div>
@@ -67,9 +63,7 @@ const steps = [
 
     <AnimateIn delay={100} client:visible>
       <p class="text-muted-foreground mb-14 max-w-2xl leading-relaxed">
-        A transparent, collaborative process from first conversation to final
-        launch. You're involved every step of the way, and there are no
-        surprises.
+        {data.description}
       </p>
     </AnimateIn>
 
@@ -89,13 +83,14 @@ const steps = [
                 <step.icon class={`h-7 w-7 ${step.color}`} />
               </div>
               <span class={`mb-2 font-mono text-xs ${step.color}`}>
-                Step {step.number}
+                {t("offer.process.setp")}
+                {step.number}
               </span>
               <h3 class="text-foreground mb-3 text-lg font-semibold">
-                {step.title}
+                {data.services[i].title}
               </h3>
               <p class="text-muted-foreground text-sm leading-relaxed">
-                {step.description}
+                {data.services[i].description}
               </p>
             </div>
           </AnimateIn>

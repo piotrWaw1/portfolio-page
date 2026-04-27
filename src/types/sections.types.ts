@@ -21,3 +21,7 @@ export type OfferServicesEntry =
 export type OfferStackEntry =
   | CollectionEntry<"en/offer/stack">
   | CollectionEntry<"pl/offer/stack">;
+
+export type OfferProcessEntry =
+  | CollectionEntry<"en/offer/process">
+  | CollectionEntry<"pl/offer/process">;

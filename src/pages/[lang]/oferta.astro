@@ -61,20 +61,41 @@ const redirectToPage = {
   portfolio: true,
 };
 
-const hero = await getEntry(
-  `${lang}/offer/hero` as "en/offer/hero" | "pl/offer/hero",
-  "hero",
-);
+// const hero = await getEntry(
+//   `${lang}/offer/hero` as "en/offer/hero" | "pl/offer/hero",
+//   "hero",
+// );
 
-const services = await getEntry(
-  `${lang}/offer/services` as "en/offer/services" | "pl/offer/services",
-  "services",
-);
+// const services = await getEntry(
+//   `${lang}/offer/services` as "en/offer/services" | "pl/offer/services",
+//   "services",
+// );
 
-const stack = await getEntry(
-  `${lang}/offer/stack` as "en/offer/stack" | "pl/offer/stack",
-  "stack",
-);
+// const stack = await getEntry(
+//   `${lang}/offer/stack` as "en/offer/stack" | "pl/offer/stack",
+//   "stack",
+// );
+
+// const process = await getEntry(
+//   `${lang}/offer/process` as "en/offer/process" | "pl/offer/process",
+//   "process",
+// );
+
+const [hero, services, stack, process] = await Promise.all([
+  getEntry(`${lang}/offer/hero` as "en/offer/hero" | "pl/offer/hero", "hero"),
+  getEntry(
+    `${lang}/offer/services` as "en/offer/services" | "pl/offer/services",
+    "services",
+  ),
+  getEntry(
+    `${lang}/offer/stack` as "en/offer/stack" | "pl/offer/stack",
+    "stack",
+  ),
+  getEntry(
+    `${lang}/offer/process` as "en/offer/process" | "pl/offer/process",
+    "process",
+  ),
+]);
 ---
 
 <Layout>
@@ -84,7 +105,7 @@ const stack = await getEntry(
     <OfferHero heroData={hero} />
     <OfferServices servicesData={services} />
     <OfferStack stackData={stack} />
-    <OfferProcess />
+    <OfferProcess processData={process} />
     <OfferContact client:visible />
     <Footer />
   </main>
