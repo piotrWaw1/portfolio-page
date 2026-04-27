@@ -7,63 +7,47 @@ import wordpressIcon from "@/assets/icons/wordpress.svg";
 import postgresqlIcon from "@/assets/icons/postgresql.svg";
 import supabaseIcon from "@/assets/icons/supabase.svg";
 import { Image } from "astro:assets";
+import type { OfferStackEntry } from "@/types/sections.types";
+
+interface StackProps {
+  stackData?: OfferStackEntry;
+}
+
+const { stackData } = Astro.props as StackProps;
+const data = stackData!.data;
 
 const techStack = [
   {
-    name: "Next.js",
-    description:
-      "Full-stack React framework for production-grade web apps with SSR, routing, and API endpoints.",
-
     color: "text-foreground",
     borderColor: "border-foreground/20",
     bgColor: "bg-foreground/5",
     icon: nextLightIcon,
   },
   {
-    name: "React",
-    description:
-      "Component-based UI library for building interactive, reusable interfaces with a massive ecosystem.",
-
     color: "text-cyan",
     borderColor: "border-cyan/20",
     bgColor: "bg-cyan/5",
     icon: reactIcon,
   },
   {
-    name: "Astro",
-    description:
-      "Lightning-fast static site generator, perfect for content-rich sites and blogs with zero JS by default.",
-
     color: "text-amber",
     borderColor: "border-amber/20",
     bgColor: "bg-amber/5",
     icon: astroIcon,
   },
   {
-    name: "WordPress",
-    description:
-      "The world's most popular CMS. Great for blogs, business sites, and clients who need easy content editing.",
-
     color: "text-blue",
     borderColor: "border-blue/20",
     bgColor: "bg-blue/5",
     icon: wordpressIcon,
   },
   {
-    name: "PostgreSQL",
-    description:
-      "Robust, open-source relational database for complex queries, data integrity, and scalable backends.",
-
     color: "text-violet",
     borderColor: "border-violet/20",
     bgColor: "bg-violet/5",
     icon: postgresqlIcon,
   },
   {
-    name: "Supabase",
-    description:
-      "Open-source Firebase alternative with auth, real-time subscriptions, storage, and auto-generated APIs.",
-
     color: "text-primary",
     borderColor: "border-primary/20",
     bgColor: "bg-primary/5",
@@ -80,7 +64,7 @@ const techStack = [
           class="text-foreground flex items-center gap-2 text-2xl font-bold md:text-3xl"
         >
           <span class="text-cyan font-mono text-lg md:text-xl"> 02. </span>
-          Our Tech Stack
+          {data.title}
         </h2>
         <div class="from-cyan/40 h-px flex-1 bg-gradient-to-r to-transparent">
         </div>
@@ -89,9 +73,7 @@ const techStack = [
 
     <AnimateIn delay={100} client:visible>
       <p class="text-muted-foreground mb-14 max-w-2xl leading-relaxed">
-        We choose the right tool for every project. Whether it's a static
-        marketing site or a data-driven web app, our stack ensures performance,
-        scalability, and a great developer experience.
+        {data.description}
       </p>
     </AnimateIn>
 
@@ -103,13 +85,17 @@ const techStack = [
               class={`group flex h-full flex-col items-start rounded-2xl border ${tech.borderColor} ${tech.bgColor} hover:border-opacity-60 p-6 transition-all hover:-translate-y-1 md:p-7`}
             >
               <div class="mb-5">
-                <Image src={tech.icon} alt={tech.name} width={50} />
+                <Image
+                  src={tech.icon}
+                  alt={data.services[i].title}
+                  width={50}
+                />
               </div>
               <h3 class={`mb-2 text-lg font-semibold ${tech.color}`}>
-                {tech.name}
+                {data.services[i].title}
               </h3>
               <p class="text-muted-foreground text-sm leading-relaxed">
-                {tech.description}
+                {data.services[i].description}
               </p>
             </div>
           </AnimateIn>

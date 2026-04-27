@@ -70,6 +70,11 @@ const services = await getEntry(
   `${lang}/offer/services` as "en/offer/services" | "pl/offer/services",
   "services",
 );
+
+const stack = await getEntry(
+  `${lang}/offer/stack` as "en/offer/stack" | "pl/offer/stack",
+  "stack",
+);
 ---
 
 <Layout>
@@ -78,7 +83,7 @@ const services = await getEntry(
   <main>
     <OfferHero heroData={hero} />
     <OfferServices servicesData={services} />
-    <OfferStack />
+    <OfferStack stackData={stack} />
     <OfferProcess />
     <OfferContact client:visible />
     <Footer />

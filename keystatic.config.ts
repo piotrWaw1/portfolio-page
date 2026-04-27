@@ -89,6 +89,18 @@ const offerServices = {
   ),
 };
 
+const offerStack = {
+  title: fields.text({ label: "Title", defaultValue: "What We Build" }),
+  description: fields.text({ label: "Description" }),
+  services: fields.array(
+    fields.object({
+      title: fields.text({ label: "Title" }),
+      description: fields.text({ label: "Description" }),
+    }),
+    { label: "Services" },
+  ),
+};
+
 export default config({
   storage: { kind: "local" },
   singletons: {
@@ -127,6 +139,11 @@ export default config({
       path: "src/content/en/offer/services/services",
       schema: offerServices,
     }),
+    offer_stack_en: singleton({
+      label: "🇬🇧 Offer Stack Section",
+      path: "src/content/en/offer/stack/stack",
+      schema: offerStack,
+    }),
     // --- POLISH ---
     hero_pl: singleton({
       label: "🇵🇱 Hero Section",
@@ -150,6 +167,7 @@ export default config({
       path: "src/content/pl/projects/projects",
       schema: projectsSchema,
     }),
+
     offer_hero_pl: singleton({
       label: "🇵🇱 Offer Hero Section",
       path: "src/content/pl/offer/hero/hero",
@@ -160,6 +178,11 @@ export default config({
       label: "🇵🇱 Offer Services Section",
       path: "src/content/pl/offer/services/services",
       schema: offerServices,
+    }),
+    offer_stack_pl: singleton({
+      label: "🇵🇱 Offer Stack Section",
+      path: "src/content/pl/offer/stack/stack",
+      schema: offerStack,
     }),
   },
 });

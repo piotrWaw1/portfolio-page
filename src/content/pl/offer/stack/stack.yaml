@@ -1,0 +1,30 @@
+title: Nasz Stos Technologiczny
+description: >-
+  Dobieramy odpowiednie narzędzia do każdego projektu. Niezależnie od tego,
+  czy jest to statyczna strona marketingowa, czy aplikacja webowa oparta na
+  danych - nasz stack zapewnia wydajność, skalowalność oraz świetne
+  doświadczenie urzytkownika.
+services:
+  - title: Next.js
+    description: >-
+      Full-stackowy framework React do tworzenia aplikacji
+      webowych z SSR, routingiem oraz endpointami API.
+  - title: React
+    description: >-
+      Biblioteka UI oparta na komponentach do budowy interaktywnych interfejsów.
+  - title: Astro
+    description: >-
+      Błyskawiczny generator stron statycznych, idealny dla serwisów
+      contentowych i blogów, domyślnie bez JavaScriptu.
+  - title: WordPress
+    description: >-
+      Najpopularniejszy CMS na świecie. Świetny do blogów, stron firmowych
+      oraz dla klientów potrzebujących łatwej edycji treści.
+  - title: PostgreSQL
+    description: >-
+      Solidna, open-source’owa relacyjna baza danych do złożonych zapytań,
+      zapewniająca integralność danych i skalowalne backendy.
+  - title: Supabase
+    description: >-
+      Open-source’owa alternatywa dla Firebase z autoryzacją, subskrypcjami
+      w czasie rzeczywistym, storage oraz automatycznie generowanymi API.
