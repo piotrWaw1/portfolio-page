@@ -65,6 +65,11 @@ const hero = await getEntry(
   `${lang}/offer/hero` as "en/offer/hero" | "pl/offer/hero",
   "hero",
 );
+
+const services = await getEntry(
+  `${lang}/offer/services` as "en/offer/services" | "pl/offer/services",
+  "services",
+);
 ---
 
 <Layout>
@@ -72,7 +77,7 @@ const hero = await getEntry(
   <ScrollProgress sections={sections} client:idle />
   <main>
     <OfferHero heroData={hero} />
-    <OfferServices />
+    <OfferServices servicesData={services} />
     <OfferStack />
     <OfferProcess />
     <OfferContact client:visible />

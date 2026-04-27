@@ -13,3 +13,7 @@ export type ExperienceEntry =
 export type ProjectsEntry =
   | CollectionEntry<"en/projects">
   | CollectionEntry<"pl/projects">;
+
+export type OfferServicesEntry =
+  | CollectionEntry<"en/offer/services">
+  | CollectionEntry<"pl/offer/services">;

@@ -1,0 +1,61 @@
+title: Co Tworzymy
+description: >-
+  Niezależnie od tego, czy potrzebujesz prostej strony typu landing page, czy
+  złożonej aplikacji webowej z uwierzytelnianiem i bazami danych - mamy to pod
+  kontrolą. Każdy projekt tworzymy z dbałością o czysty kod, nowoczesny design
+  oraz Twoje cele biznesowe.
+services:
+  - title: Strony Landing Page
+    description: >-
+      Wysokokonwertujące, estetycznie zaprojektowane strony landing page
+      dopasowane do Twojej marki. Zoptymalizowane pod kątem szybkości, SEO oraz
+      responsywności mobile-first, aby maksymalizować zaangażowanie.
+    keyWords:
+      - Zoptymalizowane SEO
+      - Responsywne
+      - Szybkie ładowanie
+  - title: Strony Firmowe
+    description: >-
+      Profesjonalne, wielostronicowe strony internetowe budujące Twoją obecność
+      w sieci. Wyposażone w system zarządzania treścią, formularze kontaktowe,
+      analitykę i wszystko, czego potrzebuje Twój biznes.
+    keyWords:
+      - Gotowe CMS
+      - Wielostronicowe
+      - Analityka
+  - title: Rozwiązania E-commerce
+    description: >-
+      Dedykowane sklepy internetowe z bezpieczną obsługą płatności, zarządzaniem
+      stanami magazynowymi oraz płynnym doświadczeniem zakupowym, które zwiększa
+      sprzedaż i lojalność klientów.
+    keyWords:
+      - Płatności
+      - Magazyn
+      - Koszyk zakupowy
+  - title: Aplikacje Webowe
+    description: >-
+      Rozbudowane aplikacje webowe z uwierzytelnianiem użytkowników, bazami
+      danych, panelami administracyjnymi i złożoną logiką biznesową. Od platform
+      SaaS po narzędzia wewnętrzne — tworzymy wszystko.
+    keyWords:
+      - Autoryzacja i role
+      - Baza danych
+      - Dashboard
+  - title: Redesign UI/UX
+    description: >-
+      Tchnij nowe życie w swoją istniejącą stronę dzięki nowoczesnemu redesignowi.
+      Analizujemy Twoją obecną witrynę, identyfikujemy obszary do poprawy i
+      dostarczamy odświeżone, przyjazne użytkownikowi doświadczenie.
+    keyWords:
+      - Audyt
+      - Nowoczesny interfejs
+      - Badania UX
+  - title: Wydajność i SEO
+    description: >-
+      Masz już stronę? Optymalizujemy szybkość ładowania, Core Web Vitals,
+      dostępność oraz pozycjonowanie w wyszukiwarkach, aby pomóc Ci dotrzeć do
+      większej liczby klientów organicznie.
+    keyWords:
+      - Core Web Vitals
+      - Dostępność (A11y)
+      - Przyspieszenie działania

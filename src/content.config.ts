@@ -59,6 +59,18 @@ const projectsSchema = z.object({
   ),
 });
 
+const offerServices = z.object({
+  title: z.string(),
+  description: z.string(),
+  services: z.array(
+    z.object({
+      title: z.string(),
+      description: z.string(),
+      keyWords: z.array(z.string()),
+    }),
+  ),
+});
+
 export const collections = {
   // English
   "en/hero": defineCollection({ type: "content", schema: heroSchema }),
@@ -70,6 +82,10 @@ export const collections = {
     type: "content",
     schema: heroSchema,
   }),
+  "en/offer/services": defineCollection({
+    type: "data",
+    schema: offerServices,
+  }),
 
   // Polish
   "pl/hero": defineCollection({ type: "content", schema: heroSchema }),
@@ -80,5 +96,9 @@ export const collections = {
   "pl/offer/hero": defineCollection({
     type: "content",
     schema: heroSchema,
+  }),
+  "pl/offer/services": defineCollection({
+    type: "data",
+    schema: offerServices,
   }),
 };

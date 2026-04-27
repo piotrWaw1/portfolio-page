@@ -74,6 +74,21 @@ const projectsSchema = {
   ),
 };
 
+const offerServices = {
+  title: fields.text({ label: "Title", defaultValue: "What We Build" }),
+  description: fields.text({ label: "Description" }),
+  services: fields.array(
+    fields.object({
+      title: fields.text({ label: "Title" }),
+      description: fields.text({ label: "Description" }),
+      keyWords: fields.array(fields.text({ label: "Key words" }), {
+        label: "Key words",
+      }),
+    }),
+    { label: "Services" },
+  ),
+};
+
 export default config({
   storage: { kind: "local" },
   singletons: {
@@ -107,7 +122,11 @@ export default config({
       format: { contentField: "content" },
       schema: heroSchema,
     }),
-
+    offer_services_en: singleton({
+      label: "🇬🇧 Offer Services Section",
+      path: "src/content/en/offer/services/services",
+      schema: offerServices,
+    }),
     // --- POLISH ---
     hero_pl: singleton({
       label: "🇵🇱 Hero Section",
@@ -136,6 +155,11 @@ export default config({
       path: "src/content/pl/offer/hero/hero",
       format: { contentField: "content" },
       schema: heroSchema,
+    }),
+    offer_services_pl: singleton({
+      label: "🇵🇱 Offer Services Section",
+      path: "src/content/pl/offer/services/services",
+      schema: offerServices,
     }),
   },
 });

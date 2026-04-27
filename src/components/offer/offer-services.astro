@@ -8,14 +8,19 @@ import {
   ShoppingCart,
 } from "@lucide/astro";
 import { AnimateIn } from "../ui/animate-in";
+import type { OfferServicesEntry } from "@/types/sections.types";
+
+interface ServicesProps {
+  servicesData?: OfferServicesEntry;
+}
+
+const { servicesData } = Astro.props as ServicesProps;
+
+const data = servicesData!.data;
 
 const services = [
   {
     icon: Layout,
-    title: "Landing Pages",
-    description:
-      "High-converting, beautifully designed landing pages tailored to your brand. Optimized for speed, SEO, and mobile-first responsiveness to maximize engagement.",
-    tags: ["SEO Optimized", "Responsive", "Fast Load"],
     color: "text-primary",
     borderColor: "hover:border-primary/40",
     bgColor: "bg-primary/5",
@@ -23,10 +28,6 @@ const services = [
   },
   {
     icon: Globe,
-    title: "Business Websites",
-    description:
-      "Professional multi-page websites that establish your online presence. Complete with content management, contact forms, analytics, and everything your business needs.",
-    tags: ["Gotowe CMS", "Wielostronicowe", "Analityka"],
     color: "text-cyan",
     borderColor: "hover:border-cyan/40",
     bgColor: "bg-cyan/5",
@@ -34,10 +35,6 @@ const services = [
   },
   {
     icon: ShoppingCart,
-    title: "E-commerce Solutions",
-    description:
-      "Custom online stores with secure payment processing, inventory management, and a seamless shopping experience that drives sales and customer loyalty.",
-    tags: ["Payments", "Inventory", "Cart System"],
     color: "text-amber",
     borderColor: "hover:border-amber/40",
     bgColor: "bg-amber/5",
@@ -45,10 +42,6 @@ const services = [
   },
   {
     icon: AppWindow,
-    title: "Web Applications",
-    description:
-      "Full-featured web apps with user authentication, databases, dashboards, and complex business logic. From SaaS platforms to internal tools -- we build it all.",
-    tags: ["Auth & Roles", "Database", "Dashboard"],
     color: "text-accent",
     borderColor: "hover:border-accent/40",
     bgColor: "bg-accent/5",
@@ -56,11 +49,6 @@ const services = [
   },
   {
     icon: Palette,
-    title: "UI/UX Redesign",
-    description:
-      "Breathe new life into your existing website with a modern redesign. We audit your current site, identify improvements, and deliver a refreshed, user-friendly experience.",
-
-    tags: ["Audit", "Modern UI", "UX Research"],
     color: "text-rose",
     borderColor: "hover:border-rose/40",
     bgColor: "bg-rose/5",
@@ -68,10 +56,6 @@ const services = [
   },
   {
     icon: Gauge,
-    title: "Performance & SEO",
-    description:
-      "Already have a site? We optimize loading speed, Core Web Vitals, accessibility, and search engine ranking to help you reach more customers organically.",
-    tags: ["Core Vitals", "A11y", "Speed Boost"],
     color: "text-blue",
     borderColor: "hover:border-blue/40",
     bgColor: "bg-blue/5",
@@ -88,7 +72,7 @@ const services = [
           class="text-foreground flex items-center gap-2 text-2xl font-bold md:text-3xl"
         >
           <span class="text-primary font-mono text-lg md:text-xl"> 01. </span>
-          What We Build
+          {data.title}
         </h2>
         <div
           class="from-primary/40 h-px flex-1 bg-gradient-to-r to-transparent"
@@ -99,9 +83,7 @@ const services = [
 
     <AnimateIn delay={100} client:visible>
       <p class="text-muted-foreground mb-14 max-w-2xl leading-relaxed">
-        Whether you need a simple landing page or a complex web application with
-        authentication and databases, we have you covered. Every project is
-        built with clean code, modern design, and your business goals in mind."
+        {data.description}
       </p>
     </AnimateIn>
 
@@ -118,17 +100,17 @@ const services = [
                 <service.icon class="h-6 w-6" />
               </div>
               <h3 class="text-foreground mb-3 text-lg font-semibold">
-                {service.title}
+                {data.services[i].title}
               </h3>
               <p class="text-muted-foreground mb-5 flex-1 text-sm leading-relaxed">
-                {service.description}
+                {data.services[i].description}
               </p>
               <div class="flex flex-wrap gap-2">
-                {service.tags.map((tag) => (
+                {data.services[i].keyWords.map((keyWord) => (
                   <span
                     class={`border-border/50 rounded-full border px-3 py-1 font-mono text-xs ${service.color}/70`}
                   >
-                    {tag}
+                    {keyWord}
                   </span>
                 ))}
               </div>
