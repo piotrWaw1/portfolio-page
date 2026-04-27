@@ -131,5 +131,11 @@ export default config({
       path: "src/content/pl/projects/projects",
       schema: projectsSchema,
     }),
+    offer_hero_pl: singleton({
+      label: "🇵🇱 Offer Hero Section",
+      path: "src/content/pl/offer/hero/hero",
+      format: { contentField: "content" },
+      schema: heroSchema,
+    }),
   },
 });
