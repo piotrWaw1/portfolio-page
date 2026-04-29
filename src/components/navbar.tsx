@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
-import { ModeToggle } from "@/components/mode-toggle.tsx";
+// import { ModeToggle } from "@/components/mode-toggle.tsx";
 import { createPortal } from "react-dom";
 import LangToggle from "@/components/lang-toggle.tsx";
 import { ArrowLeft, ArrowRight } from "lucide-react";
@@ -99,13 +99,13 @@ export function Navbar({ navLinks, redirectToPage }: NavbarProps) {
               {!redirectToPage.portfolio && <ArrowRight className="h-4 w-4" />}
             </a>
             <LangToggle />
-            <ModeToggle />
+            {/* <ModeToggle /> */}
           </div>
         </div>
 
         <div className="flex items-center gap-3 md:hidden">
           <LangToggle />
-          <ModeToggle />
+          {/* <ModeToggle /> */}
           <button
             onClick={() => setMobileOpen(!mobileOpen)}
             className="relative z-50 flex h-8 w-8 flex-col items-center justify-center gap-1.5"

@@ -14,8 +14,8 @@ services:
       Biblioteka UI oparta na komponentach do budowy interaktywnych interfejsów.
   - title: Astro
     description: >-
-      Błyskawiczny generator stron statycznych, idealny dla serwisów
-      contentowych i blogów, domyślnie bez JavaScriptu.
+      Błyskawiczny generator stron statycznych, idealny dla blogów, i statycznych stron firmowych. 
+      Domyślnie bez JavaScriptu.
   - title: WordPress
     description: >-
       Najpopularniejszy CMS na świecie. Świetny do blogów, stron firmowych

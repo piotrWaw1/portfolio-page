@@ -7,16 +7,16 @@ description: >-
 services:
   - title: Strony Landing Page
     description: >-
-      Wysokokonwertujące, estetycznie zaprojektowane strony landing page
-      dopasowane do Twojej marki. Zoptymalizowane pod kątem szybkości, SEO oraz
-      responsywności mobile-first, aby maksymalizować zaangażowanie.
+      Skuteczne, estetycznie zaprojektowane strony landing page dopasowane do Twojej marki. 
+      Zoptymalizowane pod kątem szybkości, SEO oraz responsywności mobile-first, aby
+      maksymalizować zaangażowanie uzytkownika.
     keyWords:
       - Zoptymalizowane SEO
       - Responsywne
       - Szybkie ładowanie
   - title: Strony Firmowe
     description: >-
-      Profesjonalne, wielostronicowe strony internetowe budujące Twoją obecność
+      Profesjonalne strony internetowe budujące Twoją obecność
       w sieci. Wyposażone w system zarządzania treścią, formularze kontaktowe,
       analitykę i wszystko, czego potrzebuje Twój biznes.
     keyWords:
@@ -26,8 +26,8 @@ services:
   - title: Rozwiązania E-commerce
     description: >-
       Dedykowane sklepy internetowe z bezpieczną obsługą płatności, zarządzaniem
-      stanami magazynowymi oraz płynnym doświadczeniem zakupowym, które zwiększa
-      sprzedaż i lojalność klientów.
+      stanami magazynowymi oraz pozytywnym doświadczeniem zakupowym, które zwiększa
+      sprzedaż.
     keyWords:
       - Płatności
       - Magazyn
@@ -36,7 +36,7 @@ services:
     description: >-
       Rozbudowane aplikacje webowe z uwierzytelnianiem użytkowników, bazami
       danych, panelami administracyjnymi i złożoną logiką biznesową. Od platform
-      SaaS po narzędzia wewnętrzne — tworzymy wszystko.
+      SaaS po narzędzia wewnętrzne - tworzymy wszystko.
     keyWords:
       - Autoryzacja i role
       - Baza danych
@@ -54,7 +54,7 @@ services:
     description: >-
       Masz już stronę? Optymalizujemy szybkość ładowania, Core Web Vitals,
       dostępność oraz pozycjonowanie w wyszukiwarkach, aby pomóc Ci dotrzeć do
-      większej liczby klientów organicznie.
+      większej liczby klientów.
     keyWords:
       - Core Web Vitals
       - Dostępność (A11y)
