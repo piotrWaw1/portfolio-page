@@ -69,7 +69,7 @@ const steps = [
 
     <div class="relative grid gap-8 md:grid-cols-2 lg:grid-cols-4">
       <div
-        class="from-primary/20 via-accent/20 to-amber/20 absolute top-16 left-[calc(12.5%+1rem)] hidden h-px w-[calc(75%-2rem)] bg-gradient-to-r lg:block"
+        class="from-primary/20 via-accent/20 to-amber/20 absolute top-8 left-[calc(12.5%+1rem)] z-0 hidden h-px w-[calc(75%-2rem)] bg-gradient-to-r lg:block"
       >
       </div>
 
@@ -78,11 +78,11 @@ const steps = [
           <AnimateIn delay={i * 120} client:visible>
             <div class="relative flex flex-col items-center text-center">
               <div
-                class={`relative z-10 mb-6 flex h-16 w-16 items-center justify-center rounded-2xl border ${step.borderColor} ${step.bgColor}`}
+                class={`relative z-10 mb-3 flex h-16 w-16 items-center justify-center rounded-2xl border ${step.borderColor} ${step.bgColor}`}
               >
                 <step.icon class={`h-7 w-7 ${step.color}`} />
               </div>
-              <span class={`mb-2 font-mono text-xs ${step.color}`}>
+              <span class={`mb-2 font-mono text-sm ${step.color}`}>
                 {t("offer.process.setp")}
                 {step.number}
               </span>

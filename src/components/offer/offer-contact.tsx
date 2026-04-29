@@ -45,18 +45,26 @@ export default function OfferContact() {
 
   return (
     <section id="contact" className="px-6 py-24 md:py-32">
-      <div className="mx-auto max-w-3xl">
+      <div className="mx-auto max-w-6xl">
         <AnimateIn>
-          <div className="mb-4 flex items-center justify-center gap-4">
-            <div className="from-amber/40 h-px flex-1 bg-gradient-to-l to-transparent" />
+          <div className="mb-12 flex items-center gap-4">
             <h2 className="text-foreground flex items-center gap-2 text-2xl font-bold md:text-3xl">
               <span className="text-amber font-mono text-lg md:text-xl">
-                04.
+                {" "}
+                04.{" "}
               </span>
               {t("offer.contatctForm.startProject")}
             </h2>
-            <div className="from-amber/40 h-px flex-1 bg-gradient-to-r to-transparent" />
+            <div className="from-amber/40 h-px flex-1 bg-gradient-to-r to-transparent"></div>
           </div>
+        </AnimateIn>
+      </div>
+
+      <div className="mx-auto max-w-3xl">
+        <AnimateIn delay={100}>
+          <h2 className="gradient-text-warm mb-6 text-center text-3xl font-bold md:text-5xl">
+            {t("offer.contatctForm.contactWithUs")}
+          </h2>
         </AnimateIn>
 
         <AnimateIn delay={100}>
@@ -93,7 +101,7 @@ export default function OfferContact() {
                     htmlFor="offer-name"
                     className="text-primary font-mono text-xs uppercase"
                   >
-                    Your Name
+                    {t("offer.contatctForm.yourName")}
                   </label>
                   <input
                     id="offer-name"
@@ -134,7 +142,7 @@ export default function OfferContact() {
                     htmlFor="offer-company"
                     className="text-accent font-mono text-xs uppercase"
                   >
-                    Company / Brand
+                    {t("offer.contatctForm.companyBrand")}
                   </label>
                   <input
                     id="offer-company"
@@ -152,7 +160,7 @@ export default function OfferContact() {
                     htmlFor="offer-type"
                     className="text-amber font-mono text-xs uppercase"
                   >
-                    Project Type
+                    {t("offer.contatctForm.projectType")}
                   </label>
                   <select
                     id="offer-type"
@@ -167,7 +175,7 @@ export default function OfferContact() {
                     className="border-border bg-secondary/50 text-foreground focus:border-amber focus:ring-amber rounded-xl border px-4 py-3 text-sm transition-all focus:ring-1 focus:outline-none"
                   >
                     <option value="" disabled>
-                      Select a type...
+                      {t("offer.contatctForm.selectAType")}
                     </option>
                     {projectTypes.map((type) => (
                       <option key={type} value={type}>
@@ -183,7 +191,7 @@ export default function OfferContact() {
                   htmlFor="offer-budget"
                   className="text-rose font-mono text-xs uppercase"
                 >
-                  Estimated Budget
+                  {t("offer.contatctForm.estimatedBudget")}
                 </label>
                 <select
                   id="offer-budget"
@@ -210,7 +218,7 @@ export default function OfferContact() {
                   htmlFor="offer-message"
                   className="text-violet font-mono text-xs uppercase"
                 >
-                  Project Details
+                  {t("offer.contatctForm.porjectDetails")}
                 </label>
                 <textarea
                   id="offer-message"
@@ -221,7 +229,7 @@ export default function OfferContact() {
                     setFormState({ ...formState, message: e.target.value })
                   }
                   className="border-border bg-secondary/50 text-foreground placeholder:text-muted-foreground/50 focus:border-violet focus:ring-violet resize-none rounded-xl border px-4 py-3 text-sm transition-all focus:ring-1 focus:outline-none"
-                  placeholder="Tell us about your project, goals, timeline, and any specific requirements..."
+                  placeholder={t("offer.contatctForm.tellUsAboutYourProject")}
                 />
               </div>
 

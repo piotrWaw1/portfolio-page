@@ -49,6 +49,15 @@ export const transaltions = {
       "We'll review your project details and get back to you.",
     "offer.contatctForm.submitAnotherInquiry": "Submit another inquiry",
     "offer.contatctForm.sendInquiry": "Send Inquiry",
+    "offer.contatctForm.contactWithUs": "Contact with us",
+    "offer.contatctForm.yourName": "Your name",
+    "offer.contatctForm.companyBrand": "Company / Brand",
+    "offer.contatctForm.projectType": "Project type",
+    "offer.contatctForm.estimatedBudget": "Estimated budget",
+    "offer.contatctForm.porjectDetails": "Project details",
+    "offer.contatctForm.selectAType": "Select a type...",
+    "offer.contatctForm.tellUsAboutYourProject":
+      "Tell us about your project, goals, timeline, and any specific requirements...",
   },
   pl: {
     "nav.home": "Strona główna",
@@ -88,11 +97,21 @@ export const transaltions = {
 
     "offer.contatctForm.startProject": "Zacznij projekt",
     "offer.contatctForm.readyToBringYourIdeaToLife":
-      "Gotowy, aby wcielić swój pomysł w życie? Opowiedz nam o swoim projekcie, a skontaktujemy się z Tobą z bezpłatną konsultacją i wyceną.",
+      "Gotowy, żeby wprowadzić swój pomysł w życie? Opowiedz nam o swoim projekcie, a wrócimy do Ciebie z bezpłatną konsultacją i wyceną.",
     "offer.contatctForm.thankYouForInquiry": "Dziekujemy za zapytanie!",
     "offer.contatctForm.weWillReviewYourProjectDetails":
       "Przeanalizujemy szczegóły Twojego projektu i skontaktujemy się z Tobą.",
     "offer.contatctForm.submitAnotherInquiry": "Prześlij kolejne zapytanie",
     "offer.contatctForm.sendInquiry": "Wyślij zapytanie",
+    "offer.contatctForm.contactWithUs": "Skontaktuj się z nami",
+
+    "offer.contatctForm.yourName": "Twoje imię i nazwisko",
+    "offer.contatctForm.companyBrand": "Firma / Marka",
+    "offer.contatctForm.projectType": "Rodzaj projektu",
+    "offer.contatctForm.estimatedBudget": "Szacowany budżet",
+    "offer.contatctForm.porjectDetails": "Szczegóły projektu",
+    "offer.contatctForm.selectAType": "Wybierz typ projektu...",
+    "offer.contatctForm.tellUsAboutYourProject":
+      "Opowiedz nam o swoim projekcie, celach, harmonogramie i wszelkich szczególnych...",
   },
 } as const;
