@@ -89,7 +89,7 @@ export function Contact() {
           </div>
         </AnimateIn>
 
-        <div className="mx-auto max-w-2xl text-center">
+        <div className="mx-auto max-w-3xl text-center">
           <AnimateIn delay={100}>
             <h2 className="gradient-text-warm mb-6 text-3xl font-bold md:text-5xl">
               {t("contact.getInTouch")}
@@ -208,7 +208,7 @@ export function Contact() {
                       type="submit"
                       className="group glow-green border-primary/40 bg-primary/10 text-primary hover:border-primary/60 hover:bg-primary/20 mt-2 inline-flex items-center justify-center gap-2 self-center rounded-xl border px-8 py-3.5 font-mono text-sm transition-all"
                     >
-                      <span className="transition-all duration-300 ease-in-out group-hover:text-lg">
+                      <span className="transition-all duration-300 ease-in-out">
                         {t("contact.sendMessage")}
                       </span>
                       <Send className="h-4 w-4 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />

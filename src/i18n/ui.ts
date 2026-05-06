@@ -58,6 +58,13 @@ export const transaltions = {
     "offer.contatctForm.selectAType": "Select a type...",
     "offer.contatctForm.tellUsAboutYourProject":
       "Tell us about your project, goals, timeline, and any specific requirements...",
+    "offer.contatctForm.landingPage": "Landing Page",
+    "offer.contatctForm.businessWebsite": "Business Website",
+    "offer.contatctForm.eComerce": "E-commerce",
+    "offer.contatctForm.webApplication": "Web Application",
+    "offer.contatctForm.redesign": "Redesign",
+    "offer.contatctForm.other": "Other",
+    "offer.contatctForm.selectProjectType": "Select project type",
   },
   pl: {
     "nav.home": "Strona główna",
@@ -113,5 +120,12 @@ export const transaltions = {
     "offer.contatctForm.selectAType": "Wybierz typ projektu...",
     "offer.contatctForm.tellUsAboutYourProject":
       "Opowiedz nam o swoim projekcie, celach, harmonogramie i wszelkich szczególnych...",
+    "offer.contatctForm.landingPage": "Landing Page",
+    "offer.contatctForm.businessWebsite": "Strona firmowa",
+    "offer.contatctForm.eComerce": "E-commerce",
+    "offer.contatctForm.webApplication": "Aplikacja webowa",
+    "offer.contatctForm.redesign": "Przeprojektowanie",
+    "offer.contatctForm.other": "Inne",
+    "offer.contatctForm.selectProjectType": "Wybierz typ projektu",
   },
 } as const;

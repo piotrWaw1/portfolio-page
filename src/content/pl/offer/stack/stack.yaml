@@ -1,9 +1,9 @@
 title: Nasz Stos Technologiczny
 description: >-
   Dobieramy odpowiednie narzędzia do każdego projektu. Niezależnie od tego,
-  czy jest to statyczna strona marketingowa, czy aplikacja webowa oparta na
-  danych - nasz stack zapewnia wydajność, skalowalność oraz świetne
-  doświadczenie urzytkownika.
+  czy jest to statyczna strona marketingowa, czy aplikacja webowa. 
+  Nasz stack zapewnia wydajność, skalowalność oraz świetne
+  doświadczenia użytkowników.
 services:
   - title: Next.js
     description: >-

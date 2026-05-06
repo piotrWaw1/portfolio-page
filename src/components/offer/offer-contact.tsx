@@ -3,40 +3,56 @@ import { AnimateIn } from "../ui/animate-in";
 import { CheckCircle, Send } from "lucide-react";
 import { getLangFromUrl, useTranslations } from "@/i18n/utils";
 import { DefaultLocale } from "@/types/locales.types";
+import { z } from "astro/zod";
+import { Controller, useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { Field, FieldError, FieldGroup, FieldLabel } from "../ui/field";
+import { Input } from "../ui/input";
+import { Textarea } from "../ui/textarea";
+import SelectComponent from "../select-component";
+
+const contactFormSchema = z.object({
+  name: z.string().optional(),
+  email: z.string().email(),
+  company: z.string().optional(),
+  projectType: z.string(),
+  message: z.string().max(500),
+});
+
+type ContactForm = z.infer<typeof contactFormSchema>;
 
 export default function OfferContact() {
-  const projectTypes = [
-    "Landing Page",
-    "Business Website",
-    "E-commerce",
-    "Web Application",
-    "Redesign",
-    "Other",
-  ];
-
-  const [formState, setFormState] = useState({
-    name: "",
-    email: "",
-    company: "",
-    projectType: "",
-    budget: "",
-    message: "",
-  });
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   const [submitted, setSubmitted] = useState(false);
   const [t, setT] = useState(() => useTranslations(DefaultLocale));
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    setSubmitted(true);
-    setFormState({
+  const projectTypes = {
+    landingPage: t("offer.contatctForm.landingPage"),
+    businessWebside: t("offer.contatctForm.businessWebsite"),
+    eCommerce: t("offer.contatctForm.eComerce"),
+    webAplication: t("offer.contatctForm.webApplication"),
+    redesign: t("offer.contatctForm.redesign"),
+    other: t("offer.contatctForm.other"),
+  };
+
+  const form = useForm<ContactForm>({
+    resolver: zodResolver(contactFormSchema),
+    defaultValues: {
       name: "",
       email: "",
       company: "",
       projectType: "",
-      budget: "",
       message: "",
-    });
-  };
+    },
+    mode: "onSubmit",
+  });
+
+  async function onSubmit(data: ContactForm) {
+    console.log(data);
+
+    setSubmitted(true);
+    form.reset();
+  }
 
   useEffect(() => {
     const lang = getLangFromUrl(new URL(window.location.href));
@@ -44,7 +60,7 @@ export default function OfferContact() {
   }, []);
 
   return (
-    <section id="contact" className="px-6 py-24 md:py-32">
+    <section id="contact" className="mesh-bg-warm px-6 py-24 md:py-32">
       <div className="mx-auto max-w-6xl">
         <AnimateIn>
           <div className="mb-12 flex items-center gap-4">
@@ -91,155 +107,156 @@ export default function OfferContact() {
               </button>
             </div>
           ) : (
-            <form
-              onSubmit={handleSubmit}
-              className="border-border/50 bg-card/50 flex flex-col gap-6 rounded-2xl border p-6 md:p-8"
-            >
-              <div className="grid gap-6 sm:grid-cols-2">
-                <div className="flex flex-col gap-2">
-                  <label
-                    htmlFor="offer-name"
-                    className="text-primary font-mono text-xs uppercase"
-                  >
-                    {t("offer.contatctForm.yourName")}
-                  </label>
-                  <input
-                    id="offer-name"
-                    type="text"
-                    required
-                    value={formState.name}
-                    onChange={(e) =>
-                      setFormState({ ...formState, name: e.target.value })
-                    }
-                    className="border-border bg-secondary/50 text-foreground placeholder:text-muted-foreground/50 focus:border-primary focus:ring-primary rounded-xl border px-4 py-3 text-sm transition-all focus:ring-1 focus:outline-none"
-                    placeholder="Jane Smith"
+            <form id="contact-form" onSubmit={form.handleSubmit(onSubmit)}>
+              <div className="bg-secondary/10 rounded-3xl border border-white/5 p-6 backdrop-blur-xl md:p-8">
+                <FieldGroup>
+                  <div className="grid gap-5 sm:grid-cols-2">
+                    <Controller
+                      disabled={isLoading}
+                      name={"name"}
+                      control={form.control}
+                      render={({ field, fieldState }) => (
+                        <Field data-invalid={fieldState.invalid}>
+                          <FieldLabel
+                            htmlFor="form-name"
+                            className="text-primary font-mono uppercase"
+                          >
+                            {t("contact.name")}
+                          </FieldLabel>
+                          <Input
+                            {...field}
+                            id="form-name"
+                            aria-invalid={fieldState.invalid}
+                            placeholder="John Doe"
+                            autoComplete="off"
+                            className="border-border bg-secondary/50 text-foreground placeholder:text-muted-foreground/50 focus-visible:border-amber focus-visible:ring-amber/65 rounded-xl border px-4 py-6 transition-all"
+                          />
+                          {fieldState.invalid && (
+                            <FieldError errors={[fieldState.error]} />
+                          )}
+                        </Field>
+                      )}
+                    />
+                    <Controller
+                      disabled={isLoading}
+                      name={"email"}
+                      control={form.control}
+                      render={({ field, fieldState }) => (
+                        <Field data-invalid={fieldState.invalid}>
+                          <FieldLabel
+                            htmlFor="form-email"
+                            className="text-cyan font-mono uppercase"
+                          >
+                            {t("contact.email")}
+                          </FieldLabel>
+                          <Input
+                            {...field}
+                            id="form-email"
+                            aria-invalid={fieldState.invalid}
+                            placeholder="john@example.com"
+                            autoComplete="off"
+                            className="border-border bg-secondary/50 text-foreground placeholder:text-muted-foreground/50 focus-visible:border-rose focus-visible:ring-rose/65 rounded-xl border px-4 py-6 transition-all"
+                          />
+                          {fieldState.invalid && (
+                            <FieldError errors={[fieldState.error]} />
+                          )}
+                        </Field>
+                      )}
+                    />
+                  </div>
+                  <div className="grid gap-5 sm:grid-cols-2">
+                    <Controller
+                      disabled={isLoading}
+                      name={"company"}
+                      control={form.control}
+                      render={({ field, fieldState }) => (
+                        <Field data-invalid={fieldState.invalid}>
+                          <FieldLabel
+                            htmlFor="form-company"
+                            className="text-rose font-mono uppercase"
+                          >
+                            {t("offer.contatctForm.companyBrand")}
+                          </FieldLabel>
+                          <Input
+                            {...field}
+                            id="form-company"
+                            aria-invalid={fieldState.invalid}
+                            placeholder="Company"
+                            autoComplete="off"
+                            className="border-border bg-secondary/50 text-foreground placeholder:text-muted-foreground/50 focus-visible:border-rose focus-visible:ring-rose/65 rounded-xl border px-4 py-6 transition-all"
+                          />
+                          {fieldState.invalid && (
+                            <FieldError errors={[fieldState.error]} />
+                          )}
+                        </Field>
+                      )}
+                    />
+                    <Controller
+                      disabled={isLoading}
+                      name={"projectType"}
+                      control={form.control}
+                      render={({ field, fieldState }) => (
+                        <Field data-invalid={fieldState.invalid}>
+                          <FieldLabel
+                            htmlFor="form-projectType"
+                            className="text-amber font-mono uppercase"
+                          >
+                            {t("offer.contatctForm.projectType")}
+                          </FieldLabel>
+                          <SelectComponent
+                            field={field}
+                            options={projectTypes}
+                            label={t("offer.contatctForm.projectType")}
+                            placeholder={t(
+                              "offer.contatctForm.selectProjectType",
+                            )}
+                            className="border-border bg-secondary/50 text-foreground placeholder:text-muted-foreground/50 focus-visible:border-rose focus-visible:ring-rose/65 rounded-xl border px-4 py-6 transition-all"
+                          />
+                          {fieldState.invalid && (
+                            <FieldError errors={[fieldState.error]} />
+                          )}
+                        </Field>
+                      )}
+                    />
+                  </div>
+                  <Controller
+                    disabled={isLoading}
+                    name={"message"}
+                    control={form.control}
+                    render={({ field, fieldState }) => (
+                      <Field data-invalid={fieldState.invalid}>
+                        <FieldLabel
+                          htmlFor="form-message"
+                          className="text-accent font-mono uppercase"
+                        >
+                          {t("contact.message")}
+                        </FieldLabel>
+                        <Textarea
+                          {...field}
+                          id="form-message"
+                          aria-invalid={fieldState.invalid}
+                          placeholder={t("contact.heyAlex")}
+                          autoComplete="off"
+                          className="border-border bg-secondary/50 text-foreground placeholder:text-muted-foreground/50 focus-visible:border-accent focus-visible:ring-accent/65 h-30 resize-none rounded-xl border px-4 py-3 transition-all"
+                        />
+                        {fieldState.invalid && (
+                          <FieldError errors={[fieldState.error]} />
+                        )}
+                      </Field>
+                    )}
                   />
-                </div>
-                <div className="flex flex-col gap-2">
-                  <label
-                    htmlFor="offer-email"
-                    className="text-cyan font-mono text-xs uppercase"
+                  <button
+                    disabled={isLoading}
+                    type="submit"
+                    className="group glow-green border-primary/40 bg-primary/10 text-primary hover:border-primary/60 hover:bg-primary/20 mt-2 inline-flex items-center justify-center gap-2 self-center rounded-xl border px-8 py-3.5 font-mono text-sm transition-all"
                   >
-                    Email
-                  </label>
-                  <input
-                    id="offer-email"
-                    type="email"
-                    required
-                    value={formState.email}
-                    onChange={(e) =>
-                      setFormState({ ...formState, email: e.target.value })
-                    }
-                    className="border-border bg-secondary/50 text-foreground placeholder:text-muted-foreground/50 focus:border-cyan focus:ring-cyan rounded-xl border px-4 py-3 text-sm transition-all focus:ring-1 focus:outline-none"
-                    placeholder="jane@company.com"
-                  />
-                </div>
+                    <span className="transition-all duration-300 ease-in-out">
+                      {t("contact.sendMessage")}
+                    </span>
+                    <Send className="h-4 w-4 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
+                  </button>
+                </FieldGroup>
               </div>
-
-              <div className="grid gap-6 sm:grid-cols-2">
-                <div className="flex flex-col gap-2">
-                  <label
-                    htmlFor="offer-company"
-                    className="text-accent font-mono text-xs uppercase"
-                  >
-                    {t("offer.contatctForm.companyBrand")}
-                  </label>
-                  <input
-                    id="offer-company"
-                    type="text"
-                    value={formState.company}
-                    onChange={(e) =>
-                      setFormState({ ...formState, company: e.target.value })
-                    }
-                    className="border-border bg-secondary/50 text-foreground placeholder:text-muted-foreground/50 focus:border-accent focus:ring-accent rounded-xl border px-4 py-3 text-sm transition-all focus:ring-1 focus:outline-none"
-                    placeholder="Acme Inc."
-                  />
-                </div>
-                <div className="flex flex-col gap-2">
-                  <label
-                    htmlFor="offer-type"
-                    className="text-amber font-mono text-xs uppercase"
-                  >
-                    {t("offer.contatctForm.projectType")}
-                  </label>
-                  <select
-                    id="offer-type"
-                    required
-                    value={formState.projectType}
-                    onChange={(e) =>
-                      setFormState({
-                        ...formState,
-                        projectType: e.target.value,
-                      })
-                    }
-                    className="border-border bg-secondary/50 text-foreground focus:border-amber focus:ring-amber rounded-xl border px-4 py-3 text-sm transition-all focus:ring-1 focus:outline-none"
-                  >
-                    <option value="" disabled>
-                      {t("offer.contatctForm.selectAType")}
-                    </option>
-                    {projectTypes.map((type) => (
-                      <option key={type} value={type}>
-                        {type}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-              </div>
-
-              <div className="flex flex-col gap-2">
-                <label
-                  htmlFor="offer-budget"
-                  className="text-rose font-mono text-xs uppercase"
-                >
-                  {t("offer.contatctForm.estimatedBudget")}
-                </label>
-                <select
-                  id="offer-budget"
-                  value={formState.budget}
-                  onChange={(e) =>
-                    setFormState({ ...formState, budget: e.target.value })
-                  }
-                  className="border-border bg-secondary/50 text-foreground focus:border-rose focus:ring-rose rounded-xl border px-4 py-3 text-sm transition-all focus:ring-1 focus:outline-none"
-                >
-                  <option value="" disabled>
-                    Select a range...
-                  </option>
-                  <option value="under-2k">Under $2,000</option>
-                  <option value="2k-5k">$2,000 - $5,000</option>
-                  <option value="5k-10k">$5,000 - $10,000</option>
-                  <option value="10k-25k">$10,000 - $25,000</option>
-                  <option value="25k+">$25,000+</option>
-                  <option value="not-sure">Not sure yet</option>
-                </select>
-              </div>
-
-              <div className="flex flex-col gap-2">
-                <label
-                  htmlFor="offer-message"
-                  className="text-violet font-mono text-xs uppercase"
-                >
-                  {t("offer.contatctForm.porjectDetails")}
-                </label>
-                <textarea
-                  id="offer-message"
-                  required
-                  rows={5}
-                  value={formState.message}
-                  onChange={(e) =>
-                    setFormState({ ...formState, message: e.target.value })
-                  }
-                  className="border-border bg-secondary/50 text-foreground placeholder:text-muted-foreground/50 focus:border-violet focus:ring-violet resize-none rounded-xl border px-4 py-3 text-sm transition-all focus:ring-1 focus:outline-none"
-                  placeholder={t("offer.contatctForm.tellUsAboutYourProject")}
-                />
-              </div>
-
-              <button
-                type="submit"
-                className="glow-green border-primary/40 bg-primary/10 text-primary hover:border-primary/60 hover:bg-primary/20 mt-2 inline-flex items-center justify-center gap-2 self-center rounded-xl border px-8 py-3.5 font-mono text-sm transition-all"
-              >
-                {t("offer.contatctForm.sendInquiry")}
-                <Send className="h-4 w-4" />
-              </button>
             </form>
           )}
         </AnimateIn>
