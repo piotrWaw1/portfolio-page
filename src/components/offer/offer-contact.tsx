@@ -10,11 +10,12 @@ import { Field, FieldError, FieldGroup, FieldLabel } from "../ui/field";
 import { Input } from "../ui/input";
 import { Textarea } from "../ui/textarea";
 import SelectComponent from "../select-component";
+import { toast } from "sonner";
 
 const contactFormSchema = z.object({
-  name: z.string().optional(),
+  name: z.string(),
   email: z.string().email(),
-  company: z.string().optional(),
+  company: z.string(),
   projectType: z.string(),
   message: z.string().max(500),
 });
@@ -48,10 +49,38 @@ export default function OfferContact() {
   });
 
   async function onSubmit(data: ContactForm) {
-    console.log(data);
+    setIsLoading(true);
+    try {
+      const finallData = {
+        ...data,
+        projectType:
+          projectTypes[data.projectType as keyof typeof projectTypes],
+      };
 
-    setSubmitted(true);
-    form.reset();
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(finallData),
+      });
+
+      if (response.status === 400 || response.status === 500) {
+        toast.error("Missing field or incorrect email address", {
+          style: {
+            "--normal-bg":
+              "color-mix(in oklab, var(--destructive) 10%, var(--background))",
+            "--normal-text": "var(--destructive)",
+            "--normal-border": "var(--destructive)",
+          } as React.CSSProperties,
+        });
+      } else {
+        setSubmitted(true);
+        form.reset();
+      }
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setIsLoading(false);
+    }
   }
 
   useEffect(() => {

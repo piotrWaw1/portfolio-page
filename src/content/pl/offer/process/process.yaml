@@ -15,9 +15,9 @@ services:
       choćby jedna linijka kodu.
   - title: Development i Testowanie
     description: >-
-      Budujemy Twoją stronę przy użyciu czystego, nowoczesnego kodu. Każda
-      funkcjonalność jest testowana na różnych urządzeniach i przeglądarkach,
-      aby zapewnić bezbłędne działanie dla wszystkich użytkowników.
+      Tworzymy Twoją stronę w nowoczesnym, czystym kodzie. Każdą funkcję
+      testujemy na różnych urządzeniach i przeglądarkach, by działała bez
+      zarzutu dla wszystkich użytkowników.
   - title: Wdrożenie i Wsparcie
     description: >-
       Zajmujemy się wdrożeniem, optymalizacją wydajności oraz wsparciem po

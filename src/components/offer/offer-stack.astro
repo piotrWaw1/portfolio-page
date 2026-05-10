@@ -56,7 +56,7 @@ const techStack = [
 ];
 ---
 
-<section id="stack" class="mesh-bg px-6 py-24 md:py-32">
+<section id="stack" class="mesh-section-cyan px-6 py-24 md:py-32">
   <div class="mx-auto max-w-6xl">
     <AnimateIn client:visible>
       <div class="mb-4 flex items-center gap-4">
@@ -82,7 +82,7 @@ const techStack = [
         techStack.map((tech, i) => (
           <AnimateIn delay={i * 80} client:visible>
             <div
-              class={`group flex h-full flex-col items-start rounded-2xl border ${tech.borderColor} ${tech.bgColor} hover:border-opacity-60 p-6 transition-all hover:-translate-y-1 md:p-7`}
+              class={`group flex h-full flex-col items-start rounded-2xl border ${tech.borderColor} ${tech.bgColor} hover:border-opacity-60 p-6 transition-all hover:-translate-y-2 md:p-7`}
             >
               <div class="mb-5">
                 <Image
