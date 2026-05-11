@@ -1,10 +1,20 @@
 import React, { useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
-import { ModeToggle } from "@/components/mode-toggle.tsx";
+// import { ModeToggle } from "@/components/mode-toggle.tsx";
 import { createPortal } from "react-dom";
 import LangToggle from "@/components/lang-toggle.tsx";
-import { getLangFromUrl, useTranslations } from "@/i18n/utils";
-import { defaultLang } from "@/i18n/ui";
+import { ArrowLeft, ArrowRight } from "lucide-react";
+
+interface NavLinks {
+  label: string;
+  href: string;
+  color: string;
+}
+
+interface NavbarProps {
+  navLinks: NavLinks[];
+  redirectToPage: { title: string; url: string; portfolio: boolean };
+}
 
 const handleSmoothScroll = (e: React.MouseEvent<HTMLAnchorElement>) => {
   const href = e.currentTarget.getAttribute("href");
@@ -17,25 +27,13 @@ const handleSmoothScroll = (e: React.MouseEvent<HTMLAnchorElement>) => {
   }
 };
 
-export function Navbar() {
+export function Navbar({ navLinks, redirectToPage }: NavbarProps) {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [t, setT] = useState(() => useTranslations(defaultLang));
-
-  const navLinks = [
-    { label: t("nav.about"), href: "#about", color: "text-primary" },
-    { label: t("nav.experience"), href: "#experience", color: "text-accent" },
-    { label: t("nav.projects"), href: "#projects", color: "text-cyan" },
-    { label: t("nav.contact"), href: "#contact", color: "text-amber" },
-  ];
-
-  useEffect(() => {
-    const lang = getLangFromUrl(new URL(window.location.href));
-    setT(() => useTranslations(lang));
-  }, []);
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 25);
+    handleScroll();
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
@@ -86,15 +84,41 @@ export function Navbar() {
               </li>
             ))}
           </ul>
-          <div className="flex flex-row gap-2">
+          <div className="flex flex-row gap-4">
+            <a
+              href={redirectToPage.url}
+              className={cn(
+                "inline-flex items-center gap-2 rounded-lg border px-4 font-mono text-sm",
+                redirectToPage.portfolio
+                  ? "border-cyan/30 bg-cyan/5 text-cyan hover:border-cyan/50 hover:bg-cyan/10"
+                  : "border-accent/30 bg-accent/5 text-accent hover:border-accent/50 hover:bg-accent/10",
+              )}
+            >
+              {redirectToPage.portfolio && <ArrowLeft className="h-4 w-4" />}
+              {redirectToPage.title}
+              {!redirectToPage.portfolio && <ArrowRight className="h-4 w-4" />}
+            </a>
             <LangToggle />
-            <ModeToggle />
+            {/* <ModeToggle /> */}
           </div>
         </div>
 
-        <div className="flex items-center gap-3 md:hidden">
+        <div className="flex flex-row items-center gap-3 md:hidden">
+          <a
+            href={redirectToPage.url}
+            className={cn(
+              "inline-flex items-center gap-2 self-stretch rounded-lg border px-4 font-mono text-sm",
+              redirectToPage.portfolio
+                ? "border-cyan/30 bg-cyan/5 text-cyan hover:border-cyan/50 hover:bg-cyan/10"
+                : "border-accent/30 bg-accent/5 text-accent hover:border-accent/50 hover:bg-accent/10",
+            )}
+          >
+            {redirectToPage.portfolio && <ArrowLeft className="h-4 w-4" />}
+            {redirectToPage.title}
+            {!redirectToPage.portfolio && <ArrowRight className="h-4 w-4" />}
+          </a>
           <LangToggle />
-          <ModeToggle />
+          {/* <ModeToggle /> */}
           <button
             onClick={() => setMobileOpen(!mobileOpen)}
             className="relative z-50 flex h-8 w-8 flex-col items-center justify-center gap-1.5"

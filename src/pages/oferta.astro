@@ -1,0 +1,21 @@
+---
+import "@/styles/global.css";
+import { DefaultLocale, Locales } from "@/types/locales.types";
+export const prerender = false;
+
+const supportedLocales = [Locales.EN, Locales.PL] as string[];
+
+const cookieLang = Astro.cookies.get("preferred-lang")?.value;
+if (cookieLang && supportedLocales.includes(cookieLang)) {
+  return Astro.redirect(`/${cookieLang}/oferta`, 302);
+}
+
+const acceptLanguage = Astro.request.headers.get("accept-language") ?? "";
+const browserLocales = acceptLanguage
+  .split(",")
+  .map((lang) => lang.split(";")[0].trim().substring(0, 2).toLowerCase());
+
+const matched = browserLocales.find((lang) => supportedLocales.includes(lang));
+
+return Astro.redirect(`/${matched ?? DefaultLocale}/oferta`, 302);
+---

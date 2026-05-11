@@ -12,6 +12,13 @@ export const transaltions = {
     "nav.experience": "Experience",
     "nav.projects": "Projects",
     "nav.contact": "Contact",
+    "nav.offer": "Offer",
+
+    "nav.services": "Services",
+    "nav.techStack": "Tech stack",
+    "nav.process": "Process",
+    "nav.portfolio": "Portfolio",
+
     "projects.otherNetworthyProjects": "Other Noteworthy Projects",
     "contact.whatsNext": "What's Next?",
     "contact.getInTouch": "Get In Touch",
@@ -25,6 +32,45 @@ export const transaltions = {
     "contact.message": "Message",
     "contact.sendMessage": "Send Message",
     "contact.heyAlex": "Hey Piotr, I'd love to chat about...",
+
+    "offer.hero.weDesignAndBuild": "We design & build",
+    "offer.hero.websideThatGrow": "websites that grow",
+    "offer.hero.yourBusiness": "your business.",
+    "offer.hero.startProject": "Start a project",
+    "offer.hero.seeWhatWeOffer": "See what we offer",
+
+    "offer.process.setp": "Step",
+
+    "offer.contatctForm.startProject": "Start a Project",
+    "offer.contatctForm.readyToBringYourIdeaToLife":
+      "Ready to bring your idea to life? Tell us about your project and we'll get back to you with a free consultation and estimate.",
+    "offer.contatctForm.thankYouForInquiry": "Thank you for your inquiry!",
+    "offer.contatctForm.weWillReviewYourProjectDetails":
+      "We'll review your project details and get back to you.",
+    "offer.contatctForm.submitAnotherInquiry": "Submit another inquiry",
+    "offer.contatctForm.sendInquiry": "Send Inquiry",
+    "offer.contatctForm.contactWithUs": "Contact with us",
+    "offer.contatctForm.yourName": "Your name",
+    "offer.contatctForm.companyBrand": "Company / Brand",
+    "offer.contatctForm.projectType": "Project type",
+    "offer.contatctForm.estimatedBudget": "Estimated budget",
+    "offer.contatctForm.porjectDetails": "Project details",
+    "offer.contatctForm.selectAType": "Select a type...",
+    "offer.contatctForm.tellUsAboutYourProject":
+      "Tell us about your project, goals, timeline, and any specific requirements...",
+    "offer.contatctForm.landingPage": "Landing Page",
+    "offer.contatctForm.businessWebsite": "Business Website",
+    "offer.contatctForm.eComerce": "E-commerce",
+    "offer.contatctForm.webApplication": "Web Application",
+    "offer.contatctForm.redesign": "Redesign",
+    "offer.contatctForm.other": "Other",
+    "offer.contatctForm.selectProjectType": "Select project type",
+    "offer.contactForm.tellUsAboutYourProject":
+      "Tell us about your project, goals, timeline, and any specific requirements...",
+    "offer.contactForm.yourCompanyBrandName": "Your company/brand name",
+
+    "footer.copied": "Copied",
+    "footer.designedAndBuiltBy": "Designed & Built by",
   },
   pl: {
     "nav.home": "Strona główna",
@@ -32,6 +78,13 @@ export const transaltions = {
     "nav.experience": "Doświadczenie",
     "nav.projects": "Projekty",
     "nav.contact": "Kontakt",
+    "nav.offer": "Oferta",
+
+    "nav.services": "Usługi",
+    "nav.techStack": "Technologie",
+    "nav.process": "Proces",
+    "nav.portfolio": "Portfolio",
+
     "projects.otherNetworthyProjects": "Inne godne uwagi projekty",
     "contact.whatsNext": "Co dalej?",
     "contact.getInTouch": "Bądźmy w kontakcie",
@@ -46,5 +99,45 @@ export const transaltions = {
     "contact.message": "Wiadomość",
     "contact.sendMessage": "Wyślij wiadomość",
     "contact.heyAlex": "Hej Piotr, chętnie porozmawiam o...",
+
+    "offer.hero.weDesignAndBuild": "Projektujemy i budujemy",
+    "offer.hero.websideThatGrow": "strony internetowe, które rozwijają",
+    "offer.hero.yourBusiness": "twój biznes.",
+    "offer.hero.startProject": "Rozpocznij projekt",
+    "offer.hero.seeWhatWeOffer": "Zobacz, co oferujemy",
+
+    "offer.process.setp": "Krok",
+
+    "offer.contatctForm.startProject": "Zacznij projekt",
+    "offer.contatctForm.readyToBringYourIdeaToLife":
+      "Gotowy, żeby wprowadzić swój pomysł w życie? Opowiedz nam o swoim projekcie, a wrócimy do Ciebie z bezpłatną konsultacją i wyceną.",
+    "offer.contatctForm.thankYouForInquiry": "Dziekujemy za zapytanie!",
+    "offer.contatctForm.weWillReviewYourProjectDetails":
+      "Przeanalizujemy szczegóły Twojego projektu i skontaktujemy się z Tobą.",
+    "offer.contatctForm.submitAnotherInquiry": "Prześlij kolejne zapytanie",
+    "offer.contatctForm.sendInquiry": "Wyślij zapytanie",
+    "offer.contatctForm.contactWithUs": "Skontaktuj się z nami",
+
+    "offer.contatctForm.yourName": "Twoje imię i nazwisko",
+    "offer.contatctForm.companyBrand": "Firma / Marka",
+    "offer.contatctForm.projectType": "Rodzaj projektu",
+    "offer.contatctForm.estimatedBudget": "Szacowany budżet",
+    "offer.contatctForm.porjectDetails": "Szczegóły projektu",
+    "offer.contatctForm.selectAType": "Wybierz typ projektu...",
+    "offer.contatctForm.tellUsAboutYourProject":
+      "Opowiedz nam o swoim projekcie, celach, harmonogramie i wszelkich szczególnych...",
+    "offer.contatctForm.landingPage": "Landing Page",
+    "offer.contatctForm.businessWebsite": "Strona firmowa",
+    "offer.contatctForm.eComerce": "E-commerce",
+    "offer.contatctForm.webApplication": "Aplikacja webowa",
+    "offer.contatctForm.redesign": "Przeprojektowanie",
+    "offer.contatctForm.other": "Inne",
+    "offer.contatctForm.selectProjectType": "Wybierz typ projektu",
+    "offer.contactForm.tellUsAboutYourProject":
+      "Opowiedz nam o swoim projekcie, celach, harmonogramie oraz wszelkich szczególnych wymaganiach...",
+    "offer.contactForm.yourCompanyBrandName": "Nazwa Twojej firmy/marki",
+
+    "footer.copied": "Skopiowano",
+    "footer.designedAndBuiltBy": "Zaprojektowane i wykonane przez",
   },
 } as const;

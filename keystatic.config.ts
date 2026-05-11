@@ -2,7 +2,7 @@ import { config, fields, singleton } from "@keystatic/core";
 
 const heroSchema = {
   badge: fields.text({ label: "Badge Text" }),
-  heading: fields.text({ label: "Main Heading" }),
+  heading: fields.mdx.inline({ label: "Main Heading" }),
   subheading: fields.text({ label: "Subheading" }),
   ctaText: fields.text({ label: "Button Text" }),
   content: fields.mdx({ label: "Description", options: { image: false } }),
@@ -74,6 +74,33 @@ const projectsSchema = {
   ),
 };
 
+const offerServices = {
+  title: fields.text({ label: "Title", defaultValue: "What We Build" }),
+  description: fields.text({ label: "Description" }),
+  services: fields.array(
+    fields.object({
+      title: fields.text({ label: "Title" }),
+      description: fields.text({ label: "Description" }),
+      keyWords: fields.array(fields.text({ label: "Key words" }), {
+        label: "Key words",
+      }),
+    }),
+    { label: "Services" },
+  ),
+};
+
+const offerStack = {
+  title: fields.text({ label: "Title", defaultValue: "What We Build" }),
+  description: fields.text({ label: "Description" }),
+  services: fields.array(
+    fields.object({
+      title: fields.text({ label: "Title" }),
+      description: fields.text({ label: "Description" }),
+    }),
+    { label: "Services" },
+  ),
+};
+
 export default config({
   storage: { kind: "local" },
   singletons: {
@@ -101,6 +128,27 @@ export default config({
       schema: projectsSchema,
     }),
 
+    offer_hero_en: singleton({
+      label: "🇬🇧 Offer Hero Section",
+      path: "src/content/en/offer/hero/hero",
+      format: { contentField: "content" },
+      schema: heroSchema,
+    }),
+    offer_services_en: singleton({
+      label: "🇬🇧 Offer Services Section",
+      path: "src/content/en/offer/services/services",
+      schema: offerServices,
+    }),
+    offer_stack_en: singleton({
+      label: "🇬🇧 Offer Stack Section",
+      path: "src/content/en/offer/stack/stack",
+      schema: offerStack,
+    }),
+    offer_process_en: singleton({
+      label: "🇬🇧 Offer Process Section",
+      path: "src/content/en/offer/process/process",
+      schema: offerStack,
+    }),
     // --- POLISH ---
     hero_pl: singleton({
       label: "🇵🇱 Hero Section",
@@ -123,6 +171,28 @@ export default config({
       label: "🇵🇱 Projects",
       path: "src/content/pl/projects/projects",
       schema: projectsSchema,
+    }),
+
+    offer_hero_pl: singleton({
+      label: "🇵🇱 Offer Hero Section",
+      path: "src/content/pl/offer/hero/hero",
+      format: { contentField: "content" },
+      schema: heroSchema,
+    }),
+    offer_services_pl: singleton({
+      label: "🇵🇱 Offer Services Section",
+      path: "src/content/pl/offer/services/services",
+      schema: offerServices,
+    }),
+    offer_stack_pl: singleton({
+      label: "🇵🇱 Offer Stack Section",
+      path: "src/content/pl/offer/stack/stack",
+      schema: offerStack,
+    }),
+    offer_process_pl: singleton({
+      label: "🇵🇱 Offer Process Section",
+      path: "src/content/pl/offer/process/process",
+      schema: offerStack,
     }),
   },
 });

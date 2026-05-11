@@ -1,0 +1,30 @@
+title: Our Tech Stack
+description: >-
+  We choose the right tool for every project. Whether it's a static marketing
+  site or a data-driven web app, our stack ensures performance, scalability, and
+  a great user experience.
+services:
+  - title: Next.js
+    description: >-
+      Full-stack React framework for production-grade web apps with SSR,
+      routing, and API endpoints.
+  - title: "React "
+    description: >-
+      Component-based UI library for building interactive, reusable interfaces
+      with a massive ecosystem.
+  - title: Astro
+    description: >-
+      Lightning-fast static site generator, perfect for content-rich sites and
+      blogs with zero JS by default.
+  - title: WordPress
+    description: >-
+      The world's most popular CMS. Great for blogs, business sites, and clients
+      who need easy content editing.
+  - title: PostgreSQL
+    description: >-
+      Robust, open-source relational database for complex queries, data
+      integrity, and scalable backends.
+  - title: Supabase
+    description: >-
+      Open-source Firebase alternative with auth, real-time subscriptions,
+      storage, and auto-generated APIs.

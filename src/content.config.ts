@@ -59,15 +59,73 @@ const projectsSchema = z.object({
   ),
 });
 
+const offerServices = z.object({
+  title: z.string(),
+  description: z.string(),
+  services: z.array(
+    z.object({
+      title: z.string(),
+      description: z.string(),
+      keyWords: z.array(z.string()),
+    }),
+  ),
+});
+
+const offerStack = z.object({
+  title: z.string(),
+  description: z.string(),
+  services: z.array(
+    z.object({
+      title: z.string(),
+      description: z.string(),
+    }),
+  ),
+});
+
 export const collections = {
   // English
   "en/hero": defineCollection({ type: "content", schema: heroSchema }),
   "en/about": defineCollection({ type: "content", schema: aboutSchema }),
   "en/experience": defineCollection({ type: "data", schema: experienceSchema }),
   "en/projects": defineCollection({ type: "data", schema: projectsSchema }),
+
+  "en/offer/hero": defineCollection({
+    type: "content",
+    schema: heroSchema,
+  }),
+  "en/offer/services": defineCollection({
+    type: "data",
+    schema: offerServices,
+  }),
+  "en/offer/stack": defineCollection({
+    type: "data",
+    schema: offerStack,
+  }),
+  "en/offer/process": defineCollection({
+    type: "data",
+    schema: offerStack,
+  }),
+
   // Polish
   "pl/hero": defineCollection({ type: "content", schema: heroSchema }),
   "pl/about": defineCollection({ type: "content", schema: aboutSchema }),
   "pl/experience": defineCollection({ type: "data", schema: experienceSchema }),
   "pl/projects": defineCollection({ type: "data", schema: projectsSchema }),
+
+  "pl/offer/hero": defineCollection({
+    type: "content",
+    schema: heroSchema,
+  }),
+  "pl/offer/services": defineCollection({
+    type: "data",
+    schema: offerServices,
+  }),
+  "pl/offer/stack": defineCollection({
+    type: "data",
+    schema: offerStack,
+  }),
+  "pl/offer/process": defineCollection({
+    type: "data",
+    schema: offerStack,
+  }),
 };

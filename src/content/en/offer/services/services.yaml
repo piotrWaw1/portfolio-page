@@ -1,0 +1,59 @@
+title: What We Build
+description: >-
+  Whether you need a simple landing page or a complex web application with
+  authentication and databases, we have you covered. Every project is built with
+  clean code, modern design, and your business goals in mind.
+services:
+  - title: Landing Pages
+    description: >-
+      High-converting, beautifully designed landing pages tailored to your
+      brand. Optimized for speed, SEO, and mobile-first responsiveness to
+      maximize engagement.
+    keyWords:
+      - SEO Optimized
+      - Responsive
+      - Fast Load
+  - title: Business Websites
+    description: >-
+      Professional multi-page websites that establish your online presence.
+      Complete with content management, contact forms, analytics, and everything
+      your business needs.
+    keyWords:
+      - Gotowe CMS
+      - Wielostronicowe
+      - Analityka
+  - title: E-commerce Solutions
+    description: >-
+      Custom online stores with secure payment processing, inventory management,
+      and a seamless shopping experience that drives sales and customer loyalty.
+    keyWords:
+      - Payments
+      - Inventory
+      - Cart System
+  - title: Web Applications
+    description: >-
+      Full-featured web apps with user authentication, databases, dashboards,
+      and complex business logic. From SaaS platforms to internal tools - we
+      build it all.
+    keyWords:
+      - Auth & Roles
+      - Database
+      - Dashboard
+  - title: UI/UX Redesign
+    description: >-
+      Breathe new life into your existing website with a modern redesign. We
+      audit your current site, identify improvements, and deliver a refreshed,
+      user-friendly experience.
+    keyWords:
+      - Audit
+      - Modern UI
+      - UX Research
+  - title: Performance & SEO
+    description: >-
+      Already have a site? We optimize loading speed, Core Web Vitals,
+      accessibility, and search engine ranking to help you reach more customers
+      organically.
+    keyWords:
+      - Core Vitals
+      - A11y
+      - Speed Boost

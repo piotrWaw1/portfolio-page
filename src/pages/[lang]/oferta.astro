@@ -1,0 +1,92 @@
+---
+import "@/styles/global.css";
+import { Navbar } from "@/components/navbar";
+import ScrollProgress from "@/components/scroll-progress";
+import { getLangFromUrl, useTranslations } from "@/i18n/utils";
+import Layout from "@/layouts/Layout.astro";
+import { Locales } from "@/types/locales.types";
+import OfferHero from "@/components/offer/offer-hero.astro";
+import OfferServices from "@/components/offer/offer-services.astro";
+import OfferStack from "@/components/offer/offer-stack.astro";
+import Footer from "@/components/sections/footer.astro";
+import OfferProcess from "@/components/offer/offer-process.astro";
+import OfferContact from "@/components/offer/offer-contact";
+import { getEntry } from "astro:content";
+
+export function getStaticPaths() {
+  return [{ params: { lang: Locales.EN } }, { params: { lang: Locales.PL } }];
+}
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const sections = [
+  {
+    id: "hero",
+    label: t("nav.home"),
+    activeColor: "bg-rose border-rose shadow-[0_0_20px_var(--color-rose)]",
+  },
+  {
+    id: "services",
+    label: t("nav.services"),
+    activeColor: "bg-primary border-primary shadow-[0_0_20px_var(--primary)]",
+  },
+  {
+    id: "stack",
+    label: t("nav.techStack"),
+    activeColor: "bg-cyan border-cyan shadow-[0_0_20px_var(--color-cyan)]",
+  },
+  {
+    id: "process",
+    label: t("nav.process"),
+    activeColor: "bg-accent border-accent shadow-[0_0_20px_var(--accent)]",
+  },
+  {
+    id: "contact",
+    label: t("nav.contact"),
+    activeColor: "bg-amber border-amber shadow-[0_0_20px_var(--color-amber)]",
+  },
+];
+
+const navLinks = [
+  { label: t("nav.services"), href: "#services", color: "text-primary" },
+  { label: t("nav.techStack"), href: "#stack", color: "text-cyan" },
+  { label: t("nav.process"), href: "#process", color: "text-accent" },
+  { label: t("nav.contact"), href: "#contact", color: "text-amber" },
+];
+
+const redirectToPage = {
+  title: t("nav.portfolio"),
+  url: `/${lang}/`,
+  portfolio: true,
+};
+
+const [hero, services, stack, process] = await Promise.all([
+  getEntry(`${lang}/offer/hero` as "en/offer/hero" | "pl/offer/hero", "hero"),
+  getEntry(
+    `${lang}/offer/services` as "en/offer/services" | "pl/offer/services",
+    "services",
+  ),
+  getEntry(
+    `${lang}/offer/stack` as "en/offer/stack" | "pl/offer/stack",
+    "stack",
+  ),
+  getEntry(
+    `${lang}/offer/process` as "en/offer/process" | "pl/offer/process",
+    "process",
+  ),
+]);
+---
+
+<Layout>
+  <Navbar navLinks={navLinks} redirectToPage={redirectToPage} client:load />
+  <ScrollProgress sections={sections} client:idle />
+  <main>
+    <OfferHero heroData={hero} />
+    <OfferServices servicesData={services} />
+    <OfferStack stackData={stack} />
+    <OfferProcess processData={process} />
+    <OfferContact client:visible />
+    <Footer />
+  </main>
+</Layout>

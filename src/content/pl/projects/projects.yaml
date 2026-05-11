@@ -3,9 +3,9 @@ mainProjects:
   - title: lumarik
     subtitle: Aplikacja Dashboard
     description: >-
-      Zaawansowana aplikacja typu dashboard z płynną integracją Mirakl API, która 
+      Zaawansowana aplikacja typu dashboard z integracją Mirakl API, która 
       pozwala użytkownikom przeglądać i zarządzać danymi marketplace w jednym miejscu. 
-      Aplikacja wyświetla kluczowe wskaźniki wydajności reklam oraz statystyki sprzedaży, 
+      Aplikacja wyświetla kluczowe wskaźniki wydajności kampanii reklamowych oraz statystyki sprzedaży, 
       dostarczając przejrzystych analiz pomagających śledzić wyniki, optymalizować 
       kampanie i podejmować decyzje w oparciu o dane.
     projectUrl: https://app.lumarik.com/

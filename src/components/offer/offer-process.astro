@@ -1,0 +1,98 @@
+---
+import { Code2, MessageSquare, PenTool, Rocket } from "@lucide/astro";
+import { AnimateIn } from "../ui/animate-in";
+import type { OfferProcessEntry } from "@/types/sections.types";
+import { getLangFromUrl, useTranslations } from "@/i18n/utils";
+
+interface Processrops {
+  processData?: OfferProcessEntry;
+}
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const { processData } = Astro.props as Processrops;
+const data = processData!.data;
+
+const steps = [
+  {
+    number: "01",
+    icon: MessageSquare,
+    color: "text-primary",
+    borderColor: "border-primary/30",
+    bgColor: "bg-primary/5",
+  },
+  {
+    number: "02",
+    icon: PenTool,
+    color: "text-accent",
+    borderColor: "border-accent/30",
+    bgColor: "bg-accent/5",
+  },
+  {
+    number: "03",
+    icon: Code2,
+    color: "text-cyan",
+    borderColor: "border-cyan/30",
+    bgColor: "bg-cyan/5",
+  },
+  {
+    number: "04",
+    icon: Rocket,
+    color: "text-amber",
+    borderColor: "border-amber/30",
+    bgColor: "bg-amber/5",
+  },
+];
+---
+
+<section id="process" class="mesh-section-accent px-6 py-24 md:py-32">
+  <div class="mx-auto max-w-6xl">
+    <AnimateIn client:visible>
+      <div class="mb-4 flex items-center gap-4">
+        <h2
+          class="text-foreground flex items-center gap-2 text-2xl font-bold md:text-3xl"
+        >
+          <span class="text-accent font-mono text-lg md:text-xl"> 03. </span>
+          {data.title}
+        </h2>
+        <div class="from-accent/40 h-px flex-1 bg-gradient-to-r to-transparent">
+        </div>
+      </div>
+    </AnimateIn>
+
+    <AnimateIn delay={100} client:visible>
+      <p class="text-muted-foreground mb-14 max-w-2xl leading-relaxed">
+        {data.description}
+      </p>
+    </AnimateIn>
+
+    <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
+      {
+        steps.map((step, i) => (
+          <AnimateIn delay={i * 120} client:visible>
+            <div
+              class={`hover:border-opacity-60 flex h-full flex-col items-center rounded-2xl border ${step.bgColor} ${step.borderColor} px-2 py-4 text-center transition-all hover:-translate-y-2`}
+            >
+              <div
+                class={`mb-3 flex h-16 w-16 items-center justify-center rounded-2xl border ${step.borderColor} ${step.bgColor}`}
+              >
+                <step.icon class={`h-7 w-7 ${step.color}`} />
+              </div>
+              <span class={`mb-2 font-mono text-sm ${step.color}`}>
+                {t("offer.process.setp")}
+                {step.number}
+              </span>
+              <h3 class="text-foreground mb-3 text-lg font-semibold">
+                {data.services[i].title}
+              </h3>
+              <p class="text-muted-foreground text-sm leading-relaxed">
+                {data.services[i].description}
+              </p>
+            </div>
+          </AnimateIn>
+        ))
+      }
+    </div>
+  </div>
+</section>

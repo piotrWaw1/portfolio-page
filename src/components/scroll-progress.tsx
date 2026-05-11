@@ -1,44 +1,12 @@
 import { useState, useEffect } from "react";
 import { cn } from "@/lib/utils.ts";
-import { getLangFromUrl, useTranslations } from "@/i18n/utils";
-import { defaultLang } from "@/i18n/ui";
 
-const ScrollProgress = () => {
+interface ScrollProgressProps {
+  sections: { id: string; label: string; activeColor: string }[];
+}
+
+export default function ScrollProgress({ sections }: ScrollProgressProps) {
   const [activeSection, setActiveSection] = useState("hero");
-  const [t, setT] = useState(() => useTranslations(defaultLang));
-
-  const sections = [
-    {
-      id: "hero",
-      label: t("nav.home"),
-      activeColor: "bg-rose border-rose shadow-[0_0_20px_var(--color-rose)]",
-    },
-    {
-      id: "about",
-      label: t("nav.about"),
-      activeColor: "bg-primary border-primary shadow-[0_0_20px_var(--primary)]",
-    },
-    {
-      id: "experience",
-      label: t("nav.experience"),
-      activeColor: "bg-accent border-accent shadow-[0_0_20px_var(--accent)]",
-    },
-    {
-      id: "projects",
-      label: t("nav.projects"),
-      activeColor: "bg-cyan border-cyan shadow-[0_0_20px_var(--color-cyan)]",
-    },
-    {
-      id: "contact",
-      label: t("nav.contact"),
-      activeColor: "bg-amber border-amber shadow-[0_0_20px_var(--color-amber)]",
-    },
-  ];
-
-  useEffect(() => {
-    const lang = getLangFromUrl(new URL(window.location.href));
-    setT(() => useTranslations(lang));
-  }, []);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -87,7 +55,7 @@ const ScrollProgress = () => {
           className="group relative flex items-center justify-center focus:outline-none"
           aria-label={`Scroll to ${section.label}`}
         >
-          <span className="bg-popover border-border text-popover-foreground absolute right-8 translate-x-2 rounded-md border px-2 py-1 text-xs font-medium whitespace-nowrap opacity-0 shadow-md transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100">
+          <span className="bg-popover border-border text-popover-foreground absolute right-8 translate-x-2 rounded-md border px-2 py-1 text-xs font-medium text-nowrap opacity-0 shadow-md transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100">
             {section.label}
           </span>
           <div
@@ -102,6 +70,4 @@ const ScrollProgress = () => {
       ))}
     </nav>
   );
-};
-
-export default ScrollProgress;
+}
