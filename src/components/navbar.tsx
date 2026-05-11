@@ -103,7 +103,20 @@ export function Navbar({ navLinks, redirectToPage }: NavbarProps) {
           </div>
         </div>
 
-        <div className="flex items-center gap-3 md:hidden">
+        <div className="flex flex-row items-center gap-3 md:hidden">
+          <a
+            href={redirectToPage.url}
+            className={cn(
+              "inline-flex items-center gap-2 self-stretch rounded-lg border px-4 font-mono text-sm",
+              redirectToPage.portfolio
+                ? "border-cyan/30 bg-cyan/5 text-cyan hover:border-cyan/50 hover:bg-cyan/10"
+                : "border-accent/30 bg-accent/5 text-accent hover:border-accent/50 hover:bg-accent/10",
+            )}
+          >
+            {redirectToPage.portfolio && <ArrowLeft className="h-4 w-4" />}
+            {redirectToPage.title}
+            {!redirectToPage.portfolio && <ArrowRight className="h-4 w-4" />}
+          </a>
           <LangToggle />
           {/* <ModeToggle /> */}
           <button
@@ -150,16 +163,6 @@ export function Navbar({ navLinks, redirectToPage }: NavbarProps) {
                     </a>
                   </li>
                 ))}
-                <li>
-                  <a
-                    href={redirectToPage.url}
-                    onClick={() => setMobileOpen(false)}
-                    className="border-accent/30 bg-accent/5 text-accent inline-flex items-center gap-2 rounded-lg border px-5 py-2.5 font-mono text-sm"
-                  >
-                    {redirectToPage.title}
-                    <ArrowRight className="h-4 w-4" />
-                  </a>
-                </li>
               </ul>
             </div>,
             document.body,

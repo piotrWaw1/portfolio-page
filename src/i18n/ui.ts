@@ -65,6 +65,12 @@ export const transaltions = {
     "offer.contatctForm.redesign": "Redesign",
     "offer.contatctForm.other": "Other",
     "offer.contatctForm.selectProjectType": "Select project type",
+    "offer.contactForm.tellUsAboutYourProject":
+      "Tell us about your project, goals, timeline, and any specific requirements...",
+    "offer.contactForm.yourCompanyBrandName": "Your company/brand name",
+
+    "footer.copied": "Copied",
+    "footer.designedAndBuiltBy": "Designed & Built by",
   },
   pl: {
     "nav.home": "Strona główna",
@@ -127,5 +133,11 @@ export const transaltions = {
     "offer.contatctForm.redesign": "Przeprojektowanie",
     "offer.contatctForm.other": "Inne",
     "offer.contatctForm.selectProjectType": "Wybierz typ projektu",
+    "offer.contactForm.tellUsAboutYourProject":
+      "Opowiedz nam o swoim projekcie, celach, harmonogramie oraz wszelkich szczególnych wymaganiach...",
+    "offer.contactForm.yourCompanyBrandName": "Nazwa Twojej firmy/marki",
+
+    "footer.copied": "Skopiowano",
+    "footer.designedAndBuiltBy": "Zaprojektowane i wykonane przez",
   },
 } as const;

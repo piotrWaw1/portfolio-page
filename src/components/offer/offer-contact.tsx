@@ -210,7 +210,9 @@ export default function OfferContact() {
                             {...field}
                             id="form-company"
                             aria-invalid={fieldState.invalid}
-                            placeholder="Company"
+                            placeholder={t(
+                              "offer.contactForm.yourCompanyBrandName",
+                            )}
                             autoComplete="off"
                             className="border-border bg-secondary/50 text-foreground placeholder:text-muted-foreground/50 focus-visible:border-rose focus-visible:ring-rose/65 rounded-xl border px-4 py-6 transition-all"
                           />
@@ -264,7 +266,9 @@ export default function OfferContact() {
                           {...field}
                           id="form-message"
                           aria-invalid={fieldState.invalid}
-                          placeholder={t("contact.heyAlex")}
+                          placeholder={t(
+                            "offer.contactForm.tellUsAboutYourProject",
+                          )}
                           autoComplete="off"
                           className="border-border bg-secondary/50 text-foreground placeholder:text-muted-foreground/50 focus-visible:border-accent focus-visible:ring-accent/65 h-30 resize-none rounded-xl border px-4 py-3 transition-all"
                         />

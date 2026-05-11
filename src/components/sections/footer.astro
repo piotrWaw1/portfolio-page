@@ -1,5 +1,7 @@
 ---
-import { Github, Linkedin, Mail } from "@lucide/astro";
+import { Github, Linkedin, Mail, Phone } from "@lucide/astro";
+import { FooterContactCopy } from "../footer-contact-copy";
+import { getLangFromUrl, useTranslations } from "@/i18n/utils";
 
 const socialLinks = [
   {
@@ -21,6 +23,9 @@ const socialLinks = [
     color: "hover:text-amber",
   },
 ];
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 ---
 
 <footer class="border-border/30 border-t px-6 py-12">
@@ -38,8 +43,9 @@ const socialLinks = [
         ))
       }
     </div>
-    <p class="text-muted-foreground font-mono text-xs">
-      Designed & Built by{" "}
+    <FooterContactCopy client:visible />
+    <p class="text-muted-foreground font-mono text-sm">
+      {t("footer.designedAndBuiltBy")}{" "}
       <span class="gradient-text">Piotr Wawrzeńczyk</span>
     </p>
   </div>
