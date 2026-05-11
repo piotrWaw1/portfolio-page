@@ -23,7 +23,7 @@ export default defineConfig({
   vite: {
     plugins: [tailwindcss(), yaml()],
     ssr: {
-      noExternal: ["gsap", "@gsap/react"],
+      noExternal: ["gsap", "@gsap/react", "axobject-query"],
     },
   },
 
