@@ -1,10 +1,27 @@
 ---
-const canonical = new URL(Astro.url.pathname, "https://www.p-wawrzenczyk.dev")
-  .href;
+interface Props {
+  lang?: "en" | "pl";
+  canonical: string;
+}
+
+const { lang = "en", canonical } = Astro.props;
+
+const meta = {
+  en: {
+    description:
+      "Piotr Wawrzeńczyk - Frontend Developer specializing in React and UI design. Explore my projects, skills, and get in touch.",
+  },
+  pl: {
+    description:
+      "Piotr Wawrzeńczyk - Frontend Developer specjalizujący się w React i UI design. Zobacz moje projekty, umiejętności i skontaktuj się ze mną.",
+  },
+};
+
+const { description } = meta[lang];
 ---
 
 <!doctype html>
-<html lang="en" class="scroll-smooth">
+<html lang={lang} class="scroll-smooth">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
@@ -13,10 +30,7 @@ const canonical = new URL(Astro.url.pathname, "https://www.p-wawrzenczyk.dev")
     <link rel="icon" href="/favicon.ico" />
     <link rel="canonical" href={canonical} />
     <meta name="generator" content={Astro.generator} />
-    <meta
-      name="description"
-      content="Piotr Wawrzeńczyk - Frontend Developer specializing in React and UI design. Explore my projects, skills, and get in touch."
-    />
+    <meta name="description" content={description} />
     <title>Piotr Wawrzeńczyk</title>
   </head>
   <body>
