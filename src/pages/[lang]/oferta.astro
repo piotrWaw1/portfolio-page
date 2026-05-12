@@ -13,12 +13,26 @@ import OfferProcess from "@/components/offer/offer-process.astro";
 import OfferContact from "@/components/offer/offer-contact";
 import { getEntry } from "astro:content";
 
+const meta = {
+  en: {
+    description:
+      "Custom web development & UI design. React, WordPress, modern tooling, clean code. See what I can build for you.",
+  },
+  pl: {
+    description:
+      "Tworzenie stron i aplikacji webowych — React, WordPress, nowoczesne technologie, czysty kod. Sprawdź, co mogę dla Ciebie zrobić.",
+  },
+};
+
 export function getStaticPaths() {
   return [{ params: { lang: Locales.EN } }, { params: { lang: Locales.PL } }];
 }
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
+
+const canonical = `https://www.p-wawrzenczyk.dev/oferta`;
+const { description } = meta[lang];
 
 const sections = [
   {
@@ -78,7 +92,7 @@ const [hero, services, stack, process] = await Promise.all([
 ]);
 ---
 
-<Layout>
+<Layout lang={lang} canonical={canonical} description={description}>
   <Navbar navLinks={navLinks} redirectToPage={redirectToPage} client:load />
   <ScrollProgress sections={sections} client:idle />
   <main>

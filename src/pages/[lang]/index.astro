@@ -15,6 +15,17 @@ import { getEntry } from "astro:content";
 import { Locales } from "@/types/locales.types";
 import { getLangFromUrl, useTranslations } from "@/i18n/utils";
 
+const meta = {
+  en: {
+    description:
+      "Piotr Wawrzeńczyk - Frontend Developer specializing in React and UI design. Explore my projects, skills, and get in touch.",
+  },
+  pl: {
+    description:
+      "Piotr Wawrzeńczyk - Frontend Developer specjalizujący się w React i UI design. Zobacz moje projekty, umiejętności i skontaktuj się ze mną.",
+  },
+};
+
 export function getStaticPaths() {
   return [{ params: { lang: Locales.EN } }, { params: { lang: Locales.PL } }];
 }
@@ -22,7 +33,8 @@ export function getStaticPaths() {
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
-const canonical = `https://www.p-wawrzenczyk.dev/${lang}`;
+const canonical = `https://www.p-wawrzenczyk.dev`;
+const { description } = meta[lang];
 
 const sections = [
   {
@@ -80,7 +92,7 @@ const projects = await getEntry(
 );
 ---
 
-<Layout lang={lang} canonical={canonical}>
+<Layout lang={lang} canonical={canonical} description={description}>
   <!--<Cursor client:load />-->
   <Navbar navLinks={navLinks} redirectToPage={redirectToPage} client:load />
   <SideElements />
