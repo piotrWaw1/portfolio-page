@@ -22,6 +22,8 @@ export function getStaticPaths() {
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
+const canonical = `https://www.p-wawrzenczyk.dev/${lang}`;
+
 const sections = [
   {
     id: "hero",
@@ -78,7 +80,7 @@ const projects = await getEntry(
 );
 ---
 
-<Layout>
+<Layout lang={lang} canonical={canonical}>
   <!--<Cursor client:load />-->
   <Navbar navLinks={navLinks} redirectToPage={redirectToPage} client:load />
   <SideElements />
