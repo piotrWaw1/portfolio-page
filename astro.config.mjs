@@ -38,7 +38,53 @@ export default defineConfig({
     markdoc(),
     !isProduction && keystatic(),
     mdx(),
-    sitemap(),
+    sitemap({
+      filter: (page) =>
+        ![
+          "https://www.p-wawrzenczyk.dev/",
+          "https://www.p-wawrzenczyk.dev/oferta/",
+        ].includes(page),
+
+      serialize(item) {
+        const locales = {
+          "/pl/": { pl: "/pl/", en: "/en/", xDefault: "/" },
+          "/en/": { pl: "/pl/", en: "/en/", xDefault: "/" },
+          "/pl/oferta/": {
+            pl: "/pl/oferta/",
+            en: "/en/oferta/",
+            xDefault: "/oferta/",
+          },
+          "/en/oferta/": {
+            pl: "/pl/oferta/",
+            en: "/en/oferta/",
+            xDefault: "/oferta/",
+          },
+        };
+
+        const base = "https://www.p-wawrzenczyk.dev";
+        const path = item.url.replace(base, "");
+        // @ts-ignore
+        const links = locales[path];
+
+        if (links) {
+          item.links = [
+            { lang: "pl", url: `${base}${links.pl}` },
+            { lang: "en", url: `${base}${links.en}` },
+            { lang: "x-default", url: `${base}${links.xDefault}` },
+          ];
+        }
+
+        return item;
+      },
+
+      i18n: {
+        defaultLocale: "pl",
+        locales: {
+          pl: "pl",
+          en: "en",
+        },
+      },
+    }),
   ],
   output: "static",
   adapter: vercel(),
