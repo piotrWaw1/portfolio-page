@@ -33,7 +33,7 @@ export function getStaticPaths() {
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
-const canonical = `https://www.p-wawrzenczyk.dev`;
+const canonical = `https://www.p-wawrzenczyk.dev/${lang}/`;
 const { description } = meta[lang];
 
 const sections = [

@@ -6,6 +6,14 @@ interface Props {
 }
 
 const { lang = "en", canonical, description } = Astro.props;
+
+const hreflangs = [
+  { hreflang: "pl", href: canonical.replace(/\/(en|pl)\//, "/pl/") },
+  { hreflang: "en", href: canonical.replace(/\/(en|pl)\//, "/en/") },
+  { hreflang: "x-default", href: canonical.replace(/\/(en|pl)\//, "/") },
+];
+
+console.log(hreflangs);
 ---
 
 <!doctype html>
@@ -17,6 +25,11 @@ const { lang = "en", canonical, description } = Astro.props;
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="icon" href="/favicon.ico" />
     <link rel="canonical" href={canonical} />
+    {
+      hreflangs.map(({ hreflang, href }) => (
+        <link rel="alternate" hreflang={hreflang} href={href} />
+      ))
+    }
     <meta name="generator" content={Astro.generator} />
     <meta name="description" content={description} />
     <title>Piotr Wawrzeńczyk</title>

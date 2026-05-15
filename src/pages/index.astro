@@ -17,5 +17,5 @@ const browserLocales = acceptLanguage
 
 const matched = browserLocales.find((lang) => supportedLocales.includes(lang));
 
-return Astro.redirect(`/${matched ?? DefaultLocale}/`, 302);
+return Astro.redirect(`/${matched ?? DefaultLocale}/`, 301);
 ---
